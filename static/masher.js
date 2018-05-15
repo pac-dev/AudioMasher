@@ -1531,15 +1531,15 @@ var gotError;
 var play = function () {
 	gotError = false;
 	playButton.classList.add("playing");
-	resporth_compile(editor.getValue());
+	sporthal_compile(editor.getValue());
 	if (!playing && !gotError) {
-		resporth_start();
+		sporthal_start();
 		playing = true;
 	}
 };
 var stop = function() {
 	if (playing) {
-		resporth_stop();
+		sporthal_stop();
 		playing = false;
 		playButton.classList.remove("playing");
 	}
@@ -1557,10 +1557,10 @@ var Module = {
 		playButton.classList.remove("playing");
 	},
 	onRuntimeInitialized: function () {
-		cwrap('resporth_init', 'number')();
-		resporth_compile = cwrap('resporth_compile', 'number', ['string']);
-		resporth_start = cwrap('resporth_start', 'number');
-		resporth_stop = cwrap('resporth_stop', 'number');
+		cwrap('sporthal_init', 'number')();
+		sporthal_compile = cwrap('sporthal_compile', 'number', ['string']);
+		sporthal_start = cwrap('sporthal_start', 'number');
+		sporthal_stop = cwrap('sporthal_stop', 'number');
 		Module.print("ready.")
 	},
 };
