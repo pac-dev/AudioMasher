@@ -1,0 +1,63 @@
+
+	<div class=left_pane>
+		<textarea autocomplete=off>{{index .Patch.Files "main.sp"}}</textarea>
+		<div id=controls>
+			<a id=c_play title="Compile & start audio (from editor: ctrl+Enter)"></a>
+			<a id=c_stop title="Stop audio (from editor: ctrl+Space)"></a>
+			<a id=c_help title="Show/hide help and quick reference"></a>
+			{{if .CanUpdatePatch}}
+			<a href="#update_modal" id=c_post title="Update Patch..."></a>
+			{{else if .LoggedIn}}
+			<a href="#post_modal" id=c_post title="Post Patch..."></a>
+			{{else}}
+			<a href="#signup_modal" id=c_post title="Post Patch..."></a>
+			{{end}}
+		</div>
+		<div id=tooltip></div>
+		<div id=errors></div>
+	</div>
+	<div class=right_pane>
+		{{if eq .Patch.Title ""}}
+		<a class="tab_thumb active_thumb" href="#quick_ref">
+			quick ref
+		</a>
+		{{else}}
+		<a class="tab_thumb active_thumb" href="#metadata">
+			meta
+		</a>
+		<a class=tab_thumb href="#quick_ref">
+			quick ref
+		</a>
+		{{end}}
+		<a class=tab_thumb href="#tutorial">
+			tutorial
+		</a>
+		{{if eq .Patch.Title ""}}
+		<div class="tab_content active_content" id=quick_ref>
+			loading...
+		</div>
+		{{else}}
+		<div class="tab_content active_content" id=metadata>
+			<em>Title:</em><br>
+			<span id=PTitle>{{.Patch.Title}}</span><br><br>
+			<em>Author:</em><br>
+			{{.Patch.Author}}<br><br>
+			<em>Description:</em><br>
+			<span id=PDesc>{{index .Patch.Files "readme.txt"}}</span><br><br>
+			<em>Created:</em> {{HumanDate .Patch.DateCreated }}
+			<br><br>
+			<em>Modified:</em> {{HumanDate .Patch.DateModified }}
+			<br><br>
+			<span id=PId style="display:none">{{.Patch.Id}}</span>
+		</div>
+		<div class=tab_content id=quick_ref>
+			loading...
+		</div>
+		{{end}}
+		<div class=tab_content id=tutorial>
+			Sporth is easy! 
+			For now, the only tutorial is the Paul Batchelor's excellent 
+			<a href="http://paulbatchelor.github.io/proj/cook/">cookbook</a>.
+			<br><br>
+		</div>
+	</div>

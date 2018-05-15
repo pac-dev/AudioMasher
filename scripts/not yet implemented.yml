@@ -1,0 +1,225 @@
+
+
+
+gen_sporth:
+    Args:
+        - tblname
+        - size
+        - filename
+    Outputs: 1
+    Description: render a (mono) sporth file to a table
+
+nsmp:
+    Args:
+        - trig
+        - index
+        - sr
+        - ini
+        - wav
+    Outputs: 1
+    Description: Nanosamp sampler. See soundpipe docs.
+
+render:
+    Args:
+        - filename
+    Outputs: 1
+    Description: renders a sporth file (private variables/tables)
+
+load:
+    Args:
+        - filename
+    Outputs: 1
+    Description: loads a sporth file
+
+writecode:
+    Args:
+        - filename
+    Outputs: 1
+    Description: writes sporth code to file
+
+slist:
+    Args:
+        - ftname
+        - size
+        - slist
+    Outputs: 1
+    Description: loads a text file into a string list
+
+load:
+    Args:
+        - filename
+    Outputs: 1
+    Description: loads a sporth file (global variables/tables)
+
+cdbtab:
+    Args:
+        - ftname
+        - key(s)
+        - db(s)
+        - filename
+    Outputs: 1
+    Description: loads raw floating point data from a cdb file
+
+print:
+    Args:
+        - val (f/s) label
+    Outputs: 1
+    Description: prints values to terminal
+
+cdbload:
+    Args:
+        - ftname
+        - filename
+    Outputs: 1
+    Description: loads cdb file
+
+cdb:
+    Args:
+        - key
+        - ftname
+    Outputs: 1
+    Description: loads string from cdb file
+
+metatable_create:
+    Args:
+        - name
+        - length
+    Outputs: 1
+    Description: create metatable that holds a number of tables
+
+metatable_add:
+    Args:
+        - name
+        - metatable
+        - position
+    Outputs: 1
+    Description: add ftable to position in metatable
+
+metatable_copy:
+    Args:
+        - name
+        - metatable
+        - position
+    Outputs: 1
+    Description: create a new ftable which shares the data at a metatable position
+
+ftsum:
+    Args:
+        - start
+        - end
+        - tbl
+    Outputs: 1
+    Description: sum a range of ftable values (inclusive). built for polysporth.
+
+fl:
+    Args:
+        - filename
+        - tbl
+    Outputs: 1
+    Description: dynamically load a ugen
+
+fe:
+    Args:
+        - tbl
+    Outputs: 1
+    Description: execute a dynamically loaded ugen
+
+fc:
+    Args:
+        - tbl
+    Outputs: 1
+    Description: close a dynamically loaded ugen (call this once at the end)
+
+loadfile:
+    Args:
+        - table name
+        - file name
+    Outputs: 1
+    Description: load a (mono) audio file into a table
+
+paulstretch:
+    Args:
+        - stretch
+        - window size
+        - tbl
+    Outputs: 1
+    Description: Paulstretch algorithm
+	
+
+
+	
+#=============================================== poly
+ps:
+    Args:
+        - max voices
+        - out
+        - file
+    Outputs: 1
+    Description: polysporth
+
+poly:
+    Args:
+        - max voices
+        - max params
+        - polyfile
+        - ftable
+    Outputs: 1
+    Description: Parse a poly file and write to table ftable
+
+polyget:
+    Args:
+        - voice number
+        - param number
+        - tbl
+    Outputs: 1
+    Description: "get a value from a poly table. p0 = tick p1 = dur p2,3,etc: other"
+
+tpoly:
+    Args:
+        - trig
+        - max voices
+        - max params
+        - arg_ft
+        - poly_ft
+    Outputs: 1
+    Description: triggered polyphony
+
+psh:
+    Args:
+        - ftname
+        - ninstances
+        - filename
+    Outputs: 1
+    Description: Create polysporth handle
+
+pst:
+    Args:
+        - tog
+        - id
+        - ftname
+    Outputs: 1
+    Description: toggle a polysporth sporthlet
+
+ling:
+    Args:
+        - trig
+        - N
+        - mode
+        - code
+    Outputs: 1
+    Description: "Evaluates a string of ling code. (0 = int mode, 1 = binary mode)"	
+	
+	
+#=============================================== spa
+spa:
+    Args:
+        - filename
+    Outputs: 1
+    Description: Streams a spa file
+
+sparec:
+    Args:
+        - input
+        - filename
+    Outputs: 1
+    Description: Writes a sparec file.

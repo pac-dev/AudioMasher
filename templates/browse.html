@@ -1,0 +1,19 @@
+<div class=middle_pane>
+	<br>
+	<table>
+		<tr>
+			<th>Patch</th>
+			<th>Author</th>
+			<th>Created</th>
+		</tr>
+		{{range .Patches}}
+		<tr>
+			<td><a href="/patch/{{.Id}}">{{.Title}}</a></td>
+			<td><a href="/author/{{.Author}}">{{.Author}}</a></td>
+			<td>{{HumanDate .DateCreated}}</td>
+		</tr>
+		{{end}}
+	</table>
+	<br>
+	<br>
+</div>

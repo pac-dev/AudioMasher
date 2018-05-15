@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="google" content="notranslate">
+	<meta http-equiv="Content-Language" content="en">
+	<link rel="stylesheet" href="{{.StaticRoot}}masher.css">
+	<link rel="stylesheet" href="{{.StaticRoot}}codemirror/codemirror.css">
+	<style>
+		#controls>a::after {background-image: url("{{.StaticRoot}}controls.svg");}
+	</style>
+</head>
+<body class=drk>
+	<div class=top_bar>
+		<a href="/about" class="title L"><span>Audio</span><span>Masher</span></a>
+		<div class="headline L"><div>
+			<a href="/continue" class=restore_link>[continue autosave] </a>
+			{{.HeadlinePrefix}}{{.Headline}}
+		</div></div>
+		
+		{{if .LoggedIn}}
+			<a class=R href="/logout" title="Log Out">logout ({{.UserName}})</a>
+		{{else}}
+			<a class=R href="#login_modal" title="Log in">log in</a>
+		{{end}}
+		<a class=R href="/new">new</a>
+		<a class=R href="/browse">browse</a>
+	</div>
+	{{if eq .CurrentView "Patch"}}
+		{{template "patch.html" .}}
+	{{else if eq .CurrentView "Browse"}}
+		{{template "browse.html" .}}
+	{{else if eq .CurrentView "About"}}
+		{{template "about.html" .}}
+	{{else if eq .CurrentView "404"}}
+		{{template "404.html" .}}
+	{{end}}
+	<div id=modal_back></div>
+	<div id=modal_front></div>
+	<script src="{{.StaticRoot}}codemirror/codemirror.js"></script>
+	<script src="{{.StaticRoot}}codemirror/addon/mode/simple.js"></script>
+	<script src="{{.StaticRoot}}masher.js"></script>
+	<script async src="{{.StaticRoot}}sporthal.js"></script>
+	<script>{{.FinalJS}}</script>
+	<input type=hidden value="{{.Referer}}" />
+</body>

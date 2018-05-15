@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 100 1000 500" width="1000px" height="500px" 
+	xmlns="http://www.w3.org/2000/svg" 
+	 xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<defs>
+		<path id="prevnext" d="M 0 0 L 100 0 L 100 100 L 70 100 L 70 30 L 0 30 z" 
+		transform="translate(42,58),scale(0.66),translate(-50,-50)" />
+		<path id="play" d="M 0 0 L 100 50 L 0 100 z" 
+		transform="translate(54,50),scale(0.7),translate(-50,-50)" />
+		<rect id="stop" x="16" y="16" width="68" height="68" stroke-width="3.5" />
+		<g id="help" transform="translate(52,51),scale(1.3),translate(-50,-50)" stroke-width="2.4" >
+			<path d="M71.2,36c0,12.4-13.8,15.5-13.8,21.2v5.3H41.3v-7.6c0-8.8,13.8-13.8,13.8-19c0-3.6-3.4-5.9-6.4-5.9c-3.7,0-6.8,3.3-9.8,7.1   l-10.1-9.4C34.8,19.8,41.9,15,50.6,15C62.1,15,71.2,23.1,71.2,36z"/>
+			<circle cx="49.4" cy="75.6" r="9.4"/>
+		</g>
+		<g id="info" stroke-width="2.8" transform="translate(20,19),scale(1.05),translate(-50,-50)">
+			<path d="m90.665 110.96c-0.069 2.73 1.211 3.5 4.327 3.82l5.008 0.1v5.12h-39.073v-5.12l5.503-0.1c3.291-0.1 4.082-1.38 4.327-3.82v-30.813c0.035-4.879-6.296-4.113-10.757-3.968v-5.074l30.665-1.105 z"/>
+			<path d="m57.373 18.231a9.3834 9.1153 0 1 1 -18.767 0 9.3834 9.1153 0 1 1 18.767 0z" transform="matrix(1.1989 0 0 1.2342 21.214 28.75)"/>
+		</g>
+		<g id="publish" transform="translate(4,5),scale(4)"  stroke-width="0.8" >
+			<polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/><polyline points="16 16 12 12 8 16"/>
+		</g>
+		<rect id="um" x="-15" y="-15" width="130" height="130" stroke="red" fill="none" />
+	</defs>
+	<!--rect x="0" y="0" width="900" height="300" stroke="red" fill="none" /-->
+	<use xlink:href="#um" transform="translate(100,100)" />
+	<use xlink:href="#um" transform="translate(300,100)" />
+	<use xlink:href="#um" transform="translate(500,100)" />
+	<use xlink:href="#um" transform="translate(700,100)" />
+	
+	<use xlink:href="#um" transform="translate(100,300)" />
+	<use xlink:href="#um" transform="translate(300,300)" />
+	<use xlink:href="#um" transform="translate(500,300)" />
+	<use xlink:href="#um" transform="translate(700,300)" />
+	<g fill="none" stroke="#555" stroke-width="5">
+		<use xlink:href="#prevnext" transform="translate(100,100),rotate(-135,50,50)" />
+		<use xlink:href="#play" transform="translate(300,100)" />
+		<use xlink:href="#stop" transform="translate(500,100)" />
+		<use xlink:href="#publish" transform="translate(700,100)" />
+		<!--use xlink:href="#prevnext" transform="translate(700,100),rotate(45,50,50)" /-->
+		<use xlink:href="#help" transform="translate(100,300)" />
+		<use xlink:href="#play" transform="translate(300,300)" stroke="#f30000" />
+		<use xlink:href="#help" transform="translate(500,300)" stroke="#fff" />
+		<use xlink:href="#info" transform="translate(700,300)" />
+	</g>
+	<!-- line x1="0" y1="150" stroke="red" x2="1200" y2="150" / -->
+</svg>

@@ -1,0 +1,502 @@
+<body>
+<b>gt</b>
+<div>v1, v2<br><i>conditional greater than</i></div>
+
+<b>dist</b>
+<div>pregain (1), gain (1), shape1 (0), shape2 (0)<br><i>Distortion</i></div>
+
+<b>phaser</b>
+<div>inl, in2, max notch, min notch, width, notch freq, depth, fdbk, invert, lvl, lfobpm<br><i>stereo phaser</i></div>
+
+<b>tset</b>
+<div>index, value, table<br><i>Set value of table</i></div>
+
+<b>tgate</b>
+<div>trigger, time<br><i>triggerable gate</i></div>
+
+<b>maytrig</b>
+<div>trig, probability (0.5)<br><i>Random selection of trig or no trig.</i></div>
+
+<b>tseq</b>
+<div>trig, mode, ft name<br><i>Triggered sequencer. modes: 0 = normal, 1 = shuffle.</i></div>
+
+<b>posc3</b>
+<div>freq, amp<br><i>high-precision oscillator with cubic interpolation</i></div>
+
+<b>tprop</b>
+<div>trig, bpm, code<br><i>prop with a triggerable reset</i></div>
+
+<b>tenvx</b>
+<div>trig, atk, hold, rel<br><i>Exponential Envelope Generator. Values in seconds, hold > atk</i></div>
+
+<b>reson</b>
+<div>in, freq, bw<br><i>resonator filter</i></div>
+
+<b>osc</b>
+<div>freq, amp, phase, ft name<br><i>Wavetable lookup oscillator</i></div>
+
+<b>tseg</b>
+<div>trig, val, dur, curve, init<br><i>trigger segment</i></div>
+
+<b>rot</b>
+<div>f, f, f<br><i>Stack rotate. s: 1 2 3 -> 2 3 1</i></div>
+
+<b>bpm2rate</b>
+<div>bpm<br><i>convert bpm to rate (Hertz)</i></div>
+
+<b>setdurs</b>
+<div>size<br><i>set total duration (in samples)</i></div>
+
+<b>zrev</b>
+<div>in2, in1, rtlo, rthi, hfdmp<br><i>zitareverb module (simplified)</i></div>
+
+<b>randh</b>
+<div>min, max, freq<br><i>Random hold</i></div>
+
+<b>randi</b>
+<div>min, max, freq<br><i>Randomized line segment with interpolation</i></div>
+
+<b>allpass</b>
+<div>revtime, looptime<br><i>allpass filter</i></div>
+
+<b>lt</b>
+<div>v1, v2<br><i>conditional lt</i></div>
+
+<b>abs</b>
+<div>v1<br><i>Performs absolute value.</i></div>
+
+<b>fofilt</b>
+<div>in, freq, atk, rel<br><i>FOF filter</i></div>
+
+<b>swap</b>
+<div>f, f<br><i>Swaps last two items on the stack.</i></div>
+
+<b>blsquare</b>
+<div>freq, width (0.5), amp<br><i>Band-limited square oscillator with pulse-width</i></div>
+
+<b>expon</b>
+<div>trig, ia, idur, ib<br><i>exponential line segment</i></div>
+
+<b>brown</b>
+<div><br><i>Brownian noise generator</i></div>
+
+<b>get</b>
+<div>name<br><i>gets variable</i></div>
+
+<b>tget</b>
+<div>index, table<br><i>Get value from table</i></div>
+
+<b>tick</b>
+<div><br><i>trigger at start of file. only use once</i></div>
+
+<b>tenv2</b>
+<div>trig, attack, release<br><i>Two-step triggerable linear envelope generator. Values in seconds.</i></div>
+
+<b>drop</b>
+<div>f<br><i>Removes the last item on the stack.</i></div>
+
+<b>mincer</b>
+<div>time, amp, pitch ratio (1), winsize (2048), ftable<br><i>Phase-locked vocoder</i></div>
+
+<b>gen_vals</b>
+<div>name, args<br><i>Generates an ftable from a space delimited set of values.</i></div>
+
+<b>p</b>
+<div>num<br><i>p register get</i></div>
+
+<b>mode</b>
+<div>in, freq (500), Q (50)<br><i>modal filter</i></div>
+
+<b>div</b>
+<div>v1, v2<br><i>Performs division.</i></div>
+
+<b>round</b>
+<div>v1<br><i>Performs rounding to nearest integer.</i></div>
+
+<b>moogladder</b>
+<div>input, cutoff, res<br><i>Moog ladder lowpass filter</i></div>
+
+<b>set</b>
+<div>value, name<br><i>sets variable</i></div>
+
+<b>fosc</b>
+<div>freq, amp, carrier, modulator, index, table<br><i>FM oscillator</i></div>
+
+<b>dcblk</b>
+<div>f<br><i>dc block filter.</i></div>
+
+<b>eq</b>
+<div>v1, v2<br><i>conditional equals</i></div>
+
+<b>port</b>
+<div>htime (0.02)<br><i>Applies portamento to a signal.</i></div>
+
+<b>rspline</b>
+<div>min, max, cps min, cps max<br><i>random spline generator</i></div>
+
+<b>slice</b>
+<div>trig, id, vals, buf<br><i>in-memory slice based sampler</i></div>
+
+<b>sub</b>
+<div>v1, v2<br><i>Performs subtraction.</i></div>
+
+<b>gen_line</b>
+<div>name, size, args<br><i>Generates a line from ordered list of breakpoints.</i></div>
+
+<b>gen_rand</b>
+<div>name, size, args<br><i>random distribution generator</i></div>
+
+<b>diode</b>
+<div>in, cutoff, res<br><i>Diode ladder filter</i></div>
+
+<b>slick</b>
+<div>ftname<br><i>picks a string randomly from string list</i></div>
+
+<b>talias</b>
+<div>name, index, ftbl<br><i>alias a table value to a variable</i></div>
+
+<b>prop</b>
+<div>bpm, prop string<br><i>Parses prop code to produce a set of triggers</i></div>
+
+<b>fof</b>
+<div>amp, fund, form, oct, band, ris, dec, dur, iphs, iolaps, window table, sine table<br><i>fof</i></div>
+
+<b>fog</b>
+<div>amp, dense, trans, spd, oct, band, ris, dec, dur, iphs, iolaps, window table, wav table<br><i>fog</i></div>
+
+<b>pan</b>
+<div>in, pan<br><i>Equal power panning. -1 = hardL 1 = hardR</i></div>
+
+<b>mul</b>
+<div>v1, v2<br><i>Performs multiplication.</i></div>
+
+<b>ref</b>
+<div>name<br><i>save pointer reference of next pipe in table</i></div>
+
+<b>tenv</b>
+<div>trig, attack, sustain, release<br><i>Triggerable linear envelope generator. Values in seconds.</i></div>
+
+<b>noise</b>
+<div>gain<br><i>White noise generator.</i></div>
+
+<b>gen_sine</b>
+<div>ftable name, size<br><i>Generates a sine wave ftable.</i></div>
+
+<b>pluck</b>
+<div>trigger, freq, amp, ifreq (110)<br><i>plucked instrument. ifreq sets the lowest frequency (buffer size).</i></div>
+
+<b>add</b>
+<div>v1, v2<br><i>Performs addition.</i></div>
+
+<b>butlp</b>
+<div>in, cutoff<br><i>Butterworth lowpass filter</i></div>
+
+<b>sine</b>
+<div>freq, amp<br><i>Simple sine oscillator.</i></div>
+
+<b>revsc</b>
+<div>in1, in2, feedback (0.97), cutoff (10000)<br><i>Stereo reverb module from reverbsc Csound opcode.</i></div>
+
+<b>hilbert</b>
+<div>in<br><i>hilbert transform</i></div>
+
+<b>tblsize</b>
+<div>ftable<br><i>Get size of table (in samples)</i></div>
+
+<b>lpf18</b>
+<div>in, freq, res, dist<br><i>low pass filter with tanh distortion</i></div>
+
+<b>tbldur</b>
+<div>ftable<br><i>Get duration of table (in seconds)</i></div>
+
+<b>c</b>
+<div>init value<br><i>Constant generator, used for feedback loops.</i></div>
+
+<b>oscmorph2</b>
+<div>freq, amp, wtpos, phase, ft1, ft2<br><i>2-table morphing oscillator</i></div>
+
+<b>reverse</b>
+<div>in, delay<br><i>reverse delay</i></div>
+
+<b>metro</b>
+<div>frequency<br><i>Creates clock signal.</i></div>
+
+<b>gen_eval</b>
+<div>name, size, string<br><i>Evaluates sporth string to table</i></div>
+
+<b>gen_padsynth</b>
+<div>ftname, size, base freq, bandwidth, amp table<br><i>padsynth algorithm by Paul Nasca Octavian</i></div>
+
+<b>tdiv</b>
+<div>trigger, num, offset<br><i>trigger divider</i></div>
+
+<b>peaklim</b>
+<div>input, atk, rel, thresh db<br><i>peak limiter</i></div>
+
+<b>samphold</b>
+<div>in, trig<br><i>sample and hold</i></div>
+
+<b>pshift</b>
+<div>in, shift (semitones), window size (samps), xfade (samps)<br><i>pitch shifter</i></div>
+
+<b>rand</b>
+<div>min, max<br><i>picks random number at start time</i></div>
+
+<b>mtof</b>
+<div>Note number<br><i>Converts MIDI note number to Hz.</i></div>
+
+<b>jitter</b>
+<div>amp, cpsMin, cpsMax<br><i>Jitter control signal</i></div>
+
+<b>rpt</b>
+<div>in, trig, bpm, div, rep, bufsize (1)<br><i>Stutterer / repeater (bufsize in seconds)</i></div>
+
+<b>streson</b>
+<div>in, frequency, gain<br><i>streson filter</i></div>
+
+<b>waveset</b>
+<div>in, rep, buflen<br><i>waveset timestretching algorithm</i></div>
+
+<b>pos</b>
+<div><br><i>returns playing time, in seconds</i></div>
+
+<b>bpm2dur</b>
+<div>bpm<br><i>convert bpm to duration (seconds)</i></div>
+
+<b>buthp</b>
+<div>in, cutoff<br><i>Butterworth highpass filter</i></div>
+
+<b>crossfade</b>
+<div>sig1, sig2, pos<br><i>crossfade two signals</i></div>
+
+<b>comb</b>
+<div>in, rev time, loop time<br><i>comb filter</i></div>
+
+<b>varset</b>
+<div>name, val<br><i>creates and sets a variable</i></div>
+
+<b>wpkorg35</b>
+<div>in, cutoff, res, saturation<br><i>wpkorg filter</i></div>
+
+<b>min</b>
+<div>f, f<br><i>Returns the lesser of two items on the stack.</i></div>
+
+<b>lsys</b>
+<div>trig, ord, code<br><i>L-Systems microlanguage</i></div>
+
+<b>log</b>
+<div>v1<br><i>Performs natural logarithm.</i></div>
+
+<b>pareq</b>
+<div>in, freq, boost, Q, mode(0=peak, 1=low shelf, 2= high shelf)<br><i>parametric equalizer</i></div>
+
+<b>blsaw</b>
+<div>freq, amp<br><i>Band-limited sawtooth oscillator</i></div>
+
+<b>jcrev</b>
+<div>input<br><i>Chowning reverb</i></div>
+
+<b>phasor</b>
+<div>freq, phase<br><i>Normalized sawtooth wave.</i></div>
+
+<b>zeros</b>
+<div>name, size<br><i>Generate table of zeros</i></div>
+
+<b>talkbox</b>
+<div>source, excitation, quality<br><i>high-resolution vocoder</i></div>
+
+<b>bitcrush</b>
+<div>bitdepth (8), samplerate (10000)<br><i>bitcrusher. bitdepth: 1 - 16</i></div>
+
+<b>dtrig</b>
+<div>trig, loop, delay, scale, tbl<br><i>delta trig. loop = 1 will loop the sequence</i></div>
+
+<b>dup</b>
+<div>f<br><i>Duplicates last item on the stack.</i></div>
+
+<b>dur</b>
+<div><br><i>returns duration of sporth patch (in seconds)</i></div>
+
+<b>log10</b>
+<div>v1<br><i>Performs base 10 logarithm.</i></div>
+
+<b>tog</b>
+<div>trig<br><i>toggle switch that can be triggered on/off</i></div>
+
+<b>smoothdelay</b>
+<div>in(f) fdbk(f) del(f) maxdel(f) interp<br><i>smooth delay line</i></div>
+
+<b>tphasor</b>
+<div>trig, freq, phase<br><i>Triggerable normalized sawtooth wave.</i></div>
+
+<b>oscmorph4</b>
+<div>freq, amp, wtpos, phase, ft1, ft2, ft3, ft4<br><i>4-table morphing oscillator</i></div>
+
+<b>bltriangle</b>
+<div>freq, amp<br><i>Band-limited triangle oscillator</i></div>
+
+<b>var</b>
+<div>name<br><i>creates variable</i></div>
+
+<b>thresh</b>
+<div>in, thresh, mode<br><i>detect threshold crossings. mode: 0=from below, 1=above, 2=both</i></div>
+
+<b>line</b>
+<div>trig, ia, idur, ib<br><i>line segment</i></div>
+
+<b>ptrack</b>
+<div>in<br><i>pitch tracking (outputs: amp, pitch)</i></div>
+
+<b>tblrec</b>
+<div>in, trig, tbl name<br><i>records values to table.</i></div>
+
+<b>count</b>
+<div>trig, max, mode<br><i>clock counter. mode: 0 = loop, 1 = one-shot</i></div>
+
+<b>f</b>
+<div>num<br><i>Call a user defined function</i></div>
+
+<b>trand</b>
+<div>trig, min, max<br><i>triggerable RNG</i></div>
+
+<b>sget</b>
+<div>index, ftname<br><i>picks a string from a string list</i></div>
+
+<b>pdhalf</b>
+<div>amount -1 to 1<br><i>casio phasor distortion</i></div>
+
+<b>biscale</b>
+<div>v1, min, max<br><i>Scales from bipolar [-1, 1] to [min, max].</i></div>
+
+<b>butbr</b>
+<div>in, freq, bw<br><i>butterworth band reject filter</i></div>
+
+<b>butbp</b>
+<div>in, freq, bw<br><i>butterworth bandpass filter</i></div>
+
+<b>saturator</b>
+<div>in, drive, dcoffset<br><i>saturator distortion unit</i></div>
+
+<b>gbuzz</b>
+<div>freq, amp, nharm, lharm, mul<br><i>gbuzz</i></div>
+
+<b>changed</b>
+<div>sig<br><i>Returns a trigger if the input changes</i></div>
+
+<b>adsr</b>
+<div>gate, attack, decay, sustain, release<br><i>Analogue modelled ADSR generator</i></div>
+
+<b>tabread</b>
+<div>index, scaled (1: yes, 0: no), offset, wrap, ftname<br><i>read from table with interpolation</i></div>
+
+<b>conv</b>
+<div>in, delay, ftbl impulse response<br><i>partitioned convolution</i></div>
+
+<b>voc</b>
+<div>freq, pos, diameter, tenseness, velum<br><i>Vocal Tract Physical Model</i></div>
+
+<b>dmetro</b>
+<div>time<br><i>Metronome using time instead of frequency</i></div>
+
+<b>inv</b>
+<div>inv<br><i>inverse a signal 1/x</i></div>
+
+<b>srand</b>
+<div>seed<br><i>seed internal RNG</i></div>
+
+<b>atone</b>
+<div>cutoff<br><i>atone filter (hipass)</i></div>
+
+<b>vdelay</b>
+<div>in, feedback, deltime, maxdelay<br><i>variable delay with feedback</i></div>
+
+<b>pset</b>
+<div>val, num<br><i>p register set</i></div>
+
+<b>timer</b>
+<div>trig<br><i>timer</i></div>
+
+<b>clip</b>
+<div>in, limit (1)<br><i>clip limiter / distortion</i></div>
+
+<b>in</b>
+<div><br><i>Read a float from STDIN.</i></div>
+
+<b>gen_sinesum</b>
+<div>name, size, args<br><i>Summation of harmonically related sines. based on GEN10.</i></div>
+
+<b>incr</b>
+<div>trig, step, min, max, ival<br><i>Incrementer</i></div>
+
+<b>floor</b>
+<div>v1<br><i>Performs flooring, returning the integer part.</i></div>
+
+<b>autowah</b>
+<div>level, wah, mix<br><i>autowah</i></div>
+
+<b>ne</b>
+<div>v1, v2<br><i>conditional not-equal to</i></div>
+
+<b>delay</b>
+<div>in, feedback, deltime<br><i>feedback delay</i></div>
+
+<b>mix</b>
+<div>f..f<br><i>Sums up remaining items on stack.</i></div>
+
+<b>sdelay</b>
+<div>delay<br><i>delay (in samples)</i></div>
+
+<b>vocoder</b>
+<div>atk, rel, bwq, sig, exc<br><i>32-band channel vocoder</i></div>
+
+<b>branch</b>
+<div>gate, sig1, sig2<br><i>returns signal based on state of gate (0 = sig1, 1 = sig2)</i></div>
+
+<b>eqfil</b>
+<div>in(f) freq, bw, gain<br><i>eq filter</i></div>
+
+<b>frac</b>
+<div>v1<br><i>Returns the fractional part of item on the stack.</i></div>
+
+<b>max</b>
+<div>f, f<br><i>Returns the greater of two items on the stack.</i></div>
+
+<b>palias</b>
+<div>name, index<br><i>create a variable alias for p-value</i></div>
+
+<b>scale</b>
+<div>v1, min, max<br><i>Scales from unipolar [0, 1] to [min, max].</i></div>
+
+<b>dust</b>
+<div>amp, density, bipolar<br><i>dust. bipolar = 1 unipolar = 0</i></div>
+
+<b>zitarev</b>
+<div>in2, in1, delay, lf_x, rtlo, rthi, hfdmp, eq1f, eq1l, eq2f, eq1l, mix, lvl<br><i>zitareverb module</i></div>
+
+<b>fm</b>
+<div>frequency, amplitude, carrier (1), modulator (1), index (8)<br><i>A simple FM oscillator.</i></div>
+
+<b>maygate</b>
+<div>trig, probability (0.5), mode<br><i>Random selection of gate or no gate. output mode: 0 = gate 1 = trigger</i></div>
+
+<b>pinknoise</b>
+<div>amp<br><i>pink noise generator</i></div>
+
+<b>tport</b>
+<div>trig, htime<br><i>Applies portamento to a signal with triggerable reset.</i></div>
+
+<b>clock</b>
+<div>trig, bpm, subdiv<br><i>Clock with subdivisions and triggerable reset</i></div>
+
+<b>drip</b>
+<div>trig, num_tubes, amp, shake_max, main freq, res freq 1, res freq 2, decay<br><i>dripwater physical model</i></div>
+
+<b>switch</b>
+<div>trig, sig1, sig2<br><i>toggle between two signals</i></div>
+
+<b>lpcsynth</b>
+<div>framesize, ftbl<br><i>LPC synth. Manipulate parameters directly.</i></div>
+
+<b>lpc</b>
+<div>in, framesize<br><i>apply linear-predictive coding (LPC10) to signal</i></div>
+</body>

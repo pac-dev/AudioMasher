@@ -1,0 +1,15 @@
+{
+    "TableName": "MasherPatches",
+    "AttributeDefinitions": [
+      { "AttributeName": "Id", "AttributeType": "S" },
+      { "AttributeName": "DateCreated", "AttributeType": "N" }
+    ],
+    "KeySchema": [
+      { "AttributeName": "Id", "KeyType": "HASH" },
+      { "AttributeName": "DateCreated", "KeyType": "RANGE" }
+    ],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    }
+}
