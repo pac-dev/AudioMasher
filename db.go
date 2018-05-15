@@ -30,9 +30,12 @@ type MasherUser struct {
 
 func InitDB() {
 	db := dynamo.New(session.New(), &aws.Config{
-		Endpoint: aws.String("http://localhost:8001"), 
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("AKID", "SECRET_KEY", "TOKEN")})
+		Endpoint: aws.String(MasherConfig.DynamoEndpoint), 
+		Region: aws.String(MasherConfig.DynamoRegion),
+		Credentials: credentials.NewStaticCredentials(
+			MasherConfig.DynamoId, 
+			MasherConfig.DynamoSecret, 
+			MasherConfig.DynamoToken)})
 	dbPatches = db.Table("MasherPatches")
 	dbUsers = db.Table("MasherUsers")
 	rand.Seed(time.Now().UnixNano())

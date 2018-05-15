@@ -1,3 +1,8 @@
 {
-    "secret": "RandomAlphanumericCharacters"
+    "cookie_secret": "RandomAlphanumericCharacters",
+	"dynamo_endpoint": "http://localhost:8001",
+	"dynamo_region": "us-west-2",
+	"dynamo_id": "AKID",
+	"dynamo_secret": "SECRET_KEY",
+	"dynamo_token": "TOKEN"
 }
