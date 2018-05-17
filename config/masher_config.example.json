@@ -4,5 +4,6 @@
 	"dynamo_region": "us-west-2",
 	"dynamo_id": "AKID",
 	"dynamo_secret": "SECRET_KEY",
-	"dynamo_token": "TOKEN"
+	"dynamo_token": "TOKEN",
+	"port": 8000
 }

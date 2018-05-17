@@ -13,6 +13,7 @@ type ConfigData struct {
 	DynamoId string `json:"dynamo_id"`
 	DynamoSecret string `json:"dynamo_secret"`
 	DynamoToken string `json:"dynamo_token"`
+	Port int `json:"port"`
 }
 
 var MasherConfig ConfigData

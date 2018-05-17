@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
+	"strconv"
 )
 
 func main() {
@@ -31,5 +32,5 @@ func main() {
 	router.HandleFunc("/logout", Logout)
 	
 	router.NotFoundHandler = http.HandlerFunc(ViewNotFound)
-	log.Fatal(http.ListenAndServe(":8000", router))
+	log.Fatal(http.ListenAndServe(":" + strconv.Itoa(MasherConfig.Port), router))
 }
