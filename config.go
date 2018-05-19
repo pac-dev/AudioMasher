@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"github.com/gorilla/sessions"
+	"encoding/hex"
 )
 		
 type ConfigData struct {
@@ -19,16 +20,20 @@ type ConfigData struct {
 var MasherConfig ConfigData
 
 func LoadConfig(file string) () {
-	b, err := ioutil.ReadFile(file)
+	data, err := ioutil.ReadFile(file)
 	if err != nil {
 		panic(err)
 	}
-	if err = json.Unmarshal(b, &MasherConfig); err != nil {
+	if err = json.Unmarshal(data, &MasherConfig); err != nil {
 		panic(err)
 	}
 }
 
 var SessionStore *sessions.CookieStore
 func InitSession() {
-	SessionStore = sessions.NewCookieStore([]byte(MasherConfig.CookieSecret))
+	secret, err := hex.DecodeString(MasherConfig.CookieSecret)
+	if err != nil {
+		panic(err)
+	}
+	SessionStore = sessions.NewCookieStore(secret)
 }
