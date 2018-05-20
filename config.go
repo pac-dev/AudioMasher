@@ -14,6 +14,7 @@ type ConfigData struct {
 	DynamoId string `json:"dynamo_id"`
 	DynamoSecret string `json:"dynamo_secret"`
 	DynamoToken string `json:"dynamo_token"`
+	StaticRoot string `json:"static_root"`
 	Port int `json:"port"`
 }
 

@@ -40,7 +40,7 @@ func InitTemplates() {
 
 func BaseTemplateData(w http.ResponseWriter, r *http.Request) TemplateData {
 	ret := TemplateData {
-		StaticRoot: "http://localhost:80/static/"}
+		StaticRoot: MasherConfig.StaticRoot}
 	session, err := SessionStore.Get(r, "sess")
 	if err != nil { panic(err) }
 	if ret.UserName, ret.LoggedIn = session.Values["name"].(string); !ret.LoggedIn {
