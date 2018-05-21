@@ -91,7 +91,7 @@ func ViewNew(w http.ResponseWriter, r *http.Request) {
 func ViewHomepage(w http.ResponseWriter, r *http.Request) {
 	var err error
 	data := BaseTemplateData(w, r)
-	data.Patch, err = RetrievePatch("af6f7b7b1786bf102c88592183de0f59")
+	data.Patch, err = RetrievePatch(MasherConfig.FeaturedPatch)
 	if err != nil {
 		ViewAbout(w, r)
 		return

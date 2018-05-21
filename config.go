@@ -16,6 +16,7 @@ type ConfigData struct {
 	DynamoToken string `json:"dynamo_token"`
 	StaticRoot string `json:"static_root"`
 	Port int `json:"port"`
+	FeaturedPatch string `json:"featured_patch"`
 }
 
 var MasherConfig ConfigData

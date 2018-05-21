@@ -6,5 +6,6 @@
 	"dynamo_secret": "SECRET_KEY",
 	"dynamo_token": "",
 	"static_root": "http://localhost:8002/static/",
-	"port": 8000
+	"port": 8000,
+	"featured_patch": "OZOIGB"
 }
