@@ -75,7 +75,7 @@ func PostPatch(w http.ResponseWriter, r *http.Request) {
 	}
 	
 	patch := MasherPatch {
-		Id: "OZOIGB",
+		Id: RandomId(),
 		DateCreated: time.Now().Unix(),
 		DateModified: time.Now().Unix(),
 		Title: title,
