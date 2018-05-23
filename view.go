@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"github.com/gorilla/mux"
 	"time"
+	"sort"
 )
 
 type TemplateData struct {
@@ -111,6 +112,9 @@ func ViewBrowse(w http.ResponseWriter, r *http.Request) {
 		ViewNotFound(w, r)
 		return
 	}
+	sort.Slice(data.Patches, func(i, j int) bool {
+		return data.Patches[i].DateCreated < data.Patches[j].DateCreated
+	})
 	data.HeadlinePrefix = "Viewing: "
 	data.Headline = "all patches"
 	data.CurrentView = "Browse"
