@@ -113,7 +113,7 @@ func ViewBrowse(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sort.Slice(data.Patches, func(i, j int) bool {
-		return data.Patches[i].DateCreated < data.Patches[j].DateCreated
+		return data.Patches[i].DateCreated > data.Patches[j].DateCreated
 	})
 	data.HeadlinePrefix = "Viewing: "
 	data.Headline = "all patches"
