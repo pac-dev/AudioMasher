@@ -1506,21 +1506,7 @@ function tabClick(event) {
 for (var i = 0; allTabThumbs[i]; i++) {
 	allTabThumbs[i].addEventListener('click', tabClick);
 }
-/*
-ugen_ref = {
-   "abs": {
-      "Args": [
-         "v1"
-      ],
-      "Outputs": 1,
-      "Description": "Performs absolute value."
-   },
-   
-   ===>
-   
-	<b>abs</b>
-	<div>v1<br><i>Performs absolute value.</i></div>
-*/
+
 var refContent = "";
 Object.keys(ugen_ref).forEach(function(key) {
 	refContent += "<b>" 
@@ -1540,7 +1526,7 @@ var gotError;
 var play = function () {
 	gotError = false;
 	playButton.classList.add("playing");
-	sporthal_compile(editor.getValue());
+	sporthal_compile(editor.getValue().replace(/\t/g , " "));
 	if (!playing && !gotError) {
 		sporthal_start();
 		playing = true;
