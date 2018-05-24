@@ -27,6 +27,8 @@
 	</div>
 	{{if eq .CurrentView "Patch"}}
 		{{template "patch.html" .}}
+	{{else if eq .CurrentView "User"}}
+		{{template "user.html" .}}
 	{{else if eq .CurrentView "Browse"}}
 		{{template "browse.html" .}}
 	{{else if eq .CurrentView "About"}}

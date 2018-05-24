@@ -20,6 +20,7 @@ type TemplateData struct {
 	Patch MasherPatch
 	Patches []MasherPatch
 	Referer string
+	ViewingUser MasherUser
 }
 
 var masherTemplates *template.Template
@@ -33,6 +34,7 @@ func InitTemplates() {
 		}).ParseFiles(
 			"templates/layout.html",
 			"templates/patch.html",
+			"templates/user.html",
 			"templates/browse.html",
 			"templates/about.html",
 			"templates/404.html")
@@ -64,6 +66,30 @@ func ViewPatch(w http.ResponseWriter, r *http.Request) {
 	}
 	data.CurrentView = "Patch"
 	data.Headline = data.Patch.Title + " by " + data.Patch.Author
+	err = masherTemplates.ExecuteTemplate(w, "layout.html", data)
+	if err != nil { panic(err) }
+}
+
+func ViewUser(w http.ResponseWriter, r *http.Request) {
+	var err error
+	params := mux.Vars(r)
+	data := BaseTemplateData(w, r)
+	data.ViewingUser, err = RetrieveUser(params["user"])
+	if err != nil {
+		ViewNotFound(w, r)
+		return
+	}
+	data.Patches, err = RetrievePatches(SearchFilter {Author: data.ViewingUser.Name})
+	if err != nil {
+		ViewNotFound(w, r)
+		return
+	}
+	sort.Slice(data.Patches, func(i, j int) bool {
+		return data.Patches[i].DateCreated > data.Patches[j].DateCreated
+	})
+	data.HeadlinePrefix = "Viewing: "
+	data.Headline = "patches by " + data.ViewingUser.Name
+	data.CurrentView = "User"
 	err = masherTemplates.ExecuteTemplate(w, "layout.html", data)
 	if err != nil { panic(err) }
 }
