@@ -36,7 +36,7 @@ func CheckPatchValid(patch MasherPatch) error {
 }
 
 func CheckPatchUnique(patch MasherPatch) error {
-	patches, err := RetrievePatches()
+	patches, err := RetrievePatches(SearchFilter { })
 	if (err != nil) {
 		return errors.New("Could not load database for duplicate checking.")
 	}

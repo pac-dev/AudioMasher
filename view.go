@@ -107,7 +107,7 @@ func ViewHomepage(w http.ResponseWriter, r *http.Request) {
 func ViewBrowse(w http.ResponseWriter, r *http.Request) {
 	var err error
 	data := BaseTemplateData(w, r)
-	data.Patches, err = RetrievePatches()
+	data.Patches, err = RetrievePatches(SearchFilter { })
 	if err != nil {
 		ViewNotFound(w, r)
 		return

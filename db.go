@@ -28,6 +28,10 @@ type MasherUser struct {
 	DateCreated int64 `json:"created,omitempty"`
 }
 
+type SearchFilter struct {
+	Author string
+}
+
 func InitDB() {
 	db := dynamo.New(session.New(), &aws.Config{
 		Endpoint: aws.String(MasherConfig.DynamoEndpoint), 
@@ -53,13 +57,22 @@ func RetrievePatch(id string) (MasherPatch, error) {
 	return result, nil
 }
 
-func RetrievePatches() ([]MasherPatch, error) {
-	var result []MasherPatch
-	err := dbPatches.Scan().All(&result)
+func RetrievePatches(filter SearchFilter) ([]MasherPatch, error) {
+	var allPatches []MasherPatch
+	err := dbPatches.Scan().All(&allPatches)
 	if err != nil {
-		return result, err
+		return allPatches, err
 	}
-	return result, nil
+	if (filter.Author != "") {
+		filteredPatches := allPatches[:0]
+		for _, patch := range allPatches {
+			if (patch.Author == filter.Author) {
+				filteredPatches = append(filteredPatches, patch)
+			}
+		}
+		return filteredPatches, nil
+	}
+	return allPatches, nil
 }
 
 func PutPatch(patch MasherPatch) error {
