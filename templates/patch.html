@@ -41,7 +41,7 @@
 			<em>Title:</em><br>
 			<span id=PTitle>{{.Patch.Title}}</span><br><br>
 			<em>Author:</em><br>
-			{{.Patch.Author}}<br><br>
+			<a href="/user/{{.Patch.Author}}">{{.Patch.Author}}</a><br><br>
 			<em>Description:</em><br>
 			<span id=PDesc>{{index .Patch.Files "readme.txt"}}</span><br><br>
 			<em>Created:</em> {{HumanDate .Patch.DateCreated }}
