@@ -1808,14 +1808,23 @@ modals = [
 			'<a id=close_modal>[close]</a>'+
 			'<form>'+
 			'Title:<br>'+
-			'<input type=text name=title autocomplete=off><br>'+
+			'<input type=text name=title id=formtitle><br>'+
 			'Description:<br>'+
-			'<textarea name=desc></textarea><br>'+
+			'<textarea name=desc id=formdesc></textarea><br>'+
 			'<br><hr><center>'+
 			'<input type=submit value=OK><br>'+
 			'</form>'+
 			'<div id=modal_progress>&nbsp;</div><br></center>',
 		postURL: "/api/post",
+		onReady: function(modal) {
+			if (document.getElementById("PTitle")) {
+				document.getElementById("formtitle").value = document.getElementById("PTitle").textContent;
+				document.getElementById("formdesc").value = "Fork of " + 
+					document.getElementById("PTitle").textContent +
+					" by " +
+					document.getElementById("PAuthor").textContent;
+			}
+		},
 		onSuccess: function(modal) { location = "/patch/" + modal.result.patchId; },
 		alwaysConfirm: true,
 	},
@@ -1826,20 +1835,20 @@ modals = [
 			'<a id=close_modal>[close]</a>'+
 			'<form>'+
 			'Title:<br>'+
-			'<input type=text name=title id=oldtitle><br>'+
+			'<input type=text name=title id=formtitle><br>'+
 			'Description:<br>'+
-			'<textarea name=desc id=olddesc></textarea><br>'+
+			'<textarea name=desc id=formdesc></textarea><br>'+
 			'<br><hr><center>'+
-			'<input type=hidden name=update_id id=oldid>'+
+			'<input type=hidden name=update_id id=formid>'+
 			'<input type=submit value=OK><br>'+
 			'</form>'+
 			'<div id=modal_progress>&nbsp;</div><br></center>'+
 			'<center>or <a href="#post_modal">post as a new patch</a></center>',
 		postURL: "/api/update",
 		onReady: function(modal) {
-			document.getElementById("oldtitle").value = document.getElementById("PTitle").textContent;
-			document.getElementById("olddesc").value = document.getElementById("PDesc").textContent;
-			document.getElementById("oldid").value = document.getElementById("PId").textContent;
+			document.getElementById("formtitle").value = document.getElementById("PTitle").textContent;
+			document.getElementById("formdesc").value = document.getElementById("PDesc").textContent;
+			document.getElementById("formid").value = document.getElementById("PId").textContent;
 		},
 		onSuccess: function(modal) { location = "/patch/" + modal.result.patchId; },
 		alwaysConfirm: true,
