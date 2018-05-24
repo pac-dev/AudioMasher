@@ -495,6 +495,15 @@ ugen_ref = {
       "Outputs": 1,
       "Description": "Generates a line from ordered list of breakpoints."
    },
+   "gen_composite": {
+      "Args": [
+         "name",
+         "size",
+         "args"
+      ],
+      "Outputs": 1,
+      "Description": "Generate a composite waveform of sinusoids."
+   },
    "dmetro": {
       "Args": [
          "time"
