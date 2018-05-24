@@ -17,8 +17,8 @@ Sporth is already compiled to JS and included in the project, but if you want to
 ## Deploying
 - In a DynamoDB database, create the following tables:
 
-	aws dynamodb create-table --cli-input-json file://scripts/create-table-patches.json
-	aws dynamodb create-table --cli-input-json file://scripts/create-table-users.json
+		aws dynamodb create-table --cli-input-json file://scripts/create-table-patches.json
+		aws dynamodb create-table --cli-input-json file://scripts/create-table-users.json
 
 - Serve the `static` folder from a static host.
 - Create your own `config/masher_config.json` based on the included example json.
