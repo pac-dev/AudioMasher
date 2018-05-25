@@ -29,8 +29,8 @@
 			quick ref
 		</a>
 		{{end}}
-		<a class=tab_thumb href="#tutorial">
-			tutorial
+		<a class=tab_thumb href="#help">
+			help
 		</a>
 		{{if eq .Patch.Title ""}}
 		<div class="tab_content active_content" id=quick_ref>
@@ -56,10 +56,27 @@
 			loading...
 		</div>
 		{{end}}
-		<div class=tab_content id=tutorial>
-			Sporth is easy! 
-			For now, the only tutorial is the Paul Batchelor's excellent 
-			<a href="http://paulbatchelor.github.io/proj/cook/">cookbook</a>.
+		<div class=tab_content id=help>
+			Here are some Sporth learning resources (most of them by Paul Batchelor):
+			<br>
+			<ul><li>
+				The 
+				<a href="http://paulbatchelor.github.io/proj/cook/">cookbook</a> 
+				is the best tutorial to learn Sporth.
+			</li><li>
+				The 
+				<a href="https://github.com/PaulBatchelor/Sporth/tree/master/examples">examples</a> 
+				demonstate a variety of Sporth ugens. Note: those that rely on external files will 
+				not work in AudioMasher.
+			</li><li>
+				The 
+				<a href="http://paulbatchelor.github.io/res/soundpipe/docs/">Soundpipe modules reference</a> 
+				goes into more detail on the underlying function powering each Sporth ugen.
+			</li><li>
+				The 
+				<a href="/browse">AudioMasher collection</a> 
+				can certainly be used as learning material.
+			</li></ul>
 			<br><br>
 		</div>
 	</div>

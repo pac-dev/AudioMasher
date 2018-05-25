@@ -90,9 +90,8 @@ a.tab_thumb {
 .active_content {
 	display:block;
 }
-.tab_content object {
-	width: 100%;
-	height: 100%;
+.tab_content li {
+	margin-bottom: 12px;
 }
 
 #controls {
