@@ -850,7 +850,7 @@ ugen_ref = {
          "gain"
       ],
       "Outputs": 1,
-      "Description": "streson filter"
+      "Description": "String resonator filter"
    },
    "gbuzz": {
       "Args": [
@@ -861,7 +861,7 @@ ugen_ref = {
          "mul"
       ],
       "Outputs": 1,
-      "Description": "streson filter"
+      "Description": "Series of partials from the harmonic series"
    },
    "oscmorph4": {
       "Args": [
@@ -1380,12 +1380,12 @@ ugen_ref = {
    "fofilt": {
       "Args": [
          "in",
-         "freq",
-         "atk",
-         "rel"
+         "freq (1000)",
+         "atk (0.007)",
+         "rel (0.04)"
       ],
       "Outputs": 1,
-      "Description": "FOF filter"
+      "Description": "Formant filter"
    },
    "diode": {
       "Args": [
