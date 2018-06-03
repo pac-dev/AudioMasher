@@ -1541,12 +1541,8 @@ var stop = function() {
 };
 var Module = {
 	print: function(text) {
-		//output.innerHTML += "<div class=message>&gt; " + text + "</div>\n";
-		//output.scrollTop = output.scrollHeight;
 	},
 	printErr: function(text) {
-		//output.innerHTML += "<div class=error>&gt; " + text + "</div>\n";
-		//output.scrollTop = output.scrollHeight;
 		showError(text);
 		gotError = true;
 		playButton.classList.remove("playing");
@@ -1557,6 +1553,8 @@ var Module = {
 		sporthal_start = cwrap('sporthal_start', 'number');
 		sporthal_stop = cwrap('sporthal_stop', 'number');
 		Module.print("ready.")
+		document.getElementById("play_loading").classList.add("nodisplay");
+		playButton.classList.remove("nodisplay");
 	},
 };
 var errorContainer = document.getElementById("errors");

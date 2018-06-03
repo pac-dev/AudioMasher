@@ -2,7 +2,8 @@
 	<div class=left_pane>
 		<textarea autocomplete=off>{{index .Patch.Files "main.sp"}}</textarea>
 		<div id=controls>
-			<a id=c_play title="Compile & start audio (from editor: ctrl+Enter)"></a>
+			<div id=play_loading></div>
+			<a id=c_play class=nodisplay title="Compile & start audio (from editor: ctrl+Enter)"></a>
 			<a id=c_stop title="Stop audio (from editor: ctrl+Space)"></a>
 			<a id=c_help title="Show/hide help and quick reference"></a>
 			{{if .CanUpdatePatch}}

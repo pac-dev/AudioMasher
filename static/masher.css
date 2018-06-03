@@ -121,8 +121,19 @@ a.tab_thumb {
 #c_stop::after {background-position: 55.55% 0;}
 #c_post::after {background-position: 77.77% 0;}
 #c_help::after {background-position: 11.11% 50%;}
-#c_play.playing::after {background-position: 33.33% 50%;}
 #c_output::after {background-position: 55.55% 50%;}
+#c_play.playing::after {background-position: 33.33% 50%;}
+
+#play_loading {
+	display: block;
+	margin: 4px 0;
+	padding: 7px;
+	width: 36px;
+	height: 36px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+#controls>*.nodisplay {display: none;}
 
 #errors {
 	position: absolute;
@@ -244,7 +255,7 @@ body.drk, .drk textarea {
 .drk .top_bar>* {
 	border-left: 1px solid #949ac7;
 }
-.drk .top_bar>a:hover, .drk #controls>div:hover {
+.drk .top_bar>a:hover {
 	background-color: #f0f1fb;
 }
 .drk .right_pane {
