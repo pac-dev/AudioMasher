@@ -1553,8 +1553,11 @@ var Module = {
 		sporthal_start = cwrap('sporthal_start', 'number');
 		sporthal_stop = cwrap('sporthal_stop', 'number');
 		Module.print("ready.")
-		document.getElementById("play_loading").classList.add("nodisplay");
-		playButton.classList.remove("nodisplay");
+		var playLoading = document.getElementById("play_loading");
+		if (playLoading) {
+			playLoading.classList.add("nodisplay");
+			playButton.classList.remove("nodisplay");
+		}
 	},
 };
 var errorContainer = document.getElementById("errors");
