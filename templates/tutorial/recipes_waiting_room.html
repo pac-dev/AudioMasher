@@ -43,7 +43,7 @@ dup 0.7 77 bpm2dur 0.75 * delay 2000 butlp 0.5 * +
 <p>A sine wave table is used for the many sinusoid LFOs used in the patch.
 A table of notes is created using <strong>gen_vals</strong>, which will be used for
 the main melody. </p>
-<pre><code> _sine 8192 gen_sine
+<pre class=dont_try><code> _sine 8192 gen_sine
  _seq &quot;62 69 72 71 74&quot; gen_vals</code></pre>
 <h2>Gbuzz Pads</h2>
 <p>The pads provide the canvas for the patch. For a sound generator, a
@@ -51,13 +51,13 @@ buzz generator is used, called <em>gbuzz</em>. gbuzz produces a set of
 harmonically related sinusoids, which approximately sounds like a 
 sawtooth. The strength of each successive overtone is modulated with
 a sine LFO via <em></em>osc*. This modulates the overall timbre of the sound.</p>
-<pre><code> 62 mtof 0.3 8 3 
+<pre class=dont_try><code> 62 mtof 0.3 8 3 
  15 inv 1 0.2 _sine osc
  0.1 0.6 biscale gbuzz</code></pre>
 <p>This sound gets repeated 2 more times to form a triad with notes
 C, D, and A, which outlines some sort of D7 chord. The phase and
 frequency of each LFO is tweaked to make the voices more individual.</p>
-<pre><code> 60 mtof 0.3 8 3 
+<pre class=dont_try><code> 60 mtof 0.3 8 3 
  10 inv 1 0 _sine osc
  0.1 0.6 biscale gbuzz 
  
@@ -69,55 +69,55 @@ frequency of each LFO is tweaked to make the voices more individual.</p>
  +</code></pre>
 <p>The summed signal is attenuated by 6dB and put through a butterworth
 highpass filter.</p>
-<pre><code> -8 ampdb * 400 buthp</code></pre>
+<pre class=dont_try><code> -8 ampdb * 400 buthp</code></pre>
 <h2>Chorused Pluck </h2>
 <p>The chorused pluck sound is the lead instrument sound that plays the 
 melody. It begins with a clock signal generated via <strong>clock</strong>, and 
 then put through a <strong>maytrig</strong>. This signal is duplicated. One will
 feed the sequencer, the other will be the trigger signal for <strong>pluck</strong>.</p>
-<pre><code> 0 77 1 clock 0.4 maytrig dup</code></pre>
+<pre class=dont_try><code> 0 77 1 clock 0.4 maytrig dup</code></pre>
 <p>The melody generated comes from the <em>seq</em> table generated above. <strong>tseq</strong>
 is set to shuffle mode, picking notes randomly. A small bit of portamento 
 is added as a stylistic choice, but it is not necessary. </p>
-<pre><code> 1 _seq tseq mtof 0.003 port </code></pre>
+<pre class=dont_try><code> 1 _seq tseq mtof 0.003 port </code></pre>
 <p>The rest of the arguments for <strong>pluck</strong>, then a lowpass filter <strong>butlp</strong>.
 The last argument to pluck is the lowest intended frequency to be used with
 pluck. This is a static value that sets the buffer size. This parameter
 is worth experimenting with a bit, as it drastically changes the sound
 and decay of the sound.</p>
-<pre><code> 0.5 50 pluck 3000 butlp </code></pre>
+<pre class=dont_try><code> 0.5 50 pluck 3000 butlp </code></pre>
 <p>The puck signal is fed through a string resonator, which is the filtered
 version of pluck. This string resonator is tuned to F#, a major third
 above "D". The idea is to roughly simulate nodes and antinodes of a string
 body. When the plucked string plays an F# it will ring louder. 
 <strong>streson</strong> and <strong>pluck</strong> are known to build up a lot of DC, so a dc blocker
 is placed at the end.</p>
-<pre><code> 66 mtof 0.91 streson dcblk</code></pre>
+<pre class=dont_try><code> 66 mtof 0.91 streson dcblk</code></pre>
 <p>This string sound is duplicated, and fed into a chorus effect. 
 Sporth does not have a chorus effect, but a makeshift one can be made
 easily using a vdelay and slow, small modulations of the delay time.
 For good measure, a dc blocker is used here as well (I must have been
 getting a lot of DC when making this patch!)</p>
-<pre><code> dup 0.4 0.1 1 0 _sine osc 0.002 0.008 biscale 0.2 vdelay + dcblk</code></pre>
+<pre class=dont_try><code> dup 0.4 0.1 1 0 _sine osc 0.002 0.008 biscale 0.2 vdelay + dcblk</code></pre>
 <p>The chorused instrument is then fed into a delay line whose delay time
 is set to a dotted-eigth note duration. This delay is fed into a butterworth
 lowpass filter to keep it out of the way, then scaled to make it quieter. </p>
-<pre><code> dup 0.7 77 bpm2dur 0.75 * delay 2000 butlp 0.5 * + </code></pre>
+<pre class=dont_try><code> dup 0.7 77 bpm2dur 0.75 * delay 2000 butlp 0.5 * + </code></pre>
 <p>This signal attenuated by 3dB, then added to the rest of the mix.</p>
-<pre><code> -3 ampdb * +</code></pre>
+<pre class=dont_try><code> -3 ampdb * +</code></pre>
 <h2>Subtractive Bass</h2>
 <p>This instrument provides the bass sound, a constant pulsating drone. It
 is comprised of two detuned bandlimited sawtooth oscillators tuned to a 
 D.</p>
-<pre><code> 26 mtof 0.2 saw 38.1 mtof 0.3 saw +</code></pre>
+<pre class=dont_try><code> 26 mtof 0.2 saw 38.1 mtof 0.3 saw +</code></pre>
 <p>As stated in the title, this is a subtractive patch, and the lowpass
 filter used here is <strong>diode</strong>, a filter design based of the one used by
 the TB303.  The filter cutoff is modulated by a slow-moving LFO whose period 
 is 8 seconds.</p>
-<pre><code> 8 inv 1 0 _sine osc 500 2000 biscale 0.1 diode </code></pre>
+<pre class=dont_try><code> 8 inv 1 0 _sine osc 500 2000 biscale 0.1 diode </code></pre>
 <p>This sound is added the rest of the patch. The entire patch is attenuated
 by 3 dB.</p>
-<pre><code> + -3 ampdb *
+<pre class=dont_try><code> + -3 ampdb *
 
 </code></pre>
 

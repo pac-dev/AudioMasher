@@ -62,6 +62,7 @@
 		.try_it:hover {
 			background-color: #f0f1fb;
 		}
+		.dont_try { }
 		ol.sub {
 			counter-reset: number;
 		}
@@ -163,7 +164,7 @@
 					continue;
 				links[i].addEventListener('click', onAjaxClick);
 			}
-			var codeSamples = ele.querySelectorAll("pre");
+			var codeSamples = ele.querySelectorAll("pre:not(.dont_try)");
 			for (var i = 0; codeSamples[i]; i++) {
 				codeSamples[i].innerHTML += "<div class=try_it>try it &gt;&gt;</div>";
 			}

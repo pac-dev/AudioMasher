@@ -41,7 +41,7 @@ _send get
 delay 800 butlp -7 ampdb * + 
 _dry get + 
 </div><div class="show_code"><div>show code &gt;&gt;</div></div>
-<pre><code> # in seven
+<pre class=dont_try><code> # in seven
  # paul batchelor
  # january 2017 </code></pre>
 <p>The sporthling <em>in seven</em> is a recreation of an earlier csound live coding
@@ -60,7 +60,7 @@ through a pulsed envelope, creating what is known as a "reverb throw".</li>
 </ul>
 </p>
 </p>
-<pre><code> _seq &quot;0 4 5 7 -2&quot; gen_vals
+<pre class=dont_try><code> _seq &quot;0 4 5 7 -2&quot; gen_vals
  _clk var 
  _dry var 
  _send var </code></pre>
@@ -72,7 +72,7 @@ information can be found <a href="/proj/prop.html">here</a>.</p>
 <p>The main gist of what is happening is that "prop" is generating a 
 7/8 rhythm with a 223 subdivision. The tempo is set to 210 BPM. T</p>
 <p>This signal is saved to the variable <em>clk</em>. </p>
-<pre><code> 210 &quot;++2(+-+)&quot; prop _clk set</code></pre>
+<pre class=dont_try><code> 210 &quot;++2(+-+)&quot; prop _clk set</code></pre>
 <h2>FM patch</h2>
 <p>The crux of this patch is driven by FM oscillator. The parameters of
 an FM oscillator are ampltiude, frequency, C:M ratio, and a modulation
@@ -85,9 +85,9 @@ the table <em>seq</em> in time. The sequence is then biased by 58 to put it
 in the key of B flat, then converted to frequency with <em>mtof</em>. To prevent
 clicks, a small portamento filter is added. </p>
 </p>
-<pre><code> _clk get 0 _seq tseq 58 + mtof 0.001 port </code></pre>
+<pre class=dont_try><code> _clk get 0 _seq tseq 58 + mtof 0.001 port </code></pre>
 <p>The amplitude of this parameter is fixed, and is set to 0.3.</p>
-<pre><code> 0.3</code></pre>
+<pre class=dont_try><code> 0.3</code></pre>
 <h3>Carrier</h3>
 <p>The <em>carrier</em> component is part of the C:M ratio. It is typically a 
 positive integer value denoting the frequency of the "carrier" oscillator,
@@ -98,7 +98,7 @@ This value is converted to a whole number integer via <strong>floor</strong>. It
 important to keep this value as a whole number to prevent 
 clangorous non-harmonic timbres. When the Carrier component is anything
 but 1, it makes the frequency appear to jump to Carrier * frequency. </p>
-<pre><code> _clk get 1 3 trand floor </code></pre>
+<pre class=dont_try><code> _clk get 1 3 trand floor </code></pre>
 <h3>Modulator</h3>
 <p>The <em>modulator</em> component is the second part of the C:M ratio. This 
 component determines the frequency of the modulator oscillator, which
@@ -108,7 +108,7 @@ brighter. </p>
 <p>Similar to the carrier signal, it is being modulated via <strong>trand</strong>, this
 time using values between 1 and 7. The signal is also being floored to
 keep timbres "tonal". </p>
-<pre><code> _clk get 1 7 trand floor</code></pre>
+<pre class=dont_try><code> _clk get 1 7 trand floor</code></pre>
 <h3>Modulation Index</h3>
 <p>The modulatation index determines how much frequency modulation happens.
 A modulation index of 0 creates a sinusoidal tone. The modulation index
@@ -116,69 +116,69 @@ can be crudely thought of as a brightness control or something analogous
 to filter cutoff in a subtractive synthesis patch. </p>
 <p>The modulation index is controlled by a low-frequency sinusoidal oscillator
 moving at a period of 30 seconds, moving between 0.1 and 2 via <strong>biscale</strong>.</p>
-<pre><code> 30 inv 1 sine 0.1 2 biscale</code></pre>
+<pre class=dont_try><code> 30 inv 1 sine 0.1 2 biscale</code></pre>
 <p>This being the last argument, it is closed with the actual "fm" word.</p>
-<pre><code> fm </code></pre>
+<pre class=dont_try><code> fm </code></pre>
 <h2>Reverb Throw</h2>
 <p>To add excitement, some of the signal is occasionally thrown into a
 reverb in what as known as a reverb throw. In analogue days, this was
 done using a fader sporadically moved up from time to time. </p>
 <p>To begin, a copy of the FM sound is created via <strong>dup</strong>. One of these 
 signals will signal sent to the reverb. </p>
-<pre><code> dup </code></pre>
+<pre class=dont_try><code> dup </code></pre>
 <p>To simulate the sporadically on fader, the clock signal <em>clk</em> is fed into a 
 <strong>maygate</strong>.  When triggered, maygate will have a 20% probability of 
 turning on. This allows tempo-synced throws to occur.</p>
-<pre><code> _clk get 0.2 maygate </code></pre>
+<pre class=dont_try><code> _clk get 0.2 maygate </code></pre>
 <p>The maygate signal is either on or off, which can cause very sharp
 jumps. To smooth this out, a portamento filter is used. </p>
-<pre><code> 0.01 port </code></pre>
+<pre class=dont_try><code> 0.01 port </code></pre>
 <p>This signal is then multiplied with one of the copies of FM signal, and
 stored into the variable <em>send</em>. </p>
-<pre><code> * _send set</code></pre>
+<pre class=dont_try><code> * _send set</code></pre>
 <h2>Envelopes for articulation</h2>
 <p>Right now, the FM signal is constantly "on"; there is no sense of 
 articulation (authors note: the throw signal has no articulation. This
 was by accident, by it will be left in). To create articulation, an
 envelope signal is created via <strong>tenv</strong>. It is clocked by the global
 clock <em>clk</em>. The signal is then multiplied with the dry signal.</p>
-<pre><code> _clk get 0.001 0.01 0.4 tenv *</code></pre>
+<pre class=dont_try><code> _clk get 0.001 0.01 0.4 tenv *</code></pre>
 <p>This completes the dry signal, so it is set to the variable <em>dry</em>. </p>
-<pre><code> _dry set</code></pre>
+<pre class=dont_try><code> _dry set</code></pre>
 <h2>Effect Processing</h2>
 <h3>Reverb</h3>
 <p>For reverb, <strong>revsc</strong> is used. The input signal of the reverb module is
 a combination of the dry signal and the send signal boosted by a factor
 of 2. Since this reverb is stereo, it is duplicated. </p>
-<pre><code> _dry get _send get 2 * + dup </code></pre>
+<pre class=dont_try><code> _dry get _send get 2 * + dup </code></pre>
 <p>The reverb parameters are set to have a 0.97 decay rate (1.0 being an 
 infinite hold reverb) with a 5000Hz cutoff. </p>
-<pre><code> 0.97 5000 revsc </code></pre>
+<pre class=dont_try><code> 0.97 5000 revsc </code></pre>
 <p>Since <strong>revsc</strong> is a stereo signal, one of the values is <strong>drop</strong>ed. 
 The remaining signal is attenuated by 27 dB, making it only really audible 
 when dry signal is "thrown" into it. </p>
-<pre><code> drop -27 ampdb * </code></pre>
+<pre class=dont_try><code> drop -27 ampdb * </code></pre>
 <p>ReverbSC causes a lot of DC offset, so a dc blocker filter <strong>dcblk</strong> is
 used.</p>
-<pre><code> dcblk</code></pre>
+<pre class=dont_try><code> dcblk</code></pre>
 <h3>Feedback Delay</h3>
 <p>In addition to reverb, a tempo-synced delay line is also processed with
 the signal in parallel.</p>
 <p>The input signal is only the throw signal from the variable <em>send</em>. </p>
-<pre><code> _send get </code></pre>
+<pre class=dont_try><code> _send get </code></pre>
 <p>The feedback parameter is set to 0.8, or 80 percent loss.</p>
-<pre><code> 0.8 </code></pre>
+<pre class=dont_try><code> 0.8 </code></pre>
 <p>The delay time is set to be a dotted quarter note delay time. This is
 done by converting the BPM (210) to a duration, then multiplying that
 by 1.5. </p>
-<pre><code> 210 bpm2dur 1.5 * </code></pre>
+<pre class=dont_try><code> 210 bpm2dur 1.5 * </code></pre>
 <p>The output of the delay signal is sent into a butter lowpass filter
 <strong>butlp</strong> with a cutoff of 800Hz. This is done so it does not interfere
 with the spectrum of the dry signal. After that, it is attenuated by
 7 dB. </p>
-<pre><code> delay 800 butlp -7 ampdb * + </code></pre>
+<pre class=dont_try><code> delay 800 butlp -7 ampdb * + </code></pre>
 <p>The dry signal is added back in, thus completing the patch.</p>
-<pre><code> _dry get + 
+<pre class=dont_try><code> _dry get + 
 
 </code></pre>
 

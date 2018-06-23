@@ -39,7 +39,7 @@ weighted random distributions.
 sequencer. The table is generated using <em>gen_rand</em>, which generates
 a weighted distribution for randomness. </p>
 </p>
-<pre><code> _seq 32 &quot;0 0.4 7 0.4 12 0.1 5 0.1&quot; gen_rand</code></pre>
+<pre class=dont_try><code> _seq 32 &quot;0 0.4 7 0.4 12 0.1 5 0.1&quot; gen_rand</code></pre>
 <p>The patch uses a number of variables through out the patch:
 <ul>
 <li>the clock signal is stored in <em>clk</em></li>
@@ -49,7 +49,7 @@ a weighted distribution for randomness. </p>
 <li>the bpm (set to 110) is stored in <em>bpm</em></li>
 </ul>
 </p>
-<pre><code> _clk var 
+<pre class=dont_try><code> _clk var 
  _trig var
  _freq var
  _dry var
@@ -58,55 +58,55 @@ a weighted distribution for randomness. </p>
 <p>After the variables and tables have been declared, it is time to set
 up the main sequencer. Like many patches, this starts with a clock signal.
 This is done using <strong>clock</strong>.</p>
-<pre><code> 0 _bpm get 4 clock _clk set</code></pre>
+<pre class=dont_try><code> 0 _bpm get 4 clock _clk set</code></pre>
 <p>From the clock signal, a trigger signal is derived by feeding it through
 <strong>maygate</strong>.</p>
-<pre><code> _clk get 0.6 maytrig _trig set</code></pre>
+<pre class=dont_try><code> _clk get 0.6 maytrig _trig set</code></pre>
 <p>Next, the trigger signal drives <strong>tseq</strong>. <strong>tseq</strong> is set to shuffle mode,
 randomly sequencing through the distribution in <em>seq</em>. It is then
 biased by 60 (middle C) and assigned to <em>freq</em>.</p>
-<pre><code> _trig get 1 _seq tseq 60 + _freq set</code></pre>
+<pre class=dont_try><code> _trig get 1 _seq tseq 60 + _freq set</code></pre>
 <h2>FM Oscillator</h2>
 <p>The crux of this patch comes from the FM oscillator described below. 
 Here, the frequency is obtained from <em>freq</em> and converted from MIDI
 to frequency using <strong>mtof</strong>. The next argument, amplitude, is set to 0.1.</p>
-<pre><code> _freq get mtof 0.1 </code></pre>
+<pre class=dont_try><code> _freq get mtof 0.1 </code></pre>
 <p>The trigger signal <em>trig</em> is used to randomly modulate the C:M ratio 
 of the FM pair via <em>trand</em>. To keep the spectra harmonically related
 to the fundamental and not clangorous, it is important to ensure that
 the C:M ratio uses whole integers, so the output of <strong>trand</strong> is 
 floored using <strong>floor</strong>. </p>
-<pre><code> _trig get 0 3 trand floor
+<pre class=dont_try><code> _trig get 0 3 trand floor
  _trig get 0 7 trand  floor</code></pre>
 <p>A static modulation index of 1 is used, which completes the arguments for
 <strong>fm</strong>.</p>
-<pre><code> 1 fm</code></pre>
+<pre class=dont_try><code> 1 fm</code></pre>
 <p>The amplitude envelope of the FM oscillator is generated via <strong>tenvx</strong>.
 The trigger signal <em>trig</em> used above also feeds into <strong>tenvx</strong>. The FM
 and envelope signals are then multiplied together.</p>
-<pre><code> _trig get 0.005 0.01 0.04 tenvx * </code></pre>
+<pre class=dont_try><code> _trig get 0.005 0.01 0.04 tenvx * </code></pre>
 <h2>Moog Saw</h2>
 <p>Acting as a bassline, a subtractive saw oscillator uses a bandlimited 
 sawtooth oscillator fed through a moog filter. The frequency used
 is identical to the frequency used in the FM oscillator, but pitched
 down an octave to exist in the bass register. </p>
-<pre><code> _freq get 12 - mtof 0.1 saw 1000 0.1 moogladder</code></pre>
+<pre class=dont_try><code> _freq get 12 - mtof 0.1 saw 1000 0.1 moogladder</code></pre>
 <p>The envelope generator in the bass patch also uses the same <em>trig</em> trigger 
 signal, except that it is fed into a maytrig to make it more sparse and 
 less overwhelming in the mix.</p>
-<pre><code> _trig get 0.3 maytrig 0.01 0.01 0.1 tenvx * </code></pre>
+<pre class=dont_try><code> _trig get 0.3 maytrig 0.01 0.01 0.1 tenvx * </code></pre>
 <p>The bass patch is then mixed into everything else so far, and assigned to
 the variable <em>dry</em>. </p>
-<pre><code> + _dry set</code></pre>
+<pre class=dont_try><code> + _dry set</code></pre>
 <h2>Effects</h2>
 <p>For effects processing, the dry signal <em>dry</em> is fed into the zita reverb
 module <strong>zrev</strong>.</p>
-<pre><code> _dry get dup 10 10 10000 zrev drop -10 ampdb * </code></pre>
+<pre class=dont_try><code> _dry get dup 10 10 10000 zrev drop -10 ampdb * </code></pre>
 <p>To keep the mix from getting too muddy, the reverb is highpassed at 1000kHZ,
 leaving plenty of space for the bass instrument.</p>
-<pre><code> 1000 buthp </code></pre>
+<pre class=dont_try><code> 1000 buthp </code></pre>
 <p>This signal is then added back into the dry mix. </p>
-<pre><code> _dry get +
+<pre class=dont_try><code> _dry get +
 
 </code></pre>
 

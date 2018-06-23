@@ -56,7 +56,7 @@ and warm FM and subtractive saw sounds.
 <li>Variable <em>env</em> is used to store an envelope signal</li>
 </ul>
 </p>
-<pre><code> _seq &quot;0 2 7&quot; gen_vals 
+<pre class=dont_try><code> _seq &quot;0 2 7&quot; gen_vals 
  _prog &quot;0 2 5 7 9&quot; gen_vals
  _seq2 &quot;0 2 7 11 14 19&quot; gen_vals
  _clk var
@@ -68,45 +68,45 @@ and warm FM and subtractive saw sounds.
 sixteenth note subdivisions. The clock is sent into a maytrig
 with an 80% probability rate. All of this is assigned to 
 the variable <em>clk</em>.</p>
-<pre><code> 125 4 * bpm2dur dmetro 0.8 maytrig _clk set </code></pre>
+<pre class=dont_try><code> 125 4 * bpm2dur dmetro 0.8 maytrig _clk set </code></pre>
 <h2>Warm Saw Sound</h2>
 <p>The warm sound saw is a sequenced subtractive sawtooth patch. 
 The sequence is created via <strong>tseq</strong>, using the values inside of <em>seq</em>,
 and the clock <em>clk</em>. </p>
-<pre><code> _clk get 0 _seq tseq 58 + </code></pre>
+<pre class=dont_try><code> _clk get 0 _seq tseq 58 + </code></pre>
 <p>To add a sense of a chord progression, another "progression" sequence
 is added to the note as a bias. The same <em>clk</em> signal is used, but it
 is fed into clock divider <strong>tdiv</strong> so that the "chord" changes every 
 4 notes. To keep it from changing that frequently, the clock signal is
 fed into a <strong>maytrig</strong>. </p>
-<pre><code> _clk get 4 0 tdiv 0.1 maytrig 1 _prog tseq + </code></pre>
+<pre class=dont_try><code> _clk get 4 0 tdiv 0.1 maytrig 1 _prog tseq + </code></pre>
 <p>To add occasional octave leaps, <strong>maygate</strong> scaled by 12 is added into
 the sequence signal. </p>
-<pre><code> 12 _clk get 0.2 maygate * + </code></pre>
+<pre class=dont_try><code> 12 _clk get 0.2 maygate * + </code></pre>
 <p>To simulate analogue "drift", <strong>jitter</strong> is added to the sequenced signal.
 This entire signal is converted to frequency via <strong>mtof</strong>. </p>
-<pre><code> 0.1 0.1 5 jitter + mtof </code></pre>
+<pre class=dont_try><code> 0.1 0.1 5 jitter + mtof </code></pre>
 <p>Portamento between frequencies is controlled via <strong>port</strong>. The portamento
 time is randomized via <strong>randi</strong> to pick a value between 1 and 20 milliseconds
 every 5 seconds (<strong>inv</strong> efficiently inverts a number). </p>
-<pre><code> 0.001 0.02 (5 inv) randi port </code></pre>
+<pre class=dont_try><code> 0.001 0.02 (5 inv) randi port </code></pre>
 <p>With the frequency set, the amplitude of the saw is set to 0.4. </p>
-<pre><code> 0.4 saw </code></pre>
+<pre class=dont_try><code> 0.4 saw </code></pre>
 <p>The sawtooth signal is fed into butterworth lowpass filter <strong>butlp</strong>.
 The cutoff frequency of the filter is determined via a sinusoidal LFO
 <strong>sine</strong>, modulating between 200 and 800 Hz. </p>
-<pre><code> 15 inv 1 sine 200 800 biscale butlp</code></pre>
+<pre class=dont_try><code> 15 inv 1 sine 200 800 biscale butlp</code></pre>
 <p>The amplitude of the filtered saw signal is modulated by envelope 
 generator <strong>tenv</strong>. The envelope used is very long, and is meant to
 be the contour for many notes at a given time. Since the clock signal
 is way too fast for this, it is sent through <strong>maytrig</strong>. </p>
-<pre><code> _clk get 0.05 maytrig  1.4 1.1 2.3 tenv *</code></pre>
+<pre class=dont_try><code> _clk get 0.05 maytrig  1.4 1.1 2.3 tenv *</code></pre>
 <h2>Streson Prickles</h2>
 <p>Now for the instrument I like to call "streson prickles". These are the
 most novel sounds of the patch, created using a series of string resonators.
 The start of this sound are short little noise bursts, created from 
 <em>clk</em>, <strong>maytrig</strong>, <strong>tenvx</strong>, and <strong>noise</strong>.</p>
-<pre><code> _clk get 0.7 maytrig 0.001 0.001 0.001 tenvx 1.9 noise * </code></pre>
+<pre class=dont_try><code> _clk get 0.7 maytrig 0.001 0.001 0.001 tenvx 1.9 noise * </code></pre>
 <p><strong>Streson</strong>, is a string resonator. When fed an impulse (like from the noise 
 bursts ) it will produce a karplus strong pluck sound. In addition to the
 input signal, there are two arguments to <strong>streson</strong>: the filter frequency 
@@ -114,59 +114,59 @@ determines the frequency of the string, and the feedback amount determines
 how long the note stays on for. The first string resonator has both 
 the frequency and feedback parameters being randomized by <em>clk</em>-synchronized
 random number generators <strong>trand</strong>. </p>
-<pre><code> _clk get 100 1000 trand _clk get 0.8 0.9 trand streson </code></pre>
+<pre class=dont_try><code> _clk get 100 1000 trand _clk get 0.8 0.9 trand streson </code></pre>
 <p>This signal is fed through two other string resonators in series. 
 The decay times are set to be constants at 0.9, and 0.8, respectively.</p>
-<pre><code> _clk get 400 4000 trand 0.9 streson 
+<pre class=dont_try><code> _clk get 400 4000 trand 0.9 streson 
  _clk get 100 1000 trand 0.8 streson  </code></pre>
 <p>To keep samples numerically reasonable, this signal is fed through a 
 DC blocker <strong>dcblk</strong> and attenuated by 10 dB. Some of the high end is 
 shaved off using a lowpass filter <strong>butlp</strong>.</p>
-<pre><code> dcblk -10 ampdb * 2500 butlp </code></pre>
+<pre class=dont_try><code> dcblk -10 ampdb * 2500 butlp </code></pre>
 <p>This sound is complete, but copy of it is sent to the variable <em>send</em>
 to be used as a throw signal. The throw mechanism below is built out
 of a <strong>maygate</strong>, <strong>tdiv</strong>, and <strong>port</strong> filter. </p>
-<pre><code> dup _clk get 4 0 tdiv 0.1 maygate 0.01 port * _send set +</code></pre>
+<pre class=dont_try><code> dup _clk get 4 0 tdiv 0.1 maygate 0.01 port * _send set +</code></pre>
 <h2>Pinging FM Sound</h2>
 <p>The final instrument in the mix is a pinging FM sound. It is a sound
 buried in the mix. As the trigger signal will show, it is very sparse,
 having <strong>clk</strong> being set through a very large clock divider and 
 <strong>maytrig</strong>.</p>
-<pre><code> _clk get 16 0 tdiv 0.5 maytrig </code></pre>
+<pre class=dont_try><code> _clk get 16 0 tdiv 0.5 maytrig </code></pre>
 <p>A copy of the signal maytrig is made with <strong>dup</strong>, and it is fed into
 the envelope generator <strong>tenvx</strong>. This generator sets the envelope <em>env</em>.</p>
-<pre><code> dup 0.005 0.01 0.3 tenvx _env set</code></pre>
+<pre class=dont_try><code> dup 0.005 0.01 0.3 tenvx _env set</code></pre>
 <p>The clock signal that was <strong>dup</strong>d before feeds into a <strong>tseq</strong>, where it
 is then biased by 58. When I wrote this patch, I wanted to bump this synth
 up an octave, so I added 12 to it too. </p>
-<pre><code> 1 _seq2 tseq 58 12 + + mtof </code></pre>
+<pre class=dont_try><code> 1 _seq2 tseq 58 12 + + mtof </code></pre>
 <p>The amplitude of the FM synth is is modulated by a slow moving LFO.</p>
-<pre><code> 13 inv 1 sine 0.01 0.2 biscale </code></pre>
+<pre class=dont_try><code> 13 inv 1 sine 0.01 0.2 biscale </code></pre>
 <p>The C:M ratio is set to a typically very bright 2:5. </p>
-<pre><code> 2 5 </code></pre>
+<pre class=dont_try><code> 2 5 </code></pre>
 <p>The modulation index is modulated by envelope stored in <em>env</em>. This 
 basically controls "brightness" in the FM world. This is the final argument
 in <strong>fm</strong>, the sound generator.</p>
-<pre><code> _env get 5 * fm </code></pre>
+<pre class=dont_try><code> _env get 5 * fm </code></pre>
 <p>In addition to manipulating the timbre, <em>env</em> also controls the amplitude.
 this signal is then fed into <strong>butlp</strong>. </p>
-<pre><code> _env get * 1500 butlp </code></pre>
+<pre class=dont_try><code> _env get * 1500 butlp </code></pre>
 <p>The instrument signal generated is copied and added onto the <em>send</em> signal,
 which will be sent into some effects. </p>
-<pre><code> dup 0.3 * _send get + _send set +</code></pre>
+<pre class=dont_try><code> dup 0.3 * _send get + _send set +</code></pre>
 <h2>Effects</h2>
 <p>The first effect used in this patch is a feedback delay, with a very
 large feedback parameter. The delay time is based on the BPM, and is set
 to approximately dotted quarters. I say "approximately" because I made it
 slightly longer to make it go out of phase with the dry signal. </p>
-<pre><code> dup 0.9 125 bpm2dur 1.51 * delay 2000 butlp -8 ampdb * + </code></pre>
+<pre class=dont_try><code> dup 0.9 125 bpm2dur 1.51 * delay 2000 butlp -8 ampdb * + </code></pre>
 <p>Next, the <em>send</em> signals are processed. First, <em>send</em> is fed into 
 <strong>revsc</strong>. It is fed into a dc blocker <strong>dcblk</strong>, and a high pass filter
 <strong>buthp</strong>. </p>
-<pre><code> _send get dup 0.98 5550 revsc drop 0.9 * dcblk 200 buthp + </code></pre>
+<pre class=dont_try><code> _send get dup 0.98 5550 revsc drop 0.9 * dcblk 200 buthp + </code></pre>
 <p>The <em>send</em> signal is fed into a tempo-synced feedback delay line 
 <strong>delay</strong>. It is attenuated and then added into the rest of the patch.</p>
-<pre><code> _send get 0.3 125 bpm2dur delay -3 ampdb * +
+<pre class=dont_try><code> _send get 0.3 125 bpm2dur delay -3 ampdb * +
 
 </code></pre>
 
