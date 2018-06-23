@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title>F-Tables</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>F-Tables</h1>
+<p>F-tables, or "function tables" are terms borrowed from the Csound 
+language. Simply put, ftables are arrays of floating point values. They are
+often used by audio-rate signal generators in Sporth like samplers and table-lookup
+oscillators. </p>
+<p>F-tables in Sporth are coupled with gen routines (another term from the Csound/Music N 
+world). Gen routines are in charge of filling stuff into the F-tables. In 
+Soundpipe, ftable creation and gen routines are two separate operations. However,
+in Sporth, ftable creation and gen routine calls are a single operation.</p>
+<h2>A simple example</h2>
+<p>Our most basic gen routine is <a href="/learn/ugens_gen_sine">gen_sine</a>, which computes a single
+cyle of a sine wave. The code below shows how can build a 300 Hz sine wave 
+using a table lookup oscillator:</p>
+<pre><code> &quot;sine&quot; 4096 gen_sine
+ 330 0.5 0 &quot;sine&quot; osc</code></pre>
+<p>A few things to take note of:</p>
+<ul>
+<li>"sine" is the name of the ftable. All created ftables in sporth are named.</li>
+<li>gen_sine is the name of the gen routine in Sporth. It is a convention in
+soundpipe and sporth for gen routines to start with "gen_".</li>
+<li>4096 is the size of the ftable.</li>
+<li>osc takes "sine" as a parameter. </li>
+</ul>
+<h2>Gen routines with arguments</h2>
+<p>Most gen routines are adopted from Csound, where arguments exist inside a 
+string, separated by spaces. In Sporth/Soundpipe this convention is carried
+over. The following patch uses sawtooth wavetable oscillator, whose wavetable
+was generated using the <a href="/learn/ugens_gen_line">gen_line</a> gen routine. For variety, a random number
+sample and hold generator is feeding into the frequency of the saw, and is
+also being fed into a <a href="/learn/ugens_butlp">butterworth lowpass filter</a>. </p>
+<pre><code> &quot;saw&quot; 4096 &quot;0 1 4096 -1&quot; gen_line
+ (300 800 10 randh) 0.3 0 &quot;saw&quot; osc
+ (1000 butlp)</code></pre>
+<p>Gen routines conventionally follow a similar argument structure:</p>
+<p>NAME SIZE ARGSTRING gen_routine</p>
+<p>Where:</p>
+<ul>
+<li>NAME is the name of the ftable</li>
+<li>SIZE is the size of the ftable (the number of floats in the ftable)</li>
+<li>ARGSTRING is the argument string parsed by the gen routine</li>
+</ul>
+<p>Because of the argument strings, gen routines are tricky things to use
+and learn about. The <a href="http://paulbatchelor.github.io/res/soundpipe/docs">Soundpipe reference guide</a>,
+is the most comprehensive starting point. For instance,
+<a href="http://paulbatchelor.github.io/res/soundpipe/docs/gen_line.html">here is the entry on gen_line</a>, the gen 
+routine used in above example.</p>
+<h2>The underscore (_) shortcut</h2>
+<p>To save keystrokes and make ftables look prettier, the underscore key can be
+used in place of strings without spaces. For instance:</p>
+<pre><code> &quot;line&quot; 4096 &quot;0 1 4096 -1&quot; gen_line</code></pre>
+<p>Is identical to:</p>
+<pre><code> _line 4096 &quot;0 1 4096 -1&quot; gen_line</code></pre>
+<p>This is the preferred convention for ftables and variables, which will be
+discussed in the next chapter.</p>
+<h2>Unit generators that use f-tables</h2>
+<p>Here are some common unit generators that make use of f-tables:
+<ul>
+<li><a href="/learn/ugens_osc">osc</a>: table-lookup oscillator with linear interpolation</li>
+<li><a href="/learn/ugens_tblrec">tblrec</a>: writes an input signal to a table</li>
+<li><a href="/learn/ugens_tabread">tabread</a>: reads from a tables</li>
+<li><a href="/learn/ugens_tseq">tseq</a>: trigger-based sequencer</li>
+<li><a href="/learn/ugens_tget">tget</a>: get a value in a table</li>
+<li><a href="/learn/ugens_tset">tset</a>: set a value in a table</li>
+<li><a href="/learn/ugens_posc3">posc3</a>: table-lookup high-precision oscillator with
+cubic interpolation</li>
+<li><a href="/learn/ugens_dtrig">dtrig</a>: trigger generator using delta-times.</li>
+</ul>
+</p>
+<hr />
+<a href="/learn">Back</a>
+</div>
+</body>
+</html>

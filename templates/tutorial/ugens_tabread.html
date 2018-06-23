@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>tabread</h1>
+
+<p>Table lookup with linear interpolation</p>
+<p><strong>tabread</strong> has the following arguments:
+<ul>
+<li>index: index position</li>
+<li>scaled: 0 or 1 indicating whether or not to scale the signal. A value
+of 1 expects the index to be in the range 0-1. A value of 0 will make the
+expected input signal to be the actual index number</li>
+<li>wrap: using wrapping. Can be used to make hard-sync oscillators</li>
+<li>offset: initial phase offset</li>
+<li>ftname: name of the table</li>
+</ul>
+</p>
+<p>The following patch below shows how <strong>tabread</strong> can be used to make a
+table lookup oscillator.</p>
+<pre><code> # Generate sine wave lookup-table
+ _sine 8192 gen_sine
+ # create 440hz phasor signal (sawtooth moving between 0 and 1)
+ 440 0 phasor
+ # feed phasor into tabread 
+ 1 0 0 _sine tabread 
+ # scale signal
+ 0.3 *
+ ##--
+</code></pre>
+
+</div>
+</body>
+</html>

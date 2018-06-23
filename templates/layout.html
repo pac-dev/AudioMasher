@@ -16,7 +16,11 @@
 		<a href="/about" class="title L"><span>Audio</span><span>Masher</span></a>
 		<div class="headline L"><div>
 			<a href="/continue" class=restore_link>[continue autosave] </a>
-			{{.HeadlinePrefix}}{{.Headline}}
+			{{if eq .CurrentView "Learn"}}
+				Learn Sporth
+			{{else}}
+				{{.HeadlinePrefix}}{{.Headline}}
+			{{end}}
 		</div></div>
 		
 		{{if .LoggedIn}}
@@ -35,6 +39,8 @@
 		{{template "browse.html" .}}
 	{{else if eq .CurrentView "About"}}
 		{{template "about.html" .}}
+	{{else if eq .CurrentView "Learn"}}
+		{{template "learn.html" .}}
 	{{else if eq .CurrentView "404"}}
 		{{template "404.html" .}}
 	{{end}}

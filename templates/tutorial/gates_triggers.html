@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title>Gates and Triggers</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Gates and Triggers</h1>
+<h2>All about the trigger</h2>
+<p>Triggers are a very important part of the Sporth ecosystem. They are a convention
+inspired by supercollider as well as the eurorack modular synth community. </p>
+<p>A single trigger is exactly one sample that is a non-zero value (typically,
+this value is just a '1'). Since everything in Sporth is sample accurate, triggers
+are sample accurate and can work at audio rate. </p>
+<p>Trigger-based signals feed into trigger-based ugens to generate signals. 
+Some of these ugens include:</p>
+<ul>
+<li><a href="/learn/ugens_tenv">tenv</a>: a linear envelope generator</li>
+<li><a href="/learn/ugens_tenvx">tenvx</a>: an exponential envelope generator</li>
+<li><a href="/learn/ugens_tseq">tseq</a>: a step sequencer</li>
+<li><a href="/learn/ugens_tgate">tgate</a>: a gate generator</li>
+<li><a href="/learn/ugens_tog">tog</a>: a toggle signal</li>
+<li><a href="/learn/ugens_switch">switch</a>: a 2-way switch</li>
+<li><a href="/learn/ugens_tadsr">tadsr</a>: a ADSR generator</li>
+<li><a href="/learn/ugens_tblrec">tblrec</a>: a table recorder for sampling</li>
+<li><a href="/learn/ugens_timer">timer</a>: a stopwatch like clock</li>
+<li><a href="/learn/ugens_line">line</a>: a line segment generator</li>
+<li><a href="/learn/ugens_expon">expon</a>: an exponential line segment generator</li>
+<li><a href="/learn/ugens_trand">trand</a>: a random number generator</li>
+<li><a href="/learn/ugens_maytrig">maytrig</a>: a probablistic trigger filter</li>
+<li><a href="/learn/ugens_maygate">maygate</a>: a probabalistic gate generator</li>
+<li><a href="/learn/ugens_tdiv">tdiv</a>: a trigger divider</li>
+</ul>
+<p>To generate trigger signals, a few ugens are available:</p>
+<ul>
+<li><a href="/learn/ugens_metro">metro</a>: a metronome object whose rate is specified in Hz.</li>
+<li><a href="/learn/ugens_dmetro">dmetro</a>: a varation on the metronome object, which whose rate
+can be specified in seconds instead of Hz.</li>
+<li><a href="/learn/ugens_clock">clock</a>: a resettable clock whose rate can be specified in BPM and subdivision</li>
+<li><a href="/proj/prop.html">prop</a></a>: a rhythmic notation language in Sporth capable of building proportion
+based subdivisions</li>
+<li><a href="/learn/ugens_dtrig">dtrig</a>: a "delta trigger"</li>
+<li><a href="/learn/ugens_dust">dust</a>: generates random impulses. </li>
+<li><a href="/learn/ugens_tick">tick</a>: generates a single tick at the start of a sporth patch. Be careful,
+this can only be called once! It is common practice to copy the output signal
+to a variable or to use stack operations.</li>
+</ul>
+<h2>All about the gate</h2>
+<p>A gate is a unipolar, steady state-based signal that is either 0 or 1. These
+aren't as commonly used as triggers, but they are still used in some ugens 
+that utilize gates:</p>
+<ul>
+<li><a href="/learn/ugens_adsr">adsr</a>: an analogue modelled ADSR generator</li>
+<li><a href="/learn/ugens_branch">branch</a>: a switch that uses a gate instead of a trigger</li>
+<li><a href="/learn/ugens_thresh">thresh</a>: a threshold detector, useful for converting gates to triggers</li>
+</ul>
+<p>Gates are signals that are multipled directly with other signals. They are 
+very useful for things like reverb throws. You can also make a decent makeshift
+envelope putting a gate through a portamento filter to smooth out the edges:</p>
+<pre><code> 1 metro tog 0.01 port</code></pre>
+<p>A 1Hz metronome object is being fed into a toggle generator, whose value
+is going between 1 and 0 every second. This creates a gate signal which is
+then fed into the portamento filter, whose half time value is 10ms. 
+The portamento filter (a simple one pole smoothing filter), 
+creates the ideal exponential curves for envelope, with a convex exponential 
+slope on the attack, and a concave exponential slope on the release. The
+"adsr" and "tenvx" ugens have been meticulously built and rebuilt to show these
+curves using this method.
+(You would be surprised how many envelope implementations I've seen 
+that mess this up. Csound gets it wrong, as does most of the Eurorack 
+modules!)</p>
+<p>There are few ways to generate gate signals in Sporth:</p>
+<ul>
+<li><a href="/learn/ugens_tgate">tgate</a>, when triggered, generates gates signals with a specified duration </li>
+<li><a href="/learn/ugens_tog">tog</a> toggles itself on and off when triggered, creating a gate</li>
+<li><a href="/learn/ugens_maygate">maygate</a> takes a trigger and probalistically will turn itself on or off</li>
+</ul>
+<p>Gate signals come into play more with APIs and other software, as gates
+are easier to make than one-sample trigger signals. Using gate with a thresh
+hold generator is often a good approach.</p>
+<hr />
+<a href="/learn">Back</a>
+</div>
+</body>
+</html>

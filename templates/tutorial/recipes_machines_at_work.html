@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Machines at Work<br><i>by Paul Batchelor</i></h1>
+<div class=invisicode>_sine 8192 "1 0 0.1 0.8 0.8" gen_sinesum
+_seq 32 "38 0.7 41 0.2 43 0.1" gen_rand
+_sqrseq "74 77 79 81" gen_vals
+_rms var
+_bass var
+_clk var
+_note var
+92 4 * bpm2dur dmetro _clk set
+_clk get 2 0 tdiv 1 _seq tseq 0.001 port _note set
+_note get mtof 0.1 2 1 (0.1 1 sine 1 3 biscale) _sine fosc
+_note get 12.1 - mtof 0.1 1 1 (0.1 1 sine 4 7 biscale) _sine fosc +
+_note get 7 + mtof 0.2 tri +
+_clk get 2 0 tdiv 0.001 0.01 0.3 tenvx dup _rms set * 
+3000 butlp _bass set
+_clk get dup 0.001 0.02 0.1 tenvx 
+swap 0 _sqrseq tseq 
+_clk get 0.2 maygate 12 * +
+0.005 port mtof
+0.3 
+10 inv 1 sine 0.2 0.8 biscale 
+square *  2000 butlp
+dup 0.7 92 bpm2dur 0.75 * delay 1000 butlp -4 ampdb * + 
+76 mtof 0 0.2 0.2 randi saw 
+65 mtof 0 0.2 0.5 randi saw +
+67 mtof 0 0.2 1 randi saw +
+12 inv 1 sine 1000 3000 biscale 0.5 moogladder 2 *  
+dup 0.7 92 bpm2dur delay 1000 buthp -3 ampdb * + +
+92 "-+|-2(-+)|-4(++--)|-?-4(-+-+)" prop 
+0.7 maytrig
+0.001 0.1 0.1 tenvx 
+(-0.3 0.3 sr (1 5 13 randh) / randh) * 4000 butlp
+(10 40 1 randh) metro (0.001 0.015 2 randi) tgate 
+1 
+_clk get 0.5 maytrig tog 0.01 port 
+cf *
+dup 0.7 92 bpm2dur 0.75 * delay -10 ampdb * + 
++
+1 _rms get - -3 2 scale ampdb * 
+500 buthp
+dup jcrev 3 ampdb * +
+_bass get  100 20 3 eqfil + -2 ampdb * 
+</div><div class="show_code"><div>show code &gt;&gt;</div></div>
+<p>Machines at work is yet another example which showcases how Sporth can be
+used to produce sequenced music. It is comprised of main sounds with 
+aux efects.
+<h2>Tables and Variables</h2>
+<p>Being a largely sequenced patch, this patch is highly reliant on tables:
+<ul>
+<li>the table <em>sine</em> uses <strong>gen_sinesum</strong> to produce a summation of 
+harmonically related sine waves</li>
+<li>the table <em>seq</em> uses gen_rand to generated a random distribution for
+use with tseq, with an emphasis on note "38", then "41", then "43". </li>
+<li>the table <strong>sqrseq</strong> is the sequence used by the square instrument</li>
+</ul>
+</p>
+</p>
+<pre><code> _sine 8192 &quot;1 0 0.1 0.8 0.8&quot; gen_sinesum
+ _seq 32 &quot;38 0.7 41 0.2 43 0.1&quot; gen_rand
+ _sqrseq &quot;74 77 79 81&quot; gen_vals</code></pre>
+<p>The patch also uses three variables. 
+<ul>
+<li>the variable <em>rms</em> stores the RMS of the bass</li>
+<li>the variable <em>bass</em> stores the signal of the bass</li>
+<li>the variable <em>clk</em> holds the clock signal</li>
+<li>the variable <em>note</em> stores the note of the bass</li>
+</ul>
+</p>
+<pre><code> _rms var
+ _bass var
+ _clk var
+ _note var</code></pre>
+<h2>Bass</h2>
+<p>To begin, a clock signal is generated via <strong>dmetro</strong> and <strong>bpm2dur</strong>. 
+To get sixteenths notes, the tempo (92), is multiplied by 4. We set this
+to the variable <em>clk</em> so it can easily be used throughout the patch.</p>
+<pre><code> 92 4 * bpm2dur dmetro _clk set</code></pre>
+<p>The bass sequence is created using <strong>tseq</strong> in shuffle mode, using the 
+table and weighted random distribution <em>seq</em>. Before being sent to 
+<strong>tseq</strong>, the clock signal <em>clk</em> is fed through a clock divider to 
+effectively get eigth notes.</p>
+<pre><code> _clk get 2 0 tdiv 1 _seq tseq 0.001 port _note set</code></pre>
+<p>The bass instrument is composed of three oscillators, the first two
+being FM oscillators via <strong>fosc</strong>. These are slightly detuned and an octave
+apart from one another. Each oscillator has their own sinusoidal LFO 
+controlling modulation index, which effectively controls the brightness.
+To add more grit, the usually sine lookup table supplied to <strong>fosc</strong> 
+has extra harmonics for some extra grit. </p>
+<pre><code> _note get mtof 0.1 2 1 (0.1 1 sine 1 3 biscale) _sine fosc
+ _note get 12.1 - mtof 0.1 1 1 (0.1 1 sine 4 7 biscale) _sine fosc +</code></pre>
+<p>The third oscillator is a triangle wave, tuned a fifth up. </p>
+<pre><code> _note get 7 + mtof 0.2 tri +</code></pre>
+<p>Next, the the signal is modulated by the exponential envelope signal 
+generator <strong>tenvx</strong>. A copy of the <strong>tenvx</strong> signal is saved to the 
+variable <em>rms</em>. </p>
+<pre><code> _clk get 2 0 tdiv 0.001 0.01 0.3 tenvx dup _rms set * </code></pre>
+<p>the bass filter is passed through a lowpass filter <strong>butlp</strong> with a 3000
+hz cutoff, and then saved to the variable <em>bass</em> for later. </p>
+<pre><code> 3000 butlp _bass set</code></pre>
+<h2>Square</h2>
+<p>The second instrument created is a square oscillator instrument. 
+To begin, the envelope signal is generated from <em>clk</em>. A copy of clk is
+created to be used next.</p>
+<pre><code> _clk get dup 0.001 0.02 0.1 tenvx </code></pre>
+<p>The envelope and the clock signal <strong>swap</strong> places, so that <em>clk</em> can feed
+<strong>tseq</strong>. This generates the sequencer signal for the square wave.</p>
+<pre><code> swap 0 _sqrseq tseq </code></pre>
+<p>The clock is retrieved once more, and fed into a maygate signal, which
+is then scaled by 12, and then added to the sequence signal. 
+This has the effect of making the sequence occasionally jump an octave.</p>
+<pre><code> _clk get 0.2 maygate 12 * +</code></pre>
+<p>To smooth jumps between the notes, the portamento filter <strong>port</strong> is used,
+then the MIDI value is converted to frequency with <strong>mtof</strong>. </p>
+<pre><code> 0.005 port mtof</code></pre>
+<p>Next, the amplitude of the square oscillator is set to 0.3</p>
+<pre><code> 0.3 </code></pre>
+<p>The pulse width is determined by a sinusoidal LFO, scaled between 0.2 and
+0.8. </p>
+<pre><code> 10 inv 1 sine 0.2 0.8 biscale </code></pre>
+<p>Afterwards, <strong>square</strong> is finally called, and then multiplied with the 
+envelope signal generated previously. This signal is then put through a
+butterworth lowpass filter with a 2kHz cutoff.</p>
+<pre><code> square *  2000 butlp</code></pre>
+<p>Next, the square signal is put through a tempo-synced delay, timed to work
+at a 3 sixteenth note time delay.</p>
+<pre><code> dup 0.7 92 bpm2dur 0.75 * delay 1000 butlp -4 ampdb * + </code></pre>
+<h2>Pads</h2>
+<p>The bulk of the pad sound is mostly built from three bandlimited 
+sawtooth oscillators. Examining a single oscillator, it can be seen that
+a fixed pitch is assigned, and the amplitude is being modulated via
+a randome line segment generator <strong>randi</strong>. </p>
+<pre><code> 76 mtof 0 0.2 0.2 randi saw </code></pre>
+<p>This gets duplicated two more times, with different pitches and 
+instances of <strong>randi</strong>. They are all combined together into one signal.</p>
+<pre><code> 65 mtof 0 0.2 0.5 randi saw +
+ 67 mtof 0 0.2 1 randi saw +</code></pre>
+<p>The pad signal is fed through a <strong>moogladder</strong> ugen. The cutoff frequency
+is modulated by an LFO signal, scaled between values 1000 and 3000. The
+<strong>moogladder</strong> ugen loses gain with the resonance set to a high 0.5, so 
+the signal is doubled. </p>
+<pre><code> 12 inv 1 sine 1000 3000 biscale 0.5 moogladder 2 *  </code></pre>
+<p>This signal is fed through a delay, timed to work with a quarter note 
+delay time.</p>
+<pre><code> dup 0.7 92 bpm2dur delay 1000 buthp -3 ampdb * + +</code></pre>
+<h2>Noise</h2>
+<p>The final sound added to the mix is a percussive white noise instrument.
+Unlike the previous sounds, this uses its own clock signal, but it is
+synced to the same tempo as the clock. For the clock signal, <strong>prop</strong> is
+used. Prop is a microlanguage within Sporth for generating complex rhythms.</p>
+<pre><code> 92 &quot;-+|-2(-+)|-4(++--)|-?-4(-+-+)&quot; prop </code></pre>
+<p>The prop signal is fed through maytrig to make it less dense...</p>
+<pre><code> 0.7 maytrig</code></pre>
+<p>...which in turn is used to produce an exponential envelope signal via
+<strong>tenvx</strong>.</p>
+<pre><code> 0.001 0.1 0.1 tenvx </code></pre>
+<p>Next is the noise source is generated by <strong>randh</strong> being modulated at
+audio rate  with <strong>randh</strong>. Then it is fed through <strong>butlp</strong>. </p>
+<pre><code> (-0.3 0.3 sr (1 5 13 randh) / randh) * 4000 butlp</code></pre>
+<p>The ampltiude of the noise source is modulated by a morphing signal 
+via <strong>cf</strong>. The first signal is a series of tiny gate signals generated
+with <strong>tgate</strong>, whose parameters are being randomly modulated.</p>
+<pre><code> (10 40 1 randh) metro (0.001 0.015 2 randi) tgate </code></pre>
+<p>The next signal is just a constant "on" signal 1.</p>
+<pre><code> 1 </code></pre>
+<p>These two signals are crossfaded from one to the other via a smoothed
+toggle signal <strong>tog</strong>, synced up with the clock signal <em>clk</em>. </p>
+<pre><code> _clk get 0.5 maytrig tog 0.01 port 
+ cf *</code></pre>
+<p>This generated signal is fed througha tempo sycned feedback delay, set 
+to a delay line of 3 sixteenths notes. </p>
+<pre><code> dup 0.7 92 bpm2dur 0.75 * delay -10 ampdb * + </code></pre>
+<p>This instrument is then piled onto everything else on the stack.</p>
+<pre><code> +</code></pre>
+<h2>Effects</h2>
+<p>Before the effects are prossed, every instrument (minus the bass), is 
+scaled by "rms" signal of the bass (which is actually just the amplitude
+of the bass). The signal can be scaled between -3 and 2 db. 
+This acts as a bootleg signal ducker. When the bass turns on, the rest 
+of the instruments back off.</p>
+<pre><code> 1 _rms get - -3 2 scale ampdb * </code></pre>
+<p>To give the bass even more space, we put the isntruments through a highpass
+filter. </p>
+<pre><code> 500 buthp</code></pre>
+<p>These instruments are fed through the chowning reverb <strong>jcrev</strong>. </p>
+<pre><code> dup jcrev 3 ampdb * +</code></pre>
+<p>The bass signal from what back is retrieved from <em>bass</em>, and given a bass
+boost via eqfil. Then, everything is summed together and attenuated a 
+bit so things do not clip.</p>
+<pre><code> _bass get  100 20 3 eqfil + -2 ampdb * 
+
+</code></pre>
+
+</div>
+</body>
+</html>

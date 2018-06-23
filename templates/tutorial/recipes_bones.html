@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Bones<br><i>by Paul Batchelor</i></h1>
+<div class=invisicode># Bones
+# By Paul Batchelor
+# September 2016
+_rat "1 2.5752 4.4644 6.984" gen_vals
+_tk var
+_frq var
+1 10 1 randh metro
+(0.1 0.8 (1 10 3 randh) randi) maytrig 
+dup 0.65 maygate * 
+tick + 
+_tk set
+_tk get 500 1500 trand _frq set
+_tk get (_frq get 0 _rat tget *) 10 40 3 randi mode
+(_frq get 1 _rat tget *) 20 mode
+_tk get (_frq get 2 _rat tget *) 22 mode
+(_frq get 3 _rat tget *) 15 mode +
+dup 0.1 0.8 3 randi
+0.001 0.2 (0.1 4 1 randi) randi
+1.0 vdelay
+dup 0.4 0.9 0.5 randi
+0.2 1 sine 0.01 0.3 biscale
+1.0 64 smoothdelay 0 1 0.2 randi *
++ +
+dup jcrev -6 ampdb * + -1 1 limit
+</div><div class="show_code"><div>show code &gt;&gt;</div></div>
+<pre><code> # Bones
+ # By Paul Batchelor
+ # September 2016</code></pre>
+<p>Bones is a quick sporthlet I made to get back into the habbit of
+making sporthlets. It primarily utilizes modal synthesize and variable
+feedback delay lines to achieve something vaguely bone like (well, 
+at one point it was).</p>
+<h2>Tables and variables</h2>
+<p>The first table created is a set of modal ratios approximating a 
+uniform wooden bar ratios. They have been obtained from
+http://www.csounds.com/manual/html/MiscModalFreq.html.</p>
+<pre><code> _rat &quot;1 2.5752 4.4644 6.984&quot; gen_vals</code></pre>
+<p>Variables are a relatively new concept in Sporth, and have their own
+commands for setting and getting. <em>tk</em> is a variable that will hold
+the trigger tick, and <em>frq</em> will eventually hold the fundamental
+frequency of the instrument.</p>
+<pre><code> _tk var
+ _frq var</code></pre>
+<h2>Trigger generation</h2>
+<p>The base trigger is a metronome, whose rate is randomized via
+a <strong>randh</strong> module.</p>
+<pre><code> 1 10 1 randh metro</code></pre>
+<p>A consistent metronome can annoying quickly, so it is sent through
+a maytrig to hush it up every now and then. The probability randomly
+swings between 0.1 and 0.8 via <strong>randi</strong>. To make the line a little less
+regular, the rate gets changed with <strong>randh</strong>.</p>
+<pre><code> (0.1 0.8 (1 10 3 randh) randi) maytrig </code></pre>
+<p>The maytrig reduces the density, but phrasing is also important. 
+for this reason, the output of the maytrig is multiplied by a <strong>maygate</strong>.
+(Could this have been done with just one maytrig? Probably. But that
+I did not think of this in the moment of creating this)</p>
+<pre><code> dup 0.65 maygate * </code></pre>
+<p><strong>tick</strong> is added onto the trigger signal, to ensure that there is a 
+trigger at the start of the sporth drawing. </p>
+<pre><code> tick + </code></pre>
+<p>The entire signal is assigned to the variable <em>tk</em> via the <strong>set</strong> ugen.</p>
+<pre><code> _tk set</code></pre>
+<h2>Modal Resonators</h2>
+<p>An entire explanation of modal resonators and modal synthesis are 
+beyond the scope of this sporthlet, but a small one will be given.
+One can think of a modal filter as a filter that resonants at a particular 
+Q and frequency. In modal synthesis, an excitation signal (in this case, 
+a trigger signal), is fed through a bank of modal filters, configured
+in both series and in parallel. What comes out is the sound. This technique
+is largely used in physical modelling. </p>
+<p>The base frequency of the instrument is set via <strong>trand</strong>, who trigger
+is obtained from the previously set variable <em>tk</em>.</p>
+<pre><code> _tk get 500 1500 trand _frq set</code></pre>
+<p>The trigger signal <em>tk</em> is sent through two modal filters in series, whose
+frequences are obtained from the first two elements table <em>rat</em>, multiplied
+by the frequency <em>frq</em>. In the first modal filter, the Q is being randomized
+via <strong>randi</strong>.</p>
+<pre><code> _tk get (_frq get 0 _rat tget *) 10 40 3 randi mode
+ (_frq get 1 _rat tget *) 20 mode</code></pre>
+<p>The process is repeated again, this time with the last two modal 
+frequency ratios in <em>rat</em>, and different Q values (by the way, these
+Q values were chosen fairly randomly with a little experimentation)</p>
+<pre><code> _tk get (_frq get 2 _rat tget *) 22 mode
+ (_frq get 3 _rat tget *) 15 mode +</code></pre>
+<h2>Delay lines</h2>
+<p>The variable delay line is the crucial element that adds a strange crittery
+characteristic to the sound. This is done by randomizing the feedback
+and delay times with <strong>randi</strong>. </p>
+<pre><code> dup 0.1 0.8 3 randi
+ 0.001 0.2 (0.1 4 1 randi) randi
+ 1.0 vdelay</code></pre>
+<p>To add more texture to the delay line, a <strong>smoothdelay</strong> is applied
+to the variable delay signal. A smooth delay line is like a variable
+delay line, except there is no residual pitch modulation. <strong>Randi</strong> is used
+to control feedback, and <strong>sine</strong> is used to control delay time. 
+To add space and variation, the level is modulated by yet another 
+<strong>randi</strong>. </p>
+<pre><code> dup 0.4 0.9 0.5 randi
+ 0.2 1 sine 0.01 0.3 biscale
+ 1.0 64 smoothdelay 0 1 0.2 randi *</code></pre>
+<p>Finally, the delay lines and dry signal are summed together.</p>
+<pre><code> + +</code></pre>
+<h2>Post-effects</h2>
+<p>The final effects used are a gentle chowning reverb fed through
+a hard limiter <strong>limit</strong>. </p>
+<pre><code> dup jcrev -6 ampdb * + -1 1 limit
+
+</code></pre>
+
+</div>
+</body>
+</html>

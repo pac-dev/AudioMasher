@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>tset</h1>
+
+<p><strong>tset</strong> will retrieve values from a table. It takes in a value, 
+an index position, and a table name, then pushes that value onto the 
+stack.</p>
+<p>The following patch uses <strong>tget</strong> to retrieve parameter values for 
+<strong>sine</strong>, and <strong>tset</strong> to set the parameters </p>
+<pre><code> _vals 2 zeros
+ 350 0 _vals tset
+ 0.5 1 _vals tset
+ 0 _vals tget
+ 1 _vals tget
+ sine
+
+</code></pre>
+
+</div>
+</body>
+</html>

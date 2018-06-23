@@ -1,0 +1,181 @@
+
+	<style>
+		.learn.left_pane {
+			right: 44%;
+			padding: 0 24px 18px;
+			overflow-y: auto;
+			line-height: 20px;
+			color: #111;
+		}
+		.learn.right_pane {
+			display: block; left: 56%;
+		}
+		.learn hr {
+			border: none;
+			border-bottom: 1px solid #aaa;
+		}
+		.learn h1 {
+			font-size: 16px;
+			font-weight: normal;
+			text-align: center;
+			border-bottom: 1px solid #aaa;
+			margin: 15px;
+			padding-bottom: 8px;
+		}
+		.learn h1 i {
+			font-size: 14px;
+		}
+		.learn h2 {
+			font-size: 16px;
+			font-weight: normal;
+			margin: 19px 0 7px;
+			border-bottom: 1px solid #aaa;
+			text-align: center;
+		}
+		.learn h3 {
+			font-size: 16px;
+			font-style: italic;
+			font-weight: normal;
+			margin: 19px 0 7px;
+		}
+		.learn ul {
+			margin: 5px 0 15px;
+		}
+		.learn.left_pane a {
+			text-decoration: underline;
+		}
+		.learn.left_pane pre {
+			background-color: #eee;
+			padding: 10px;
+			position: relative;
+		}
+		.try_it {
+			background-color: white;
+			padding: 2px 7px;
+			margin: 6px;
+			border: 1px solid #777;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			cursor: pointer;
+		}
+		.try_it:hover {
+			background-color: #f0f1fb;
+		}
+		ol.sub {
+			counter-reset: number;
+		}
+		ol.sub li {
+			list-style: none;
+			counter-increment: number;
+		}
+		ol.sub li::before {
+			width: 35px;
+			display: inline-block;
+		}
+		ol.n0 li::before { content: "0." counter(number); }
+		ol.n1 li::before { content: "1." counter(number); }
+		ol.n2 li::before { content: "2." counter(number); }
+		.invisicode { display: none; }
+		.show_code {
+			text-align: center;
+		}
+		.show_code > div {
+			background-color: white;
+			padding: 2px 7px;
+			margin: 6px;
+			border: 1px solid #777;
+			display: inline-block;
+			cursor: pointer;
+		}
+		.show_code > div:hover {
+			background-color: #f0f1fb;
+		}
+		
+	</style>
+	<div class="learn left_pane" id=tutorial>
+		{{.Tutorial}}
+	</div>
+	<div class="learn right_pane">
+		<div id=editor_container class=learn>
+			<textarea id=editor_area autocomplete=off>{{index .Patch.Files "main.sp"}}</textarea>
+		</div>
+		<div id=controls class=learn>
+			<div id=play_loading class=learn></div>
+			<a id=c_play class=nodisplay title="Compile & start audio (from editor: ctrl+Enter)">Compile & play</a>
+			<a id=c_stop title="Stop audio (from editor: ctrl+Space)">Stop audio</a>
+		</div>
+		<div id=tooltip></div>
+		<div id=errors></div>
+	</div>
+	<script>
+		ajaxUrlRoot = "{{.StaticRoot}}tutorial/";
+	</script>
+	<script>
+		var ajaxMother = document.getElementById("tutorial");
+		function loadPage(args) {
+			fetch(args.url, {
+				method: 'get'
+			}).then(function(response) {
+				if (response.ok)
+					return response.text();
+				else return ""
+			}).then(function(data) {
+				if (data=="") return;
+				var content = data.substring(
+					data.indexOf("<!-- start content --"+">")+22,
+					data.indexOf("<!-- end content --"+">")
+				);
+				ajaxMother.innerHTML = content;
+				axajify(ajaxMother);
+				ajaxMother.scrollTop = 0;
+				if (args.onSuccess) args.onSuccess(data);
+			});
+		}
+		function onAjaxClick(event) {
+			event.preventDefault();
+			var href = this.href;
+			loadPage ({
+				url: href,
+				onSuccess: function(data) {
+					var title = data.substring(data.indexOf("<title>")+7,data.indexOf("</title>"));
+					history.pushState({ }, title, href);
+					document.title = title;
+				}
+			});
+		}
+		window.onpopstate = function(event) {
+			loadPage ({url: window.location.href});
+		}
+		function onTryitClick(event) {
+			var code = this.previousSibling.innerText.trim();
+			code = code.replace(/^ +/gm, '');
+			editor.setValue(code);
+		}
+		function onShowCodeClick(event) {
+			editor.setValue(this.parentElement.previousSibling.innerText);
+		}
+		
+		function axajify(ele) {
+			var links = ele.querySelectorAll("a");
+			for (var i = 0; links[i]; i++) {
+				if (links[i].getAttribute('href').startsWith("http"))
+					continue;
+				links[i].addEventListener('click', onAjaxClick);
+			}
+			var codeSamples = ele.querySelectorAll("pre");
+			for (var i = 0; codeSamples[i]; i++) {
+				codeSamples[i].innerHTML += "<div class=try_it>try it &gt;&gt;</div>";
+			}
+			var tryIts = ele.querySelectorAll(".try_it");
+			for (var i = 0; tryIts[i]; i++) {
+				tryIts[i].addEventListener('click', onTryitClick);
+			}
+			var showCodes = ele.querySelectorAll(".show_code > div");
+			for (var i = 0; showCodes[i]; i++) {
+				showCodes[i].addEventListener('click', onShowCodeClick);
+			}
+		}
+		
+		axajify(ajaxMother);
+	</script>

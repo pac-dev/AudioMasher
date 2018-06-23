@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>branch</h1>
+
+<p>Arguments: signal, sig1, sig0 branch</p>
+<p>Branch switches between two signals given a gate signal. A value of
+"1" will go to <em>sig1</em> (first signal), and a value of 0 will go to
+<strong>sig0</strong> (second signal). </p>
+<p>The example below uses <strong>branch</strong> to switch between a random and steady
+signal to be used as frequency for a sine wave. The switching mechanism
+is generated via <strong>metro</strong> and <strong>tog</strong></p>
+<pre><code> # generate gate signal with metro and tog
+ 1 metro tog 
+ # signal 1: random signal
+ 200 800 10 randh 
+ # signal 2: steady signal
+ 200 
+ branch 
+ 0.3 sine
+
+</code></pre>
+
+</div>
+</body>
+</html>

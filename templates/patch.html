@@ -1,6 +1,8 @@
 
 	<div class=left_pane>
-		<textarea autocomplete=off>{{index .Patch.Files "main.sp"}}</textarea>
+		<div id=editor_container>
+			<textarea id=editor_area autocomplete=off>{{index .Patch.Files "main.sp"}}</textarea>
+		</div>
 		<div id=controls>
 			<div id=play_loading></div>
 			<a id=c_play class=nodisplay title="Compile & start audio (from editor: ctrl+Enter)"></a>

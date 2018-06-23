@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>crossfade</h1>
+
+<p>Crossfade applies a linear crossfrade between two signals with a certain
+percentage <em>alpha</em>. When <em>alpha</em> is 0, it 100% the top signal. When <em>alpha</em>
+is 1, the signal is 100% the second signal.</p>
+<p>Crossfade also has the alias "cf"</p>
+<pre><code> # Signal 1
+ 440 0.3 sine
+ # Signal 2
+ 880 0.3 sine
+ # LFO modulating crossfade. 0 = signal 1, 1 = signal 2
+ 0.2 1 sine 0 1 biscale
+ crossfade
+
+</code></pre>
+
+</div>
+</body>
+</html>

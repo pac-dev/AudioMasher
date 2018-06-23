@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>blsquare</h1>
+
+<p>Arguments: Frequency, Amplitude, Pulse Width</p>
+<p>The ugen <strong>blsquare</strong> is a band-limited square wave generator. In addition
+to having frequency and amplitude control, there is also a modulatable
+pulse width parameter. This parameter should be in range 0-1, not including
+0 or 1 exactly. 
+The example below shows blsquare with a modulated pulse width.</p>
+<pre><code> 200 0.3 
+ # LFO modulating pulse width
+ 0.1 1 sine 0.01 0.99 biscale
+ blsquare
+
+</code></pre>
+
+</div>
+</body>
+</html>

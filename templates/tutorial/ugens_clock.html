@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>clock</h1>
+
+<p>Arguments:
+<ul>
+<li>trigger: resets the clock</li>
+<li>tempo: clock tempo in beats per minute (BPM)</li>
+<li>subdivision: Clock subdivision amount (1 = quarter notes, 2=eighth notes
+4=sixteenth notes, etc...)</li>
+</ul>
+</p>
+<p>The unit generator <em>clock</em> produces a trigger signal that can be used by
+other trigger-based unit generators. The example below shows <strong>clock</strong>
+being fed into the envelope generator <strong>tenvx</strong>. </p>
+<pre><code> # Generate 120 BPM clock signal
+ 0 120 1 clock 
+ # Feed clock into exponential envelope generator
+ 0.001 0.001 0.05 tenvx 
+ # Multiply envelope with sine wave
+ 1000 0.5 sine *
+
+</code></pre>
+
+</div>
+</body>
+</html>

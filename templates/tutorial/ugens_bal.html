@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Bal</h1>
+
+<p>Arguments: reference, input</p>
+<p>Bal comes from the csound opcode "balance". Bal will take an input signal,
+and match the amplitude of the signal with a reference signal. </p>
+<p>Typically bal is used as a tool with filters like <strong>moogladder</strong> whose topology
+often reduces the gain of the input signal. The example below shows
+this typical usecase, splitting the input value into a filtered input signal
+and a dry reference signal. These values go into <strong>bal</strong> to add makeup gain.</p>
+<pre><code> 150 0.3 saw dup
+ 0.1 1 sine 200 1000 biscale 0.3 moogladder bal
+
+</code></pre>
+
+</div>
+</body>
+</html>

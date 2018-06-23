@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>tblrec</h1>
+
+<p>Tblrec has the following arguments:
+<ul>
+<li>input: input signal</li>
+<li>trigger: trigger signal to start/stop recording</li>
+<li>table name: name of f-table to record to</li>
+</ul>
+</p>
+<p><strong>tblrec</strong> will record an input signal to an f-table. In addition, there is 
+also the ability to turn the recording off and on. When turned back on, the
+pointer will rewind to the beginning, overwriting any previous data. When
+the record pointer reaches the end of the table, it loops to the beginning
+and continues onwards.</p>
+<p>The patch below demonstrates one particular way <strong>tblrec</strong> can be used.
+A simple karplus-strong instrument is recorded into a 2-second long buffer.
+The buffer is then randomly shuffled through using the phase-vocoder 
+mincer.</p>
+<p><strong>tblrec</strong> pushes a copy of the dry signal back onto the stack.</p>
+<pre><code> # create a 2-second long buffer called &quot;in&quot;
+ _in sr 2 * zeros
+ 
+ # a small plucked instrument patch
+ 1 metro dup 300 800 trand 0.5 100 pluck 
+ 
+ # record the patch using tblrec. &quot;tick&quot; makes it start recording indefinitely
+ tick _in tblrec 
+ 
+ # drop the dry signal
+ drop
+ 
+ # create a jitter signal between 0 and the position of the input buffer
+ 0 _in tbldur (2 10 1 randh) randi 
+ 
+ # mince it up using mincer
+ 1 1 2048 _in mincer
+ 
+
+</code></pre>
+
+</div>
+</body>
+</html>

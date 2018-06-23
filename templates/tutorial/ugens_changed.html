@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Changed</h1>
+
+<p>This ugen takes in a signal, and outputs a trigger if the signal has 
+changed. Sometimes useful for realtime-controlelr based setups.</p>
+<p>The example is an enveloped sine wave whose frequency is modulated with 
+sample and holds via <strong>randh</strong>. Anytime the frequency changes, it triggers
+the envelope via <strong>changed</strong>.</p>
+<pre><code> _freq var
+ 200 1000 1 4 1 randh randh _freq set
+ 
+ _freq get 0.6 sine _freq get changed 0.001 0.005 0.001 tenvx * 
+
+</code></pre>
+
+</div>
+</body>
+</html>

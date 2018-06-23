@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>dcblk</h1>
+
+<p>A DC blocking filter. This is used to correct any DC offset introduced
+into the signal path. Common culprits that introduce DC offset include 
+reverberators, comb filters, and string resonators.</p>
+<pre><code> # use an impulse as an excitation signal
+ 1 metro
+ # feed it into some string resonators
+ 220 0.999 streson
+ 300 0.8 streson
+ # remove any dc offset with dcblk
+ dcblk
+
+</code></pre>
+
+</div>
+</body>
+</html>

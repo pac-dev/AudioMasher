@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>tget</h1>
+
+<p><strong>tget</strong> will retrieve values from a table. It takes in an index position 
+and a table name, and pushes that value onto the stack.</p>
+<p>The following patch uses <strong>tget</strong> to retrieve parameter values for 
+<strong>sine</strong>.</p>
+<pre><code> _vals &quot;440 0.5&quot; gen_vals
+ 0 _vals tget
+ 1 _vals tget
+ sine
+
+</code></pre>
+
+</div>
+</body>
+</html>

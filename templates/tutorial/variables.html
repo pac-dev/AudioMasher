@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title>Variables</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Variables</h1>
+<p>Variables in Sporth are a wonderful solution to mitigate 
+hard to follow stack operations. </p>
+<p>Consider this Sporth patch, where the metronome signal is being split
+and fed into a trand and tenvx:</p>
+<pre><code> 10 metro dup
+ 300 1000 trand 
+ swap 0.001 0.005 0.001 tenvx 
+ swap 0.3 sine *</code></pre>
+<p>It's not terribly complicated yet, but if this patch were to grow, and the clock
+source were needed by more ugens, things could become harder to follow.</p>
+<p>With variables, the same patch could be realized in the following way:</p>
+<pre><code> _clk var
+ 10 metro _clk set
+ _clk get 300 1000 trand 
+ _clk get 0.001 0.005 0.001 tenvx 
+ swap 0.3 sine * </code></pre>
+<p>In this patch, the variable called "clk" is declared in the first line with:</p>
+<pre><code> _clk var</code></pre>
+<p>The metronome signal is set to the variable using "set" in the following line:
+<pre><code> 
+ 10 metro _clk set</code></pre>
+</p>
+<p>With the variable set, the value inside the variable accessed using "get",
+as seen in the two lines following:</p>
+<pre><code> _clk get 300 1000 trand 
+ _clk get 0.001 0.005 0.001 tenvx </code></pre>
+<p>With this patch, it is much clearer to see what is being fed into trand and
+tenvx. </p>
+<hr />
+<a href="/learn">Back</a>
+</div>
+</body>
+</html>

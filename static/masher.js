@@ -1492,6 +1492,9 @@ var allTabContents = document.querySelectorAll(".tab");
 var allTabThumbs = document.querySelectorAll(".thumb");
 var mutexTabsArray = Array.from(document.querySelectorAll(".mutex"));
 var output = document.getElementById('output');
+var playButton = document.getElementById('c_play');
+var stopButton = document.getElementById('c_stop');
+var helpButton = document.getElementById('c_help');
 
 // ========== TAB SWITCHING ==========
 var allTabContents = document.querySelectorAll(".tab_content");
@@ -1520,7 +1523,6 @@ var refElement = document.getElementById('quick_ref')
 if (refElement) refElement.innerHTML = refContent;
 
 // ========== EMSCRIPTEN ==========
-var playButton = document.getElementById('c_play');
 var playing = false;
 var gotError;
 var play = function () {
@@ -1620,7 +1622,7 @@ function showTooltip(txt) {
 	tipDiv.innerHTML = txt;
 	tipDiv.classList.add("on");
 }
-editorArea = document.querySelector('.left_pane textarea');
+editorArea = document.getElementById('editor_area');
 if (editorArea != null) {
 	editor = CodeMirror.fromTextArea(editorArea, {
 		mode: "sporth",
@@ -1637,22 +1639,22 @@ if (editorArea != null) {
 	editor.on("changes", function(cm) {
 		changed = true;
 	});
-	editor.setSize("calc(100% - 51px)", "100%");
+	editor.setSize("100%", "100%");
 	window.onresize = function() {editor.refresh();};
 }
 
 
 // ========== CONTROLS ==========
 if (editor) {
-	document.getElementById('c_help').addEventListener('click', function() {
-		document.body.classList.toggle("split");
-		
-		editor.refresh();
-	});
-	document.getElementById('c_play').addEventListener('click', function() {
+	if (helpButton)
+		helpButton.addEventListener('click', function() {
+			document.body.classList.toggle("split");
+			editor.refresh();
+		});
+	playButton.addEventListener('click', function() {
 		play();
 	});
-	document.getElementById('c_stop').addEventListener('click', function() {
+	stopButton.addEventListener('click', function() {
 		stop();
 	});
 }
@@ -1732,7 +1734,7 @@ function setupModal(cfg, parent) {
 		}).then(function(response) {
 			return response.json();
 		}).then(function(data) {
-			m.result = data
+			m.result = data;
 			if (!m.result.success || cfg.alwaysConfirm)
 				alert(m.result.message);
 			m.progress.innerHTML = "&nbsp;";

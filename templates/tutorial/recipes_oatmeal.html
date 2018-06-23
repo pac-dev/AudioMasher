@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Oatmeal<br><i>by Paul Batchelor</i></h1>
+<div class=invisicode>_wav 8192 gen_sine
+_d var
+2 
+0.2 1 0 _wav osc 5 20 biscale
+1 dust dup _d set
+1100 1.9 0 wpkorg35
+jcrev 
+_d get 0.5 maytrig 0.01 tgate 0.001 port 
+1000 0.3 0 _wav osc *  + 
+_d get 0.5 maytrig 0.004 tgate 0.001 port 
+2000 0.3 0 _wav osc *  + 
+_d get 0.2 maytrig 0.004 tgate 0.001 port 
+500 0.3 0 _wav osc *  + 
+_d get 0.3 maytrig 0.04 tgate 0.005 port 
+-0.05 0.05 
+_d get 1102 11025 trand  
+randh * + 
+dup 
+_d get 0.1 maytrig 0.4 0.1 0.1 tenv * 
+0.6 0.3 delay 
+12 1024 512 pshift 
+1000 butlp -6 ampdb * + 
+</div><div class="show_code"><div>show code &gt;&gt;</div></div>
+<p>This was a quick patch I whipped up some morning while eating some oatmeal.
+It is part of my ongoing collection of <a href="/sporthlings/002">sporthlings</a>.
+By and large, this patch was derived by layering simple sounds together.
+<h2>Tables and Variables</h2>
+<p>Tables generation is minimal. A sine lookup table is generated for some oscillators,
+A single variable <em>d</em> is used for the dust signal.</p>
+</p>
+<pre><code> _wav 8192 gen_sine
+ _d var</code></pre>
+<h2>Dust</h2>
+<p>The <strong>dust</strong> ugen is a ugen that fires random impulses at a certain
+density. It is unique in that it works well as both a control signal as 
+well as an audio signal. This patch uses this signal for both purposes.</p>
+<p>The first argument to <strong>dust</strong> is amplitude, which is set to a constant 2.</p>
+<pre><code> 2 </code></pre>
+<p>The second argument is density, which is controlled by a low-frequency 
+oscillator, set at 0.2 Hz. It is scaled via <strong>biscale</strong> to go between
+5 and 20 impulses per second. </p>
+<pre><code> 0.2 1 0 _wav osc 5 20 biscale</code></pre>
+<p>The rest of <strong>dust</strong> is written out. The final argument to <strong>dust</strong> is
+the mode, which has been set to 1, bipolar mode.
+The signal is duplicated, and one of the values is set to teh variable <em>d</em>.</p>
+<pre><code> 1 dust dup _d set</code></pre>
+<p>The dust signal continues onward, being filtered by <strong>wpkorg35</strong>. It is set
+to a cutoff frequency of 1100 with a very high resonance (this particular
+filter has a range of 0-2, and the resonance is 1.9. The sonic output
+of putting impulses into a highly resonant filter little sinusoidal blip 
+sounds. One of my favorite go-to effects. </p>
+<pre><code> 1100 1.9 0 wpkorg35</code></pre>
+<p>To add some body, the blips are fed into the chowning reverb, which I have
+found to be very favorable to sinusoidal signals for some reason.</p>
+<pre><code> jcrev </code></pre>
+<h2>Blerps</h2>
+<p>The next layer in our cake of sound are what I will call "blerps". These
+are rhythmic blips tuned at whole integer ratios from one another. </p>
+<p>The make up of a single "blerp" consists of a sinusoid and an envelope.
+The envelope is created gate signal (generated via <strong>tgate</strong>)
+being sent through a portamento filter. The gate is controlled via the
+dust signal stored in variable <em>d</em>. To make things less busy, the trigger
+is fed into a maytrig.</p>
+<pre><code> _d get 0.5 maytrig 0.01 tgate 0.001 port </code></pre>
+<p>The envelope generatored is then multipled with a sinusoidal oscillator 
+tuned at 1000Hz. This signal is then added onto the current signal.</p>
+<pre><code> 1000 0.3 0 _wav osc *  + </code></pre>
+<p>The same thing more or less is repeated 2 more times, with a few variations
+in parameters. The oscillators are tuned to 2000Hz and 500Hz.</p>
+<pre><code> _d get 0.5 maytrig 0.004 tgate 0.001 port 
+ 2000 0.3 0 _wav osc *  + 
+ _d get 0.2 maytrig 0.004 tgate 0.001 port 
+ 500 0.3 0 _wav osc *  + </code></pre>
+<h2>Noise</h2>
+<p><strong>Randh</strong>, like dust, can function equally well as a control signal and an
+audio signal. When the rate is set to audio-rate frequencies, you can get
+different "colors" of noise, an sound reminiscent to 8-bit game sounds.</p>
+<p>For starters, an envelope signal is generated in similar manner to the 
+envelopes created in the previous section.</p>
+<pre><code> _d get 0.3 maytrig 0.04 tgate 0.005 port </code></pre>
+<p>The arguments for ugen <strong>randh</strong> can now begin. These two arguments tell
+randh to produce random values between (+/-)0.05. </p>
+<pre><code> -0.05 0.05 </code></pre>
+<p>The third argument to <strong>randh</strong> is rate (or frequency), which we have
+delegated to a triggerable random number generator <strong>trand</strong>. The 
+trigger signal is being fed by our dust signal, and is producing random
+values between 1102Hz and 11025Hz. </p>
+<pre><code> _d get 1102 11025 trand  </code></pre>
+<p>Finally, <strong>randh</strong> is called and multiplied with the corresponding 
+envelope. It is then added to the current signal. </p>
+<pre><code> randh * + </code></pre>
+<h2>Processing</h2>
+<p>The effects processing is used in a very unusual way. One could argue that
+the processing is an instrument as well.</p>
+<p>To begin, the signal is duplicated so that a dry version of the signal
+is stored.</p>
+<pre><code> dup </code></pre>
+<p>The first thing created is a "throw" signal. The dust signal used from 
+before feeds into a very sparse <strong>maytrig</strong>. This trigger signal feeds
+into a tenv, where a very gentle envelope signal is multipled with
+the signal to be processed. The results is we are occasionally "throwing"
+the signal into processor. This term is borrowed from what is known by
+mix engineers as a "reverb throw". </p>
+<pre><code> _d get 0.1 maytrig 0.4 0.1 0.1 tenv * </code></pre>
+<p>The thrown signal is fed into a feedback delay of 300ms with a feedback 
+amount of 60 percent.</p>
+<pre><code> 0.6 0.3 delay </code></pre>
+<p>The feedback delay is fed into the pitch shifter <strong>pshift</strong>, where it is
+tuned up an octave.</p>
+<pre><code> 12 1024 512 pshift </code></pre>
+<p>The pitch shifted signal is put through a butterworth lowpass, and then 
+attenuated by 6dB. The dry and wet signal are then added together.</p>
+<pre><code> 1000 butlp -6 ampdb * + 
+
+</code></pre>
+
+</div>
+</body>
+</html>

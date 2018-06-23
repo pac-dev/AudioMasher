@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>posc3</h1>
+
+<p><strong>posc3</strong> is a table-lookup high precision oscillator with 
+cubic interpolation. </p>
+<p>It takes in the following arguments:
+<ul>
+<li>frequency</li>
+<li>amplitude</li>
+<li>table name </li>
+</ul>
+</p>
+<p>The following patch creates a 440Hz sine wave using <strong>posc3</strong>. It is
+analogous to the unit generator <strong>sine</strong>.</p>
+<pre><code> _sine 8192 gen_sine
+ 440 0.5 _sine posc3
+
+</code></pre>
+
+</div>
+</body>
+</html>

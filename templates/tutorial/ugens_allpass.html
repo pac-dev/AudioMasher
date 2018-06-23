@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Allpass</h1>
+
+<p>This is an allpass filter implementation taken from the Csound opcode
+<a href="http://csound.github.io/docs/manual/alpass.html">alpass</a> (note: 
+spelling intentionally incorrect here.). In general, allpass filters are
+unique in that they have unit-magnitude frequency response for the whole
+spectrum. This particular allpass filter design is used in reverberation
+design to provide colorless density. For this reason, units for this ugen 
+are in seconds rather than in hertz.</p>
+<p>The arguments for allpass are as follows:
+<ul>
+<li>revtime: is the reverberation time for the signal to decay 60dB (more 
+commonly referred to as T60).</li>
+<li>looptime: is the delay line length (this provides the length of the 
+"echo").</li>
+</ul>
+</p>
+<h2>Example</h2>
+<p>The example below shows a typical usecase for an allpass filter. Allpass 
+filters are often used in series. In the example below, three sucessive
+instances of allpass are created. For an input signal, an impulse is being
+generated with a broadband noise signal with an exponential envelope.
+The resulting sound you hear is the "impulse response", which gives you
+the characteristics of the reverb.<br />  </p>
+<pre><code> 1 metro 0.001 0.001 0.001 tenvx 0.5 noise * 
+ 5 0.010 allpass 
+ 5 0.013 allpass 
+ 5 0.008 allpass
+
+</code></pre>
+
+</div>
+</body>
+</html>

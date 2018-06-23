@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>osc</h1>
+
+<p><strong>osc</strong> is a table-lookup oscillator with linear interpolation.</p>
+<p>It takes in the following arguments:
+<ul>
+<li>frequency</li>
+<li>amplitude</li>
+<li>initial phase (0-1)</li>
+<li>table name </li>
+</ul>
+</p>
+<p>The following patch creates a 440Hz sine wave using <strong>osc</strong>. It is
+analogous to the unit generator <strong>sine</strong>.</p>
+<pre><code> _sine 8192 gen_sine
+ 440 0.5 0 _sine osc
+
+</code></pre>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title>Polysporth</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Polysporth</h1>
+<p>Polysporth is an engine for polyphony in Sporth. Bindings for polysporth are
+written in the scheme dialect tinyscheme, included inside of Sporth. </p>
+<h2>Why Polysporth?</h2>
+<p>Sporth does a few things really well: it's simple, it's fast to write, and it's
+capable of building very complex signal chains. Sporth also does a few things
+quite poorly: concepts like events and notes are non-existent in Sporth, and 
+polyphony is quite limited. Thus, an engine was built to enable these concepts.
+Polyphonic + Sporth = Polysporth!</p>
+<p>Some of the features include:</p>
+<ul>
+<li>Embedded scheme language (abstractions!)</li>
+<li>a voice allocation system for individual notes</li>
+<li>a note scheduler</li>
+<li>plugin design</li>
+</ul>
+<h2>How it works</h2>
+<p>Polysporth is called inside of Sporth, where a scheme file is loaded.
+Inside the scheme file, different chunks of sporth code are defined called 
+sporthlets. Sporthlets can be individually scheduled to be be turned on and off. </p>
+<h2>More information</h2>
+<p>This chapter is really a gist of Polysporth. It's still in a very
+early phase. To learn more, be sure to check out the dedicated 
+<a href="/proj/polysporth.html">Polysporth project page</a>.</p>
+<hr />
+<a href="/learn">Back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>dtrig</h1>
+
+<p><strong>dtrig</strong> is a delta-time trigger, used for creating trigger signals 
+in terms of delta times, or the amount of time between two trigger signals. 
+Delta times are read from an <a href="/proj/cook/ftables.html">f-table</a>. </p>
+<p><strong>dtrig</strong> takes in the following arguments:
+<ul>
+<li>trigger: this is a trigger signal that will trigger the sequence of de
+delta values. Can be used for restarting the sequence</li>
+<li>loop: turns looping the trigger values on or off 1=on, 0=off</li>
+<li>delay: amount of time (in seconds) to delay the triggers</li>
+<li>scale: value to scale the d-trig signals by. For instance, to double
+the time, use "2", to half it, use "0.5". "1" is normal.</li>
+<li>table: name of the table containing the delta values.</li>
+</ul>
+</p>
+<p>The following example using <strong>dtrig</strong> to control an envelope generator.</p>
+<pre><code> # delta times: 100ms and 500 ms
+ _delta &quot;0.1 0.5&quot; gen_vals
+ 
+ # dtrig. &quot;tick&quot; is used to start it looping
+ tick 1 0 1 _delta dtrig
+ # dtrig feeds into an envelope generator...
+ 0.001 0.001 0.1 tenvx 
+ # and then that is multiplied by a sine wave
+ 1000 0.5 sine *
+
+</code></pre>
+
+</div>
+</body>
+</html>

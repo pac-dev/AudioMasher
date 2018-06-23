@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>ADSR</h1>
+
+<p>A gate-based ADSR envelope generator. </p>
+<p>ADSR takes the following arguments:
+<ul>
+<li>gate signal: a steady on or off</li>
+<li>attack: attack time (in seconds)</li>
+<li>decay: decay time (in seconds)</li>
+<li>sustain: level to sustain at (should be between 0 and 1)</li>
+<li>release: release time (in seconds)
+This particular ADSR algorithm is special in that it uses filters to 
+generate the curved envelope signal, which is contrary to most popular ADSRs, 
+which are linear. </li>
+</ul>
+</p>
+<h2>Example</h2>
+<p>In the example below a toggle signal generated with the ugens <strong>dmetro</strong>
+and <strong>tog</strong> are fed into <strong>adsr</strong>. This signal is then multiplied with 
+a 440hz sine wave.</p>
+<pre><code> 2 dmetro tog 0.1 0.1 0.9 0.8 adsr 440 0.5 sine * 
+
+</code></pre>
+
+</div>
+</body>
+</html>

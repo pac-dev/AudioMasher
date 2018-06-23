@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Autowah</h1>
+
+<p>Original a guitarix effect written in Faust, <strong>autowah</strong> is an automatic 
+wah pedal. These typically involve some sort of envelope follower on an 
+hooked up to the cutoff frequency of the wah filter
+<h2>Parameters</h2>
+<ul>
+<li>level: level (range 0-1)</li>
+<li>wah: amount of "wah" (range 0 -1)</li>
+<li>mix: wet/dry mix (range 0-100)
+<h2>Example</h2>
+</li>
+</ul>
+</p>
+<pre><code> 96 &quot;2(++)4(?+?+)&quot; prop 0.5 maytrig dup
+ 440 0.3 220 pluck dcblk swap 0.001 0.01 0.2 tenvx * 
+ 1 1 100 autowah
+
+</code></pre>
+
+</div>
+</body>
+</html>

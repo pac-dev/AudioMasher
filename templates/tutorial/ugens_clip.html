@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>clip</h1>
+
+<p>Arguments: input, threshold</p>
+<p>Performs clipping on an <em>input</em> signal that goes past a <em>threshold</em>
+(both postive and negative). </p>
+<p>The patch below clips a sine wave and makes it sound more like a square
+wave. </p>
+<pre><code> 440 1 sine 
+ # threshold to 0.3
+ 0.3 clip -5 ampdb * 
+
+</code></pre>
+
+</div>
+</body>
+</html>

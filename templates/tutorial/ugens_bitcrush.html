@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>Bitcrush</h1>
+
+<p>Arguments: Bitdepth, samplerate</p>
+<p>Bitcrush is a a bitcrusher that adds artificial samplerate and bitdepth 
+reduction. The <em>bitdepth</em> parameter is in bits, and the samplerate 
+parameter is in Hertz. </p>
+<p>The example below feeds an enveloped FM oscillator into bitcrush. To 
+hear the effects, both paramters are modulated using low-frequency 
+oscillators</p>
+<pre><code> 
+ 3 metro 0.001 0.01 0.2 tenv 300 0.4 1 1 1 fm *
+ 
+ 5 inv 1 sine 1 16 biscale
+ 8 inv 1 sine 100 10000 biscale
+ bitcrush
+ 
+
+</code></pre>
+
+</div>
+</body>
+</html>

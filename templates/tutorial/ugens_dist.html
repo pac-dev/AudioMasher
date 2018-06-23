@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>dist</h1>
+
+<p>Performs distortion using a hyperbolic tangent function. 
+<strong>dist</strong> has the following arguments:
+<ul>
+<li>input: input signal to be distorted</li>
+<li>pregrain: gain applied before waveshaping</li>
+<li>postgain: gain applied after waveshaping</li>
+<li>shape1: shape of the positive part of the signal a value of 0 is a flat
+clip</li>
+<li>shape2: shape of the negative part of the signal. a value of 0 is a flat
+clip</li>
+</ul>
+</p>
+<p>The following patch demonstrates how <strong>dist</strong> can be used with <strong>diode</strong>
+to create a squelchy bass sound.</p>
+<pre><code> # generate a saw wave
+ 100 1 saw
+ # LFO scaled for cutoff frequency sweep
+ 0.1 1 sine 300 3000 biscale
+ # diode with high resonance
+ 0.9 diode
+ # distortion with dist
+ 5 0.5 0.01 0.9 dist
+
+</code></pre>
+
+</div>
+</body>
+</html>

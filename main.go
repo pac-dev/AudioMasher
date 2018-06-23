@@ -22,6 +22,8 @@ func main() {
 	router.HandleFunc("/continue", ViewContinue)
 	router.HandleFunc("/browse", ViewBrowse)
 	router.HandleFunc("/about", ViewAbout)
+	router.HandleFunc("/learn", ViewLearn)
+	router.HandleFunc("/learn/{page}", ViewLearn)
 
 	// api endpoints
 	router.HandleFunc("/api/signup", Signup).Methods("POST")

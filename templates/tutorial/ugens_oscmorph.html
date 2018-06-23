@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>oscmorph</h1>
+
+<p>The oscmorph unit generators provide a table-lookup oscillator with 
+the ability to crossfade between wavetables. <strong>oscmorph2</strong> morphs between
+two waveshapes. <strong>oscmorph4</strong> morphs between 4 waveshapes.</p>
+<p>Both <strong>oscmorph4</strong> and <strong>oscmorph2</strong> have the following argument structure:
+<ul>
+<li>frequency</li>
+<li>amplitude</li>
+<li>wavetable crossfade position (scaled 0-1). wavetable selection happens
+left-to-right, with 0 being the leftmost waveshape, and 1 being the 
+rightmost.</li>
+<li>initial phase (0)</li>
+<li>wavetables to crossfade between. in <strong>oscmorph2</strong>, the number is 2. in
+<strong>oscmorph4</strong>, the number is 4.</li>
+</ul>
+</p>
+<pre><code> # some wave shapes
+ _sine 4096 gen_sine
+ _sinesum1 4096 &quot;0 0 1 11&quot; gen_sinesum
+ _saw 4096 &quot;0 1 4096 -1&quot; gen_line
+ _sinesum2 4096 &quot;1 1 0 1&quot; gen_sinesum
+ 
+ # 440 hz 0.3 amp
+ 440 0.3 
+ # LFO oscillator modulating wave position
+ 1 1 sine 0 1 biscale
+ # initial phase
+ 0 
+ # 4 wave shapes
+ _sine _saw _sinesum1 _sinesum2 
+ oscmorph4
+
+</code></pre>
+
+</div>
+</body>
+</html>

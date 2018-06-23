@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>drip</h1>
+
+<p>Physical model of a dripping water sound.
+This has the following arguments:
+<ul>
+<li>trigger signal to trigger droplet</li>
+<li>number of units tubes</li>
+<li>amplitude</li>
+<li>damp</li>
+<li>shake_max: amount of energy to add back into the system</li>
+<li>main resonant frequency</li>
+<li>first resonant frequency</li>
+<li>second resonant frequency</li>
+<li>period of time over which all sound is stopped</li>
+</ul>
+</p>
+<p>For sensible values, it is best to refer to the example below.</p>
+<pre><code> 0.5 dmetro  0.5 maytrig
+ # number of units/tubes
+ 10 
+ # amplitude
+ 0.3 
+ # damp 
+ 0.2 
+ # shake_max: amount of energy to add back into the system
+ 0 
+ # main resonant frequency
+ 458 
+ # first resonant frequency 
+ 600 
+ # second resonant frequency
+ 750 
+ # period of time over which all sound is stopped
+ 0.09 
+ drip
+ 
+ # feed into some reverb
+ dup dup 3 8 10000 zrev drop 0.1 * + 
+
+</code></pre>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title>P Registers</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>P Registers</h1>
+<p>P-registers were an early way to shared information without using the stack. 
+It is simply an array accessible to Sporth where values can be easily 
+read/written to. At the moment, there are 16 p-registers. </p>
+<p>Here is a simple patch demonstrating this:</p>
+<pre><code> 440 0 pset
+ 0 p 0.3 sine</code></pre>
+<p>In the example above, the value of p-register 0 is being set to 440 via 
+<strong>pset</strong>. In the line below, the value of p-register 0 is being read with
+<strong>p</strong>.</p>
+<p>The very nifty thing about p-registers is that they are trivial to read/write 
+from when using the API. P-registers are a fast solution for people who want to quickly
+bind values into Sporth (or alternatively, send audio-signals out of sporth). </p>
+<p>A little silly side note on P-registers: the "P" stands for parameter. The term
+itself is borrowed from Csound, where p-fields, or parameter fields, are
+optional values read from a Csound score. </p>
+<hr />
+<a href="/learn">Back</a>
+</div>
+</body>
+</html>

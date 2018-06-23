@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>dmetro</h1>
+
+<p><strong>dmetro</strong> creates a trigger signal in terms of duration. </p>
+<p>The following patch uses dmetro to trigger an envelope generator</p>
+<pre><code> # create trigger every 100 ms
+ 0.1 dmetro
+ # feed it into envelope generator
+ 0.001 0.01 0.01 tenvx
+ # multiply with sine wave
+ 1000 0.5 sine *
+
+</code></pre>
+
+</div>
+</body>
+</html>

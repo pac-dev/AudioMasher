@@ -6,6 +6,8 @@ import (
 	"github.com/gorilla/mux"
 	"time"
 	"sort"
+	"bytes"
+	"strings"
 )
 
 type TemplateData struct {
@@ -21,23 +23,29 @@ type TemplateData struct {
 	Patches []MasherPatch
 	Referer string
 	ViewingUser MasherUser
+	Tutorial template.HTML
 }
 
 var masherTemplates *template.Template
+var tutorialTemplates *template.Template
 
 func InitTemplates() {
 	var err error
-	masherTemplates, err = template.New("masher").Funcs(template.FuncMap{
+	funcs := template.FuncMap{
 			"HumanDate": func(d int64) string {
 				return time.Unix(d, 0).Format("2006/01/02")
 			},
-		}).ParseFiles(
+		}
+	masherTemplates, err = template.New("masher").Funcs(funcs).ParseFiles(
 			"templates/layout.html",
 			"templates/patch.html",
 			"templates/user.html",
 			"templates/browse.html",
 			"templates/about.html",
+			"templates/learn.html",
 			"templates/404.html")
+	if err != nil { panic(err) }
+	tutorialTemplates, err = template.New("masher").Funcs(funcs).ParseGlob("templates/tutorial/*.html")
 	if err != nil { panic(err) }
 }
 
@@ -156,10 +164,37 @@ func ViewAbout(w http.ResponseWriter, r *http.Request) {
 	if err != nil { panic(err) }
 }
 
+func ViewLearn(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	tutPage := params["page"]
+	if tutPage == "" { tutPage = "index" }
+	tutPage = tutPage + ".html"
+	tutorialBuf := &bytes.Buffer{}
+	data := BaseTemplateData(w, r)
+	
+	data.CurrentView = "Learn"
+	err := tutorialTemplates.ExecuteTemplate(tutorialBuf, tutPage, data)
+	if err != nil {
+		ViewNotFound(w, r)
+		return
+	}
+	var title = strings.Split(strings.SplitAfter(tutorialBuf.String(), "<title>")[1], "</title>")[0]
+	if title=="" {
+		title = strings.Split(strings.SplitAfter(tutorialBuf.String(), "<h1>")[1], "</h1>")[0]
+	}
+	data.Headline = title
+	data.Tutorial = template.HTML(strings.Split(strings.SplitAfter(tutorialBuf.String(), "<body>")[1], "</body>")[0])
+	data.Tutorial = "<!-- start content -->" + data.Tutorial + "<!-- end content -->"
+	
+	err = masherTemplates.ExecuteTemplate(w, "layout.html", data)
+	if err != nil { panic(err) }
+}
+
 func ViewNotFound(w http.ResponseWriter, r *http.Request) {
 	data := BaseTemplateData(w, r)
 	data.Headline = "404 - Not Found"
 	data.CurrentView = "404"
+	w.WriteHeader(http.StatusNotFound)
 	err := masherTemplates.ExecuteTemplate(w, "layout.html", data)
 	if err != nil { panic(err) }
 }

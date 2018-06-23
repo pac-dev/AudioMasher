@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>bpm2dur</h1>
+
+<p>A function that efficiently converts bpm to duration (in seconds) with
+the equation<br />  
+60/BPM</p>
+<p>The example uses bpm2dur to create a 130BPM clock signal with <strong>dmetro</strong>,
+fed into <strong>trand</strong>, which is used to control the frequency of a sine wave.</p>
+<pre><code> # Create 130bpm clock signal with dmetro
+ 130 bpm2dur dmetro 
+ # feed clock into trand, generating frequency values between 200 and 400. 
+ 200 400 trand 
+ # the rest of sine
+ 0.3 sine
+
+</code></pre>
+
+</div>
+</body>
+</html>

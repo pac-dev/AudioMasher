@@ -100,6 +100,13 @@ a.tab_thumb {
 	right: 0;
 	z-index: 12;
 }
+#controls.learn {
+	position: static;
+	top: 0;
+	right: 0;
+	text-align: center;
+	padding: 12px;
+}
 #controls>a {
 	display: block;
 	margin: 4px 0;
@@ -117,6 +124,23 @@ a.tab_thumb {
 	background-size: 1000%;
 	background-repeat: no-repeat;
 }
+#controls.learn>a {
+	display: inline-block;
+	border: 1px solid #949ac7;
+	width: auto;
+	position: relative;
+	padding: 8px 11px 7px 41px;
+	height: 21px;
+}
+
+#controls.learn>a::after {
+	position: absolute;
+	top: 0;
+	width: 34px;
+	left: 2px;
+	height: 34px;
+}
+
 #c_play::after {background-position: 33.33% 0;}
 #c_stop::after {background-position: 55.55% 0;}
 #c_post::after {background-position: 77.77% 0;}
@@ -133,7 +157,10 @@ a.tab_thumb {
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 }
-#controls>*.nodisplay {display: none;}
+#play_loading.learn{
+	display: inline-block;
+}
+#controls>*.nodisplay, #controls.learn>*.nodisplay {display: none;}
 
 #errors {
 	position: absolute;
@@ -160,6 +187,12 @@ a.tab_thumb {
 }
 #tooltip.top {
 	top: 10px;
+	bottom: auto;
+}
+.learn #tooltip, .learn #errors {
+	bottom: 81px;
+}
+.learn #tooltip.top {
 	bottom: auto;
 }
 
@@ -234,6 +267,15 @@ a.restore_link.on {
 }
 #quick_ref div {
 	margin: 0 0 12px 12px;
+}
+
+#editor_container {
+	width: calc(100% - 51px);
+	height: 100%;
+}
+#editor_container.learn {
+	width: 100%;
+	height: calc(100% - 77px);
 }
 
 
@@ -342,8 +384,12 @@ body.drk, .drk textarea {
 
 
 /* codemirror theme */
-.cm-s-masher-light .CodeMirror-gutters { background: white; border-right: 1px solid #949ac7; }
 .cm-s-masher-light.CodeMirror { background: #f2f2f2; border-right: 1px solid #949ac7; }
+.cm-s-masher-light .CodeMirror-gutters { background: white; border-right: 1px solid #949ac7; }
+
+.learn .cm-s-masher-light.CodeMirror { border-bottom: 1px solid #949ac7; border-right:none; }
+.learn .cm-s-masher-light .CodeMirror-gutters { background: transparent; }
+
 /* (everything below is copied from the default theme) */
 .cm-s-masher-light .cm-header {color: blue;}
 .cm-s-masher-light .cm-quote {color: #090;}
