@@ -59,7 +59,7 @@ a, a:link, a:visited, a:active {
 	text-align: center;
 }
 .top_bar>.L { float: left; }
-.top_bar>.R { float: right; }
+.top_bar>.R { float: right; padding: 5px; }
 .top_bar .headline {
 	max-width: calc(100% - 560px);
 }
