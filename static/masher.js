@@ -20,19 +20,16 @@ function tabClick(event) {
 for (var i = 0; allTabThumbs[i]; i++) {
 	allTabThumbs[i].addEventListener('click', tabClick);
 }
-
-var refContent = "";
-Object.keys(ugen_ref).forEach(function(key) {
-	refContent += "<b>" 
-		+ key + "</b><div>" 
-		+ ugen_ref[key]["Args"].join(", ")
-		+ "<br><i>"
-		+ ugen_ref[key]["Description"]
-		+ "</i></div>";
-});
 var refElement = document.getElementById('quick_ref')
-if (refElement) refElement.innerHTML = refContent;
-
+if (refElement) {
+	fetch(staticRoot + "ugen_reference.html", {
+		method: "get"
+	}).then(function(response) {
+		return response.text();
+	}).then(function(data) {
+		refElement.innerHTML = data;
+	});
+}
 // ========== EMSCRIPTEN ==========
 var playing = false;
 var gotError;
@@ -366,12 +363,5 @@ modals = [
 
 
 setupModals(document);
-
-
-
-
-
-
-
 
 
