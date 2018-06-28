@@ -1,1309 +1,764 @@
+"*":
+  Link: mul
+  Args: [v1, v2]
+  Description: Performs multiplication.
+  Outputs: 1
+"+":
+  Link: add
+  Args: [v1, v2]
+  Description: Performs addition.
+  Outputs: 1
+"-":
+  Link: sub
+  Args: [v1, v2]
+  Description: Performs subtraction.
+  Outputs: 1
+"/":
+  Link: div
+  Args: [v1, v2]
+  Description: Performs division.
+  Outputs: 1
+"&":
+  Link: and
+  Args: [v1, v2]
+  Description: Performs logical "and" operation.
+  Outputs: 1
+"|":
+  Link: or
+  Args: [v1, v2]
+  Description: Performs logical "or" operation.
+  Outputs: 1
+"^":
+  Link: xor
+  Args: [v1, v2]
+  Description: Performs logical "xor" operation.
+  Outputs: 1
+"<<":
+  Link: leftshift
+  Args: [v1, v2]
+  Description: Binary left shift operation.
+  Outputs: 1
+">>":
+  Link: rightshift
+  Args: [v1, v2]
+  Description: Binary right shift operation.
+  Outputs: 1
+"%":
+  Link: mod
+  Args: [v1, v2]
+  Description: Performs modulus operation.
+  Outputs: 1
 abs:
-    Args:
-        - v1
-    Outputs: 1
-    Description: Performs absolute value.
-
+  Link: abs
+  Args: [v1]
+  Description: Performs absolute value.
+  Outputs: 1
 add:
-    Args:
-        - v1
-        - v2
-    Outputs: 1
-    Description: Performs addition.
-
-biscale:
-    Args:
-        - v1
-        - min
-        - max
-    Outputs: 1
-    Description: Scales from bipolar [-1, 1] to [min, max].
-
-sub:
-    Args:
-        - v1
-        - v2
-    Outputs: 1
-    Description: Performs subtraction.
-
-mul:
-    Args:
-        - v1
-        - v2
-    Outputs: 1
-    Description: Performs multiplication.
-
-div:
-    Args:
-        - v1
-        - v2
-    Outputs: 1
-    Description: Performs division.
-
-floor:
-    Args:
-        - v1
-    Outputs: 1
-    Description: Performs flooring, returning the integer part.
-
-frac:
-    Args:
-        - v1
-    Outputs: 1
-    Description: Returns the fractional part of item on the stack.
-
-log:
-    Args:
-        - v1
-    Outputs: 1
-    Description: Performs natural logarithm.
-
-log10:
-    Args:
-        - v1
-    Outputs: 1
-    Description: Performs base 10 logarithm.
-
-round:
-    Args:
-        - v1
-    Outputs: 1
-    Description: Performs rounding to nearest integer.
-
-scale:
-    Args:
-        - v1
-        - min
-        - max
-    Outputs: 1
-    Description: Scales from unipolar [0, 1] to [min, max].
-
-sine:
-    Args:
-        - freq
-        - amp
-    Outputs: 1
-    Description: Simple sine oscillator.
-
-c:
-    Args:
-        - init value
-    Outputs: 1
-    Description: Constant generator, used for feedback loops.
-
-max:
-    Args:
-        - f
-        - f
-    Outputs: 1
-    Description: Returns the greater of two items on the stack.
-
-min:
-    Args:
-        - f
-        - f
-    Outputs: 1
-    Description: Returns the lesser of two items on the stack.
-
-mix:
-    Args:
-        - f..f
-    Outputs: 1
-    Description: Sums up remaining items on stack.
-
-metro:
-    Args:
-        - frequency
-    Outputs: 1
-    Description: Creates clock signal.
-
-tenv:
-    Args:
-        - trig
-        - attack
-        - sustain
-        - release
-    Outputs: 1
-    Description: Triggerable linear envelope generator. Values in seconds.
-
-tenv2:
-    Args:
-        - trig
-        - attack
-        - release
-    Outputs: 1
-    Description: Two-step triggerable linear envelope generator. Values in seconds.
-
-fm:
-    Args:
-        - frequency
-        - amplitude
-        - carrier (1)
-        - modulator (1)
-        - index (8)
-    Outputs: 1
-    Description: A simple FM oscillator.
-
-mtof:
-    Args:
-        - Note number
-    Outputs: 1
-    Description: Converts MIDI note number to Hz.
-
-dup:
-    Args:
-        - f
-    Outputs: 2
-    Description: Duplicates last item on the stack.
-
-swap:
-    Args:
-        - f
-        - f
-    Outputs: 2
-    Description: Swaps last two items on the stack.
-
-drop:
-    Args:
-        - f
-    Outputs: 1
-    Description: Removes the last item on the stack.
-
-revsc:
-    Args:
-        - in1
-        - in2
-        - feedback (0.97)
-        - cutoff (10000)
-    Outputs: 2
-    Description: Stereo reverb module from reverbsc Csound opcode.
-
-gen_sine:
-    Args:
-        - ftable name
-        - size
-    Outputs: 1
-    Description: Generates a sine wave ftable.
-
-osc:
-    Args:
-        - freq
-        - amp
-        - phase
-        - ft name
-    Outputs: 1
-    Description: Wavetable lookup oscillator
-
-gen_vals:
-    Args:
-        - name
-        - args
-    Outputs: 1
-    Description: Generates an ftable from a space delimited set of values.
-
-tseq:
-    Args:
-        - trig
-        - mode
-        - ft name
-    Outputs: 1
-    Description: "Triggered sequencer. modes: 0 = normal, 1 = shuffle."
-
-in:
-    Outputs: 1
-    Description: Read a float from STDIN.
-
-port:
-    Args:
-        - htime (0.02)
-    Outputs: 1
-    Description: Applies portamento to a signal.
-
-prop:
-    Args:
-        - bpm
-        - prop string
-    Outputs: 1
-    Description: Parses prop code to produce a set of triggers
-
-noise:
-    Args:
-        - gain
-    Outputs: 1
-    Description: White noise generator.
-
-dcblk:
-    Args:
-        - f
-    Outputs: 1
-    Description: dc block filter.
-
-butlp:
-    Args:
-        - in
-        - cutoff
-    Outputs: 1
-    Description: Butterworth lowpass filter
-
-buthp:
-    Args:
-        - in
-        - cutoff
-    Outputs: 1
-    Description: Butterworth highpass filter
-
-maygate:
-    Args:
-        - trig
-        - probability (0.5)
-        - mode
-    Outputs: 1
-    Description: "Random selection of gate or no gate. output mode: 0 = gate 1 = trigger"
-
-maytrig:
-    Args:
-        - trig
-        - probability (0.5)
-    Outputs: 1
-    Description: Random selection of trig or no trig.
-
-randh:
-    Args:
-        - min
-        - max
-        - freq
-    Outputs: 1
-    Description: Random number generator with hold time.
-
-randi:
-    Args:
-        - min
-        - max
-        - freq
-    Outputs: 1
-    Description: Randomized line segment with interpolation
-
-rot:
-    Args:
-        - f
-        - f
-        - f
-    Outputs: 3
-    Description: "Stack rotate. s: 1 2 3 -> 2 3 1"
-
-rpt:
-    Args:
-        - in
-        - trig
-        - bpm
-        - div
-        - rep
-        - bufsize (1)
-    Outputs: 1
-    Description: Stutterer / repeater (bufsize in seconds)
-
-reverse:
-    Args:
-        - in
-        - delay
-    Outputs: 1
-    Description: reverse delay
-
-samphold:
-    Args:
-        - in
-        - trig
-    Outputs: 1
-    Description: sample and hold
-
-delay:
-    Args:
-        - in
-        - feedback
-        - deltime
-    Outputs: 1
-    Description: feedback delay
-
-switch:
-    Args:
-        - trig
-        - sig1
-        - sig2
-    Outputs: 1
-    Description: toggle between two signals
-
-mode:
-    Args:
-        - in
-        - freq (500)
-        - Q (50)
-    Outputs: 1
-    Description: modal filter
-
-clip:
-    Args:
-        - in
-        - limit (1)
-    Outputs: 1
-    Description: clip limiter / distortion
-
-p:
-    Args:
-        - num
-    Outputs: 1
-    Description: p register get
-
-pset:
-    Args:
-        - val
-        - num
-    Outputs: 1
-    Description: p register set
-
-eq:
-    Args:
-        - v1
-        - v2
-    Outputs: 1
-    Description: conditional equals
-
-lt:
-    Args:
-        - v1
-        - v2
-    Outputs: 1
-    Description: conditional lt
-
-gt:
-    Args:
-        - v1
-        - v2
-    Outputs: 1
-    Description: conditional greater than
-
-ne:
-    Args:
-        - v1
-        - v2
-    Outputs: 1
-    Description: conditional not-equal to
-
-branch:
-    Args:
-        - gate
-        - sig1
-        - sig2
-    Outputs: 1
-    Description: "returns signal based on state of gate (0 = sig1, 1 = sig2)"
-
-pos:
-    Outputs: 1
-    Description: returns playing time, in seconds
-
-count:
-    Args:
-        - trig
-        - max
-        - mode
-    Outputs: 1
-    Description: "clock counter. mode: 0 = loop, 1 = one-shot"
-
-f:
-    Args:
-        - num
-    Outputs: 0
-    Description: Call a user defined function
-
-gen_sinesum:
-    Args:
-        - name
-        - size
-        - args
-    Outputs: 1
-    Description: Summation of harmonically related sines. based on GEN10.
-
-gen_line:
-    Args:
-        - name
-        - size
-        - args
-    Outputs: 1
-    Description: Generates a line from ordered list of breakpoints.
-
-gen_composite:
-    Args:
-        - name
-        - size
-        - args
-    Outputs: 1
-    Description: Generate a composite waveform of sinusoids.
-
-dmetro:
-    Args:
-        - time
-    Outputs: 1
-    Description: Metronome using time instead of frequency
-
-pluck:
-    Args:
-        - trigger
-        - freq
-        - amp
-        - ifreq (110)
-    Outputs: 1
-    Description: plucked instrument. ifreq sets the lowest frequency (buffer size).
-
-jcrev:
-    Args:
-        - input
-    Outputs: 1
-    Description: Chowning reverb
-
-moogladder:
-    Args:
-        - input
-        - cutoff
-        - res
-    Outputs: 1
-    Description: Moog ladder lowpass filter
-
-tget:
-    Args:
-        - index
-        - table
-    Outputs: 1
-    Description: Get value from table
-
-tset:
-    Args:
-        - index
-        - value
-        - table
-    Outputs: 1
-    Description: Set value of table
-
-line:
-    Args:
-        - trig
-        - ia
-        - idur
-        - ib
-    Outputs: 1
-    Description: line segment
-
-expon:
-    Args:
-        - trig
-        - ia
-        - idur
-        - ib
-    Outputs: 1
-    Description: exponential line segment
-
-dur:
-    Outputs: 1
-    Description: returns duration of sporth patch (in seconds)
-
-mincer:
-    Args:
-        - time
-        - amp
-        - pitch ratio (1)
-        - winsize (2048)
-        - ftable
-    Outputs: 1
-    Description: Phase-locked vocoder
-
-tblsize:
-    Args:
-        - ftable
-    Outputs: 1
-    Description: Get size of table (in samples)
-
-tbldur:
-    Args:
-        - ftable
-    Outputs: 1
-    Description: Get duration of table (in seconds)
-
-blsaw:
-    Args:
-        - freq
-        - amp
-    Outputs: 1
-    Description: Band-limited sawtooth oscillator
-
-blsquare:
-    Args:
-        - freq
-        - width (0.5)
-        - amp
-    Outputs: 1
-    Description: Band-limited square oscillator with pulse-width
-
-bltriangle:
-    Args:
-        - freq
-        - amp
-    Outputs: 1
-    Description: Band-limited triangle oscillator
-
-bitcrush:
-    Args:
-        - bitdepth (8)
-        - samplerate (10000)
-    Outputs: 1
-    Description: "bitcrusher. bitdepth: 1 - 16"
-
-dist:
-    Args:
-        - pregain (1)
-        - gain (1)
-        - shape1 (0)
-        - shape2 (0)
-    Outputs: 1
-    Description: Distortion
-
-tenvx:
-    Args:
-        - trig
-        - atk
-        - hold
-        - rel
-    Outputs: 1
-    Description: Exponential Envelope Generator. Values in seconds, hold > atk
-
-pan:
-    Args:
-        - in
-        - pan
-    Outputs: 1
-    Description: "Equal power panning. -1 = hardL 1 = hardR"
-
-jitter:
-    Args:
-        - amp
-        - cpsMin
-        - cpsMax
-    Outputs: 1
-    Description: Jitter control signal
-
-vdelay:
-    Args:
-        - in
-        - feedback
-        - deltime
-        - maxdelay
-    Outputs: 1
-    Description: variable delay with feedback
-
-zitarev:
-    Args:
-        - in2
-        - in1
-        - delay
-        - lf_x
-        - rtlo
-        - rthi
-        - hfdmp
-        - eq1f
-        - eq1l
-        - eq2f
-        - eq1l
-        - mix
-        - lvl
-    Outputs: 2
-    Description: zitareverb module
-
-pinknoise:
-    Args:
-        - amp
-    Outputs: 1
-    Description: pink noise generator
-
-allpass:
-    Args:
-        - revtime
-        - looptime
-    Outputs: 1
-    Description: allpass filter
-
-atone:
-    Args:
-        - cutoff
-    Outputs: 1
-    Description: atone filter (hipass)
-
-autowah:
-    Args:
-        - level
-        - wah
-        - mix
-    Outputs: 1
-    Description: autowah
-
-phasor:
-    Args:
-        - freq
-        - phase
-    Outputs: 1
-    Description: Normalized sawtooth wave.
-
-tphasor:
-    Args:
-        - trig
-        - freq
-        - phase
-    Outputs: 1
-    Description: Triggerable normalized sawtooth wave.
-
-zeros:
-    Args:
-        - name
-        - size
-    Outputs: 1
-    Description: Generate table of zeros
-
-tabread:
-    Args:
-        - index
-        - "scaled (1: yes, 0: no)"
-        - offset
-        - wrap
-        - ftname
-    Outputs: 1
-    Description: read from table with interpolation
-
-randh:
-    Args:
-        - min
-        - max
-        - freq
-    Outputs: 1
-    Description: Random hold
-
-tblrec:
-    Args:
-        - in
-        - trig
-        - tbl name
-    Outputs: 1
-    Description: records values to table.
-
-tog:
-    Args:
-        - trig
-    Outputs: 1
-    Description: toggle switch that can be triggered on/off
-
-tick:
-    Outputs: 1
-    Description: trigger at start of file. only use once
-
-gen_padsynth:
-    Args:
-        - ftname
-        - size
-        - base freq
-        - bandwidth
-        - amp table
-    Outputs: 1
-    Description: padsynth algorithm by Paul Nasca Octavian
-
-zrev:
-    Args:
-        - in2
-        - in1
-        - rtlo
-        - rthi
-        - hfdmp
-    Outputs: 1
-    Description: zitareverb module (simplified)
-
-conv:
-    Args:
-        - in
-        - delay
-        - ftbl impulse response
-    Outputs: 1
-    Description: partitioned convolution
-
-comb:
-    Args:
-        - in
-        - rev time
-        - loop time
-    Outputs: 1
-    Description: comb filter
-
-streson:
-    Args:
-        - in
-        - frequency
-        - gain
-    Outputs: 1
-    Description: String resonator filter
-
-gbuzz:
-    Args:
-        - freq
-        - amp
-        - nharm
-        - lharm
-        - mul
-    Outputs: 1
-    Description: Series of partials from the harmonic series
-
-oscmorph4:
-    Args:
-        - freq
-        - amp
-        - wtpos
-        - phase
-        - ft1
-        - ft2
-        - ft3
-        - ft4
-    Outputs: 1
-    Description: 4-table morphing oscillator
-
-oscmorph2:
-    Args:
-        - freq
-        - amp
-        - wtpos
-        - phase
-        - ft1
-        - ft2
-    Outputs: 1
-    Description: 2-table morphing oscillator
-
-thresh:
-    Args:
-        - in
-        - thresh
-        - mode
-    Outputs: 1
-    Description: "detect threshold crossings. mode: 0=from below, 1=above, 2=both"
-
-butbp:
-    Args:
-        - in
-        - freq
-        - bw
-    Outputs: 1
-    Description: butterworth bandpass filter
-
-butbr:
-    Args:
-        - in
-        - freq
-        - bw
-    Outputs: 1
-    Description: butterworth band reject filter
-
-drip:
-    Args:
-        - trig
-        - num_tubes
-        - amp
-        - shake_max
-        - main freq
-        - res freq 1
-        - res freq 2
-        - decay
-    Outputs: 1
-    Description: dripwater physical model
-
-dust:
-    Args:
-        - amp
-        - density
-        - bipolar
-    Outputs: 1
-    Description: "dust. bipolar = 1 unipolar = 0"
-
-dtrig:
-    Args:
-        - trig
-        - loop
-        - delay
-        - scale
-        - tbl
-    Outputs: 1
-    Description: "delta trig. loop = 1 will loop the sequence"
-
-eqfil:
-    Args:
-        - in(f) freq
-        - bw
-        - gain
-    Outputs: 1
-    Description: eq filter
-
-lpf18:
-    Args:
-        - in
-        - freq
-        - res
-        - dist
-    Outputs: 1
-    Description: low pass filter with tanh distortion
-
-trand:
-    Args:
-        - trig
-        - min
-        - max
-    Outputs: 1
-    Description: triggerable RNG
-
-fof:
-    Args:
-        - "amp"
-        - "fund"
-        - "form"
-        - "oct"
-        - "band"
-        - "ris"
-        - "dec"
-        - "dur"
-        - "iphs"
-        - "iolaps"
-        - "window table"
-        - "sine table"
-    Outputs: 1
-    Description: fof
-
-fog:
-    Args:
-        - amp
-        - dense
-        - trans
-        - spd
-        - oct
-        - band
-        - ris
-        - dec
-        - dur
-        - iphs
-        - iolaps
-        - window table
-        - wav table
-    Outputs: 1
-    Description: fog
-
-crossfade:
-    Args:
-        - sig1
-        - sig2
-        - pos
-    Outputs: 1
-    Description: crossfade two signals
-
-vocoder:
-    Args:
-        - atk
-        - rel
-        - bwq
-        - sig
-        - exc
-    Outputs: 1
-    Description: 32-band channel vocoder
-
-pshift:
-    Args:
-        - in
-        - shift (semitones)
-        - window size (samps)
-        - xfade (samps)
-    Outputs: 1
-    Description: pitch shifter
-
-srand:
-    Args:
-        - seed
-    Outputs: 1
-    Description: seed internal RNG
-
-setdurs:
-    Args:
-        - size
-    Outputs: 1
-    Description: set total duration (in samples)
-
-phaser:
-    Args:
-        - inl
-        - in2
-        - max notch
-        - min notch
-        - width
-        - notch freq
-        - depth
-        - fdbk
-        - invert
-        - lvl
-        - lfobpm
-    Outputs: 2
-    Description: stereo phaser
-
-pareq:
-    Args:
-        - in
-        - freq
-        - boost
-        - Q
-        - "mode(0=peak, 1=low shelf, 2= high shelf)"
-    Outputs: 1
-    Description: parametric equalizer
-
-posc3:
-    Args:
-        - freq
-        - amp
-    Outputs: 1
-    Description: high-precision oscillator with cubic interpolation
-
-tdiv:
-    Args:
-        - trigger
-        - num
-        - offset
-    Outputs: 1
-    Description: trigger divider
-
-hilbert:
-    Args:
-        - in
-    Outputs: 2
-    Description: hilbert transform
-
-tseg:
-    Args:
-        - trig
-        - val
-        - dur
-        - curve
-        - init
-    Outputs: 1
-    Description: trigger segment
-
-wpkorg35:
-    Args:
-        - in
-        - cutoff
-        - res
-        - saturation
-    Outputs: 1
-    Description: wpkorg filter
-
-waveset:
-    Args:
-        - in
-        - rep
-        - buflen
-    Outputs: 1
-    Description: waveset timestretching algorithm
-
-ptrack:
-    Args:
-        - in
-    Outputs: 2
-    Description: "pitch tracking (outputs: amp, pitch)"
-
-reson:
-    Args:
-        - in
-        - freq
-        - bw
-    Outputs: 1
-    Description: resonator filter
-
-bpm2dur:
-    Args:
-        - bpm
-    Outputs: 1
-    Description: convert bpm to duration (seconds)
-
-bpm2rate:
-    Args:
-        - bpm
-    Outputs: 1
-    Description: convert bpm to rate (Hertz)
-
-pdhalf:
-    Args:
-        - amount -1 to 1
-    Outputs: 1
-    Description: casio phasor distortion
-
-smoothdelay:
-    Args:
-        - in(f) fdbk(f) del(f) maxdel(f) interp
-    Outputs: 1
-    Description: smooth delay line
-
-timer:
-    Args:
-        - trig
-    Outputs: 1
-    Description: timer
-
-inv:
-    Args:
-        - inv
-    Outputs: 1
-    Description: inverse a signal 1/x
-
-tgate:
-    Args:
-        - trigger
-        - time
-    Outputs: 1
-    Description: triggerable gate
-
-set:
-    Args:
-        - value
-        - name
-    Outputs: 1
-    Description: sets variable
-
-get:
-    Args:
-        - name
-    Outputs: 1
-    Description: gets variable
-
-var:
-    Args:
-        - name
-    Outputs: 1
-    Description: creates variable
-
-varset:
-    Args:
-        - name
-        - val
-    Outputs: 1
-    Description: creates and sets a variable
-
-slick:
-    Args:
-        - ftname
-    Outputs: 1
-    Description: picks a string randomly from string list
-
-sget:
-    Args:
-        - index
-        - ftname
-    Outputs: 1
-    Description: picks a string from a string list
-
-rand:
-    Args:
-        - min
-        - max
-    Outputs: 1
-    Description: picks random number at start time
-
-peaklim:
-    Args:
-        - input
-        - atk
-        - rel
-        - thresh db
-    Outputs: 1
-    Description: peak limiter
-
-gen_rand:
-    Args:
-        - name
-        - size
-        - args
-    Outputs: 1
-    Description: random distribution generator
-
-lsys:
-    Args:
-        - trig
-        - ord
-        - code
-    Outputs: 1
-    Description: L-Systems microlanguage
-
-sdelay:
-    Args:
-        - delay
-    Outputs: 1
-    Description: delay (in samples)
-
-slice:
-    Args:
-        - trig
-        - id
-        - vals
-        - buf
-    Outputs: 1
-    Description: in-memory slice based sampler
-
-ref:
-    Args:
-        - name
-    Outputs: 1
-    Description: save pointer reference of next pipe in table
-
-tprop:
-    Args:
-        - trig
-        - bpm
-        - code
-    Outputs: 1
-    Description: prop with a triggerable reset
-
-fosc:
-    Args:
-        - freq
-        - amp
-        - carrier
-        - modulator
-        - index
-        - table
-    Outputs: 1
-    Description: FM oscillator
-
-tport:
-    Args:
-        - trig
-        - htime
-    Outputs: 1
-    Description: Applies portamento to a signal with triggerable reset.
-
-incr:
-    Args:
-        - trig
-        - step
-        - min
-        - max
-        - ival
-    Outputs: 1
-    Description: Incrementer
-
-palias:
-    Args:
-        - name
-        - index
-    Outputs: 1
-    Description: create a variable alias for p-value
-
-gen_eval:
-    Args:
-        - name
-        - size
-        - string
-    Outputs: 1
-    Description: Evaluates sporth string to table
-
-clock:
-    Args:
-        - trig
-        - bpm
-        - subdiv
-    Outputs: 1
-    Description: Clock with subdivisions and triggerable reset
-
-fofilt:
-    Args:
-        - in
-        - freq (1000)
-        - atk (0.007)
-        - rel (0.04)
-    Outputs: 1
-    Description: Formant filter
-
-diode:
-    Args:
-        - in
-        - cutoff
-        - res
-    Outputs: 1
-    Description: Diode ladder filter
-
-saturator:
-    Args:
-        - in
-        - drive
-        - dcoffset
-    Outputs: 1
-    Description: saturator distortion unit
-
+  Link: add
+  Args: [v1, v2]
+  Description: Performs addition.
+  Outputs: 1
 adsr:
-    Args:
-        - gate
-        - attack
-        - decay
-        - sustain
-        - release
-    Outputs: 1
-    Description: Analogue modelled ADSR generator
-
+  Link: adsr
+  Args: [gate, attack, decay, sustain, release]
+  Description: Analogue modelled ADSR generator
+  Outputs: 1
+allpass:
+  Link: allpass
+  Args: [revtime, looptime]
+  Description: allpass filter
+  Outputs: 1
+atone:
+  Link: atone
+  Args: [cutoff]
+  Description: simple one-pole high pass filter
+  Outputs: 1
+autowah:
+  Link: autowah
+  Args: [level, wah, mix]
+  Description: autowah
+  Outputs: 1
+biscale:
+  Link: biscale
+  Args: [v1, min, max]
+  Description: Scales from bipolar [-1, 1] to [min, max].
+  Outputs: 1
+bitcrush:
+  Link: bitcrush
+  Args: [bitdepth (8), samplerate (10000)]
+  Description: 'bitcrusher. bitdepth: 1 - 16'
+  Outputs: 1
+blsaw:
+  Link: blsaw
+  Args: [freq, amp]
+  Description: Band-limited sawtooth oscillator
+  Outputs: 1
+blsquare:
+  Link: blsquare
+  Args: [freq, width (0.5), amp]
+  Description: Band-limited square oscillator with pulse-width
+  Outputs: 1
+bltriangle:
+  Link: bltriangle
+  Args: [freq, amp]
+  Description: Band-limited triangle oscillator
+  Outputs: 1
+bpm2dur:
+  Link: bpm2dur
+  Args: [bpm]
+  Description: convert bpm to duration (seconds)
+  Outputs: 1
+bpm2rate:
+  Link: bpm2rate
+  Args: [bpm]
+  Description: convert bpm to rate (Hertz)
+  Outputs: 1
+branch:
+  Link: branch
+  Args: [gate, sig1, sig2]
+  Description: returns signal based on state of gate (0 = sig1, 1 = sig2)
+  Outputs: 1
+brown: {Description: Brownian noise generator, Outputs: 1}
+butbp:
+  Link: butbp
+  Args: [in, freq, bw]
+  Description: butterworth bandpass filter
+  Outputs: 1
+butbr:
+  Link: butbr
+  Args: [in, freq, bw]
+  Description: butterworth band reject filter
+  Outputs: 1
+buthp:
+  Link: buthp
+  Args: [in, cutoff]
+  Description: Butterworth highpass filter
+  Outputs: 1
+butlp:
+  Link: butlp
+  Args: [in, cutoff]
+  Description: Butterworth lowpass filter
+  Outputs: 1
+c:
+  Link: c
+  Args: [init value]
+  Description: Constant generator, used for feedback loops.
+  Outputs: 1
 changed:
-    Args:
-        - sig
-    Outputs: 1
-    Description: Returns a trigger if the input changes
-
-brown:
-    Outputs: 1
-    Description: Brownian noise generator
-
-talias:
-    Args:
-        - name
-        - index
-        - ftbl
-    Outputs: 1
-    Description: alias a table value to a variable
-
-rspline:
-    Args:
-        - min
-        - max
-        - cps min
-        - cps max
-    Outputs: 1
-    Description: random spline generator
-
-voc:
-    Args:
-        - freq
-        - pos
-        - diameter
-        - tenseness
-        - velum
-    Outputs: 1
-    Description: Vocal Tract Physical Model
-
+  Link: changed
+  Args: [sig]
+  Description: Returns a trigger if the input changes
+  Outputs: 1
+clip:
+  Link: clip
+  Args: [in, limit (1)]
+  Description: clip limiter / distortion
+  Outputs: 1
+clock:
+  Link: clock
+  Args: [trig, bpm, subdiv]
+  Description: Clock with subdivisions and triggerable reset
+  Outputs: 1
+comb:
+  Link: comb
+  Args: [in, rev time, loop time]
+  Description: comb filter
+  Outputs: 1
+conv:
+  Link: conv
+  Args: [in, delay, ftbl impulse response]
+  Description: partitioned convolution
+  Outputs: 1
+count:
+  Link: count
+  Args: [trig, max, mode]
+  Description: 'clock counter. mode: 0 = loop, 1 = one-shot'
+  Outputs: 1
+crossfade:
+  Link: crossfade
+  Args: [sig1, sig2, pos]
+  Description: crossfade two signals
+  Outputs: 1
+dcblk:
+  Link: dcblk
+  Args: [f]
+  Description: dc block filter.
+  Outputs: 1
+delay:
+  Link: delay
+  Args: [in, feedback, deltime]
+  Description: feedback delay
+  Outputs: 1
+diode:
+  Link: diode
+  Args: [in, cutoff, res]
+  Description: Diode ladder filter
+  Outputs: 1
+dist:
+  Link: dist
+  Args: [pregain (1), gain (1), shape1 (0), shape2 (0)]
+  Description: Distortion
+  Outputs: 1
+div:
+  Link: div
+  Args: [v1, v2]
+  Description: Performs division.
+  Outputs: 1
+dmetro:
+  Link: dmetro
+  Args: [time]
+  Description: Metronome using time instead of frequency
+  Outputs: 1
+drip:
+  Link: drip
+  Args: [trig, num_tubes, amp, shake_max, main freq, res freq 1, res freq 2, decay]
+  Description: dripwater physical model
+  Outputs: 1
+drop:
+  Link: drop
+  Args: [f]
+  Description: Removes the last item on the stack.
+  Outputs: 1
+dtrig:
+  Link: dtrig
+  Args: [trig, loop, delay, scale, tbl]
+  Description: delta trig. loop = 1 will loop the sequence
+  Outputs: 1
+dup:
+  Link: dup
+  Args: [f]
+  Description: Duplicates last item on the stack.
+  Outputs: 2
+dup2:
+  Link: dup2
+  Args: [f, f]
+  Description: Duplicates the two last item on the stack.
+  Outputs: 4
+dur: {Description: returns duration of sporth patch (in seconds), Outputs: 1}
+dust:
+  Args: [amp, density, bipolar]
+  Description: dust. bipolar = 1 unipolar = 0
+  Outputs: 1
+eq:
+  Args: [v1, v2]
+  Description: conditional equals
+  Outputs: 1
+eqfil:
+  Args: [in(f) freq, bw, gain]
+  Description: eq filter
+  Outputs: 1
+expon:
+  Args: [trig, ia, idur, ib]
+  Description: exponential line segment
+  Outputs: 1
+f:
+  Args: [num]
+  Description: Call a user defined function
+  Outputs: 0
+floor:
+  Args: [v1]
+  Description: Performs flooring, returning the integer part.
+  Outputs: 1
+fm:
+  Args: [frequency, amplitude, carrier (1), modulator (1), index (8)]
+  Description: A simple FM oscillator.
+  Outputs: 1
+fof:
+  Args: [amp, fund, form, oct, band, ris, dec, dur, iphs, iolaps, window table, sine
+      table]
+  Description: fof
+  Outputs: 1
+fofilt:
+  Args: [in, freq (1000), atk (0.007), rel (0.04)]
+  Description: Formant filter
+  Outputs: 1
+fog:
+  Args: [amp, dense, trans, spd, oct, band, ris, dec, dur, iphs, iolaps, window table,
+    wav table]
+  Description: fog
+  Outputs: 1
+fosc:
+  Args: [freq, amp, carrier, modulator, index, table]
+  Description: FM oscillator
+  Outputs: 1
+frac:
+  Args: [v1]
+  Description: Returns the fractional part of item on the stack.
+  Outputs: 1
+gbuzz:
+  Args: [freq, amp, nharm, lharm, mul]
+  Description: Series of partials from the harmonic series
+  Outputs: 1
+gen_composite:
+  Args: [name, size, args]
+  Description: Generate a composite waveform of sinusoids.
+  Outputs: 1
+gen_eval:
+  Args: [name, size, string]
+  Description: Evaluates sporth string to table
+  Outputs: 1
+gen_line:
+  Args: [name, size, args]
+  Description: Generates a line from ordered list of breakpoints.
+  Outputs: 1
+gen_padsynth:
+  Args: [ftname, size, base freq, bandwidth, amp table]
+  Description: padsynth algorithm by Paul Nasca Octavian
+  Outputs: 1
+gen_rand:
+  Args: [name, size, args]
+  Description: random distribution generator
+  Outputs: 1
+gen_sine:
+  Args: [ftable name, size]
+  Description: Generates a sine wave ftable.
+  Outputs: 1
+gen_sinesum:
+  Args: [name, size, args]
+  Description: Summation of harmonically related sines. based on GEN10.
+  Outputs: 1
+gen_vals:
+  Args: [name, args]
+  Description: Generates an ftable from a space delimited set of values.
+  Outputs: 1
+get:
+  Args: [name]
+  Description: gets variable
+  Outputs: 1
+gt:
+  Args: [v1, v2]
+  Description: conditional greater than
+  Outputs: 1
+hilbert:
+  Args: [in]
+  Description: hilbert transform
+  Outputs: 2
+in: {Description: Read a float from STDIN., Outputs: 1}
+incr:
+  Args: [trig, step, min, max, ival]
+  Description: Incrementer
+  Outputs: 1
+inv:
+  Args: [inv]
+  Description: inverse a signal 1/x
+  Outputs: 1
+jcrev:
+  Args: [input]
+  Description: Chowning reverb
+  Outputs: 1
+jitter:
+  Args: [amp, cpsMin, cpsMax]
+  Description: Jitter control signal
+  Outputs: 1
+line:
+  Args: [trig, ia, idur, ib]
+  Description: line segment
+  Outputs: 1
+log:
+  Args: [v1]
+  Description: Performs natural logarithm.
+  Outputs: 1
+log10:
+  Args: [v1]
+  Description: Performs base 10 logarithm.
+  Outputs: 1
 lpc:
-    Args:
-        - in
-        - framesize
-    Outputs: 1
-    Description: apply linear-predictive coding (LPC10) to signal
-
+  Args: [in, framesize]
+  Description: apply linear-predictive coding (LPC10) to signal
+  Outputs: 1
 lpcsynth:
-    Args:
-        - framesize
-        - ftbl
-    Outputs: 1
-    Description: LPC synth. Manipulate parameters directly.
-
+  Args: [framesize, ftbl]
+  Description: LPC synth. Manipulate parameters directly.
+  Outputs: 1
+lpf18:
+  Args: [in, freq, res, dist]
+  Description: low pass filter with tanh distortion
+  Outputs: 1
+lsys:
+  Args: [trig, ord, code]
+  Description: L-Systems microlanguage
+  Outputs: 1
+lt:
+  Args: [v1, v2]
+  Description: conditional lt
+  Outputs: 1
+max:
+  Args: [f, f]
+  Description: Returns the greater of two items on the stack.
+  Outputs: 1
+maygate:
+  Args: [trig, probability (0.5), mode]
+  Description: 'Random selection of gate or no gate. output mode: 0 = gate 1 = trigger'
+  Outputs: 1
+maytrig:
+  Args: [trig, probability (0.5)]
+  Description: Random selection of trig or no trig.
+  Outputs: 1
+metro:
+  Args: [frequency]
+  Description: Creates clock signal.
+  Outputs: 1
+min:
+  Args: [f, f]
+  Description: Returns the lesser of two items on the stack.
+  Outputs: 1
+mincer:
+  Args: [time, amp, pitch ratio (1), winsize (2048), ftable]
+  Description: Phase-locked vocoder
+  Outputs: 1
+mix:
+  Args: [f..f]
+  Description: Sums up remaining items on stack.
+  Outputs: 1
+mode:
+  Args: [in, freq (500), Q (50)]
+  Description: modal filter
+  Outputs: 1
+moogladder:
+  Args: [input, cutoff, res]
+  Description: Moog ladder lowpass filter
+  Outputs: 1
+mtof:
+  Args: [Note number]
+  Description: Converts MIDI note number to Hz.
+  Outputs: 1
+mul:
+  Args: [v1, v2]
+  Description: Performs multiplication.
+  Outputs: 1
+  Link: mul
+ne:
+  Args: [v1, v2]
+  Description: conditional not-equal to
+  Outputs: 1
+noise:
+  Args: [gain]
+  Description: White noise generator.
+  Outputs: 1
+osc:
+  Args: [freq, amp, phase, ft name]
+  Description: Wavetable lookup oscillator
+  Outputs: 1
+  Link: osc
+oscmorph2:
+  Args: [freq, amp, wtpos, phase, ft1, ft2]
+  Description: 2-table morphing oscillator
+  Outputs: 1
+  Link: oscmorph2
+oscmorph4:
+  Args: [freq, amp, wtpos, phase, ft1, ft2, ft3, ft4]
+  Description: 4-table morphing oscillator
+  Outputs: 1
+  Link: oscmorph4
+p:
+  Args: [num]
+  Description: p register get
+  Outputs: 1
+palias:
+  Args: [name, index]
+  Description: create a variable alias for p-value
+  Outputs: 1
+pan:
+  Args: [in, pan]
+  Description: Equal power panning. -1 = hardL 1 = hardR
+  Outputs: 1
+pareq:
+  Args: [in, freq, boost, Q, 'mode(0=peak, 1=low shelf, 2= high shelf)']
+  Description: parametric equalizer
+  Outputs: 1
+pdhalf:
+  Args: [amount -1 to 1]
+  Description: casio phasor distortion
+  Outputs: 1
+peaklim:
+  Args: [input, atk, rel, thresh db]
+  Description: peak limiter
+  Outputs: 1
+phaser:
+  Args: [inl, in2, max notch, min notch, width, notch freq, depth, fdbk, invert, lvl,
+    lfobpm]
+  Description: stereo phaser
+  Outputs: 2
+phasor:
+  Args: [freq, phase]
+  Description: Normalized sawtooth wave.
+  Outputs: 1
+pinknoise:
+  Args: [amp]
+  Description: pink noise generator
+  Outputs: 1
+pluck:
+  Args: [trigger, freq, amp, ifreq (110)]
+  Description: plucked instrument. ifreq sets the lowest frequency (buffer size).
+  Outputs: 1
+port:
+  Args: [htime (0.02)]
+  Description: Applies portamento to a signal.
+  Outputs: 1
+pos: {Description: 'returns playing time, in seconds', Outputs: 1}
+posc3:
+  Args: [freq, amp]
+  Description: high-precision oscillator with cubic interpolation
+  Outputs: 1
+  Link: posc3
+prop:
+  Args: [bpm, prop string]
+  Description: Parses prop code to produce a set of triggers
+  Outputs: 1
+pset:
+  Args: [val, num]
+  Description: p register set
+  Outputs: 1
+pshift:
+  Args: [in, shift (semitones), window size (samps), xfade (samps)]
+  Description: pitch shifter
+  Outputs: 1
+ptrack:
+  Args: [in]
+  Description: 'pitch tracking (outputs: amp, pitch)'
+  Outputs: 2
+rand:
+  Args: [min, max]
+  Description: picks random number at start time
+  Outputs: 1
+randh:
+  Args: [min, max, freq]
+  Description: Random hold
+  Outputs: 1
+randi:
+  Args: [min, max, freq]
+  Description: Randomized line segment with interpolation
+  Outputs: 1
+ref:
+  Args: [name]
+  Description: save pointer reference of next pipe in table
+  Outputs: 1
+reson:
+  Args: [in, freq, bw]
+  Description: resonator filter
+  Outputs: 1
+reverse:
+  Args: [in, delay]
+  Description: reverse delay
+  Outputs: 1
+revsc:
+  Args: [in1, in2, feedback (0.97), cutoff (10000)]
+  Description: Stereo reverb module from reverbsc Csound opcode.
+  Outputs: 2
+rot:
+  Args: [f, f, f]
+  Description: 'Stack rotate. s: 1 2 3 -> 2 3 1'
+  Outputs: 3
+round:
+  Args: [v1]
+  Description: Performs rounding to nearest integer.
+  Outputs: 1
+rpt:
+  Args: [in, trig, bpm, div, rep, bufsize (1)]
+  Description: Stutterer / repeater (bufsize in seconds)
+  Outputs: 1
+rspline:
+  Args: [min, max, cps min, cps max]
+  Description: random spline generator
+  Outputs: 1
+samphold:
+  Args: [in, trig]
+  Description: sample and hold
+  Outputs: 1
+saturator:
+  Args: [in, drive, dcoffset]
+  Description: saturator distortion unit
+  Outputs: 1
+scale:
+  Args: [v1, min, max]
+  Description: Scales from unipolar [0, 1] to [min, max].
+  Outputs: 1
+sdelay:
+  Args: [delay]
+  Description: delay (in samples)
+  Outputs: 1
+set:
+  Args: [value, name]
+  Description: sets variable
+  Outputs: 1
+setdurs:
+  Args: [size]
+  Description: set total duration (in samples)
+  Outputs: 1
+sget:
+  Args: [index, ftname]
+  Description: picks a string from a string list
+  Outputs: 1
+sine:
+  Args: [freq, amp]
+  Description: Simple sine oscillator.
+  Outputs: 1
+slice:
+  Args: [trig, id, vals, buf]
+  Description: in-memory slice based sampler
+  Outputs: 1
+slick:
+  Args: [ftname]
+  Description: picks a string randomly from string list
+  Outputs: 1
+smoothdelay:
+  Args: [in(f) fdbk(f) del(f) maxdel(f) interp]
+  Description: smooth delay line
+  Outputs: 1
+srand:
+  Args: [seed]
+  Description: seed internal RNG
+  Outputs: 1
+streson:
+  Args: [in, frequency, gain]
+  Description: String resonator filter
+  Outputs: 1
+sub:
+  Args: [v1, v2]
+  Description: Performs subtraction.
+  Outputs: 1
+  Link: sub
+swap:
+  Args: [f, f]
+  Description: Swaps last two items on the stack.
+  Outputs: 2
+switch:
+  Args: [trig, sig1, sig2]
+  Description: toggle between two signals
+  Outputs: 1
+tabread:
+  Args: [index, 'scaled (1: yes, 0: no)', offset, wrap, ftname]
+  Description: read from table with interpolation
+  Outputs: 1
+  Link: tabread
+talias:
+  Args: [name, index, ftbl]
+  Description: alias a table value to a variable
+  Outputs: 1
 talkbox:
-    Args:
-        - source
-        - excitation
-        - quality
-    Outputs: 1
-    Description: high-resolution vocoder
+  Args: [source, excitation, quality]
+  Description: high-resolution vocoder
+  Outputs: 1
+tbldur:
+  Args: [ftable]
+  Description: Get duration of table (in seconds)
+  Outputs: 1
+tblrec:
+  Args: [in, trig, tbl name]
+  Description: records values to table.
+  Outputs: 1
+  Link: tblrec
+tblsize:
+  Args: [ftable]
+  Description: Get size of table (in samples)
+  Outputs: 1
+tdiv:
+  Args: [trigger, num, offset]
+  Description: trigger divider
+  Outputs: 1
+tenv:
+  Args: [trig, attack, sustain, release]
+  Description: Triggerable linear envelope generator. Values in seconds.
+  Outputs: 1
+tenv2:
+  Args: [trig, attack, release]
+  Description: Two-step triggerable linear envelope generator. Values in seconds.
+  Outputs: 1
+tenvx:
+  Args: [trig, atk, hold, rel]
+  Description: Exponential Envelope Generator. Values in seconds, hold > atk
+  Outputs: 1
+tgate:
+  Args: [trigger, time]
+  Description: triggerable gate
+  Outputs: 1
+tget:
+  Args: [index, table]
+  Description: Get value from table
+  Outputs: 1
+  Link: tget
+thresh:
+  Args: [in, thresh, mode]
+  Description: 'detect threshold crossings. mode: 0=from below, 1=above, 2=both'
+  Outputs: 1
+tick: {Description: trigger at start of file. only use once, Outputs: 1}
+timer:
+  Args: [trig]
+  Description: timer
+  Outputs: 1
+tog:
+  Args: [trig]
+  Description: toggle switch that can be triggered on/off
+  Outputs: 1
+tone:
+  Args: [in, cutoff]
+  Description: simple one-pole low pass filter
+  Outputs: 1
+tphasor:
+  Args: [trig, freq, phase]
+  Description: Triggerable normalized sawtooth wave.
+  Outputs: 1
+tport:
+  Args: [trig, htime]
+  Description: Applies portamento to a signal with triggerable reset.
+  Outputs: 1
+tprop:
+  Args: [trig, bpm, code]
+  Description: prop with a triggerable reset
+  Outputs: 1
+trand:
+  Args: [trig, min, max]
+  Description: triggerable RNG
+  Outputs: 1
+tseg:
+  Args: [trig, val, dur, curve, init]
+  Description: trigger segment
+  Outputs: 1
+tseq:
+  Args: [trig, mode, ft name]
+  Description: 'Triggered sequencer. modes: 0 = normal, 1 = shuffle.'
+  Outputs: 1
+tset:
+  Args: [index, value, table]
+  Description: Set value of table
+  Outputs: 1
+var:
+  Args: [name]
+  Description: creates variable
+  Outputs: 1
+varset:
+  Args: [name, val]
+  Description: creates and sets a variable
+  Outputs: 1
+vdelay:
+  Args: [in, feedback, deltime, maxdelay]
+  Description: variable delay with feedback
+  Outputs: 1
+voc:
+  Args: [freq, pos, diameter, tenseness, velum]
+  Description: Vocal Tract Physical Model
+  Outputs: 1
+vocoder:
+  Args: [atk, rel, bwq, sig, exc]
+  Description: 32-band channel vocoder
+  Outputs: 1
+waveset:
+  Args: [in, rep, buflen]
+  Description: waveset timestretching algorithm
+  Outputs: 1
+wpkorg35:
+  Args: [in, cutoff, res, saturation]
+  Description: wpkorg filter
+  Outputs: 1
+zeros:
+  Args: [name, size]
+  Description: Generate table of zeros
+  Outputs: 1
+zitarev:
+  Args: [in2, in1, delay, lf_x, rtlo, rthi, hfdmp, eq1f, eq1l, eq2f, eq1l, mix, lvl]
+  Description: zitareverb module
+  Outputs: 2
+zrev:
+  Args: [in2, in1, rtlo, rthi, hfdmp]
+  Description: zitareverb module (simplified)
+  Outputs: 1

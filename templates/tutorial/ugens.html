@@ -1,230 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="utf-8">
-<title></title>
-
-<link rel="stylesheet" href="/css/style.css">
-
-</head>
-<body>
-<div id="main">
+<head><title></title></head><body><div id="main" class="ugen_list">
 <h1>A list of Unit Generators in Sporth</h1>
-<p>Below is a very comprehensive list of Sporth Unit generators. 
+<p>Below is a comprehensive list of Sporth Unit generators. 
 Some of these ugens have links with short simple examples. </p>
-<p><a href="/learn/ugens_mul">*</a></p>
-<p><a href="/learn/ugens_add">+</a></p>
-<p><a href="/learn/ugens_sub">-</a></p>
-<p><a href="/learn/ugens_div">/</a></p>
-<p><a href="/learn/ugens_and">&amp;</a></p>
-<p><a href="/learn/ugens_or">&#124;</a></p>
-<p><a href="/learn/ugens_xor">^</a></p>
-<p><a href="/learn/ugens_leftshift"><<</a></p>
-<p><a href="/learn/ugens_rightshift">>></a></p>
-<p><a href="/learn/ugens_mod">%</a></p>
-<p><a href="/learn/ugens_abs">abs</a></p>
-<p><a href="/learn/ugens_adsr">adsr</a></p>
-<p><a href="/learn/ugens_allpass">allpass</a></p>
-<p><a href="/learn/ugens_atone">atone</a></p>
-<p><a href="/learn/ugens_autowah">autowah</a></p>
-<p><a href="/learn/ugens_add">add</a></p>
-<p><a href="/learn/ugens_ampdb">ampdb</a></p>
-<p><a href="/learn/ugens_bal">bal</a></p>
-<p><a href="/learn/ugens_biscale">biscale</a></p>
-<p><a href="/learn/ugens_bitcrush">bitcrush</a></p>
-<p><a href="/learn/ugens_blsaw">blsaw</a></p>
-<p><a href="/learn/ugens_blsquare">blsquare</a></p>
-<p><a href="/learn/ugens_bltriangle">bltriangle</a></p>
-<p><a href="/learn/ugens_bpm2dur">bpm2dur</a></p>
-<p><a href="/learn/ugens_bpm2rate">bpm2rate</a></p>
-<p><a href="/learn/ugens_branch">branch</a></p>
-<p><a href="/learn/ugens_brown">brown</a></p>
-<p><a href="/learn/ugens_butbp">butbp</a></p>
-<p><a href="/learn/ugens_butbr">butbr</a></p>
-<p><a href="/learn/ugens_buthp">buthp</a></p>
-<p><a href="/learn/ugens_butlp">butlp</a></p>
-<p>cdb</p>
-<p>cdbload</p>
-<p>cdbtab</p>
-<p><a href="/learn/ugens_crossfade">cf</a></p>
-<p><a href="/learn/ugens_changed">changed</a></p>
-<p><a href="/learn/ugens_clip">clip</a></p>
-<p><a href="/learn/ugens_clock">clock</a></p>
-<p><a href="/learn/ugens_comb">comb</a></p>
-<p>conv</p>
-<p><a href="/learn/ugens_count">count</a></p>
-<p><a href="/learn/ugens_crossfade">crossfade</a></p>
-<p><a href="/learn/ugens_dcblk">dcblk</a></p>
-<p><a href="/learn/ugens_delay">delay</a></p>
-<p><a href="/learn/ugens_diode">diode</a></p>
-<p><a href="/learn/ugens_diskin">diskin</a></p>
-<p><a href="/learn/ugens_dist">dist</a></p>
-<p><a href="/learn/ugens_div">div</a></p>
-<p><a href="/learn/ugens_dmetro">dmetro</a></p>
-<p><a href="/learn/ugens_drip">drip</a></p>
-<p><a href="/learn/ugens_drop">drop</a></p>
-<p><a href="/learn/ugens_dtrig">dtrig</a></p>
-<p><a href="/learn/ugens_dup">dup</a></p>
-<p><a href="/learn/ugens_dup2">dup2</a></p>
-<p>dur</p>
-<p>durs</p>
-<p>dust</p>
-<p>eq</p>
-<p>eqfil</p>
-<p>eval</p>
-<p>expon</p>
-f<p>fl</p>
-<p>fc</p>
-<p>fe</p>
-<p>floor</p>
-<p>fm</p>
-<p>fof</p>
-<p>fofilt</p>
-<p>fog</p>
-<p>fosc</p>
-<p>frac</p>
-<p>ftsum</p>
-<p>gbuzz</p>
-<p>gen_eval</p>
-<p>gen_file</p>
-<p>gen_line</p>
-<p>gen_padsynth</p>
-<p>gen_sine</p>
-<p>gen_rand</p>
-<p>gen_composite</p>
-<p>gen_sinesum</p>
-<p>gen_sporth</p>
-<p>gen_vals</p>
-<p>get</p>
-<p>gt</p>
-<p>hilbert</p>
-<p>in</p>
-<p>incr</p>
-<p>inv</p>
-<p>jcrev</p>
-<p>jitter</p>
-<p>limit</p>
-<p>line</p>
-<p>load</p>
-<p>sdelay</p>
-<p>slice</p>
-<p>slist</p>
-<p>loadfile</p>
-<p>loadspa</p>
-<p>log</p>
-<p>log10</p>
-<p>lpf18</p>
-<p>lsys</p>
-<p>lt</p>
-<p>max</p>
-<p>maygate</p>
-<p>maytrig</p>
-<p>metro</p>
-<p>mincer</p>
-<p>min</p>
-<p>mix</p>
-<p>mode</p>
-<p>moogladder</p>
-<p>mtof</p>
-<p><a href="/learn/ugens_mul">mul</a></p>
-<p>ne</p>
-<p>noise</p>
-<p>nsmp</p>
-<p><a href="/learn/ugens_osc">osc</a></p>
-<p><a href="/learn/ugens_oscmorph">oscmorph4</a></p>
-<p><a href="/learn/ugens_oscmorph">oscmorph2</a></p>
-p<p>palias</p>
-<p>pan</p>
-<p>pareq</p>
-<p>paulstretch</p>
-<p>pdhalf</p>
-<p>peaklim</p>
-<p>phaser</p>
-<p>phasor</p>
-<p>pinknoise</p>
-<p>pluck</p>
-<p>port</p>
-<p>pos</p>
-<p><a href="/learn/ugens_posc3">posc3</a></p>
-<p>print</p>
-<p>prop</p>
-<p>ps</p>
-<p>pset</p>
-<p>pshift</p>
-<p>ptrack</p>
-<p>rand</p>
-<p>randh</p>
-<p>randi</p>
-<p>ref</p>
-<p>render</p>
-<p>reson</p>
-<p>reverse</p>
-<p>revsc</p>
-<p>rms</p>
-<p>rot</p>
-<p>round</p>
-<p>rpt</p>
-<p>rspline</p>
-<p>samphold</p>
-<p>saturator</p>
-<p><a href="/learn/ugens_blsaw">saw</a></p>
-<p>say</p>
-<p>scale</p>
-<p>scrambler</p>
-<p>set</p>
-<p>setdurs</p>
-<p>sget</p>
-<p>sine</p>
-<p>smoothdelay</p>
-<p>slick</p>
-<p>spa</p>
-<p>sparec</p>
-<p>square</p>
-<p>sr</p>
-<p>srand</p>
-<p><a href="/learn/ugens_sub">sub</a></p>
-<p>streson</p>
-<p>swap</p>
-<p>switch</p>
-<p><a href="/learn/ugens_tabread">tabread</a></p>
-<p>tadsr</p>
-<p>talias</p>
-<p>tbldur</p>
-<p><a href="/learn/ugens_tblrec">tblrec</a></p>
-<p>tblsize</p>
-<p>tdiv</p>
-<p>tenv</p>
-<p>tenv2</p>
-<p>tenvx</p>
-<p>tgate</p>
-<p><a href="/learn/ugens_tget">tget</a></p>
-<p>thresh</p>
-<p>timer</p>
-<p>tin</p>
-<p>tick</p>
-<p>tog</p>
-<p><a href="/learn/ugens_tone">tone</a></p>
-<p>tphasor</p>
-<p>tport</p>
-<p>tprop</p>
-<p>trand</p>
-<p><a href="/learn/ugens_bltriangle">triangle</a></p>
-<p><a href="/learn/ugens_bltriangle">tri</a></p>
-<p>tseq</p>
-<p>tseg</p>
-<p><a href="/learn/ugens_tset">tset</a></p>
-<p>var</p>
-<p>varset</p>
-<p>vdelay</p>
-<p>vocoder</p>
-<p>waveset</p>
-<p>writecode</p>
-<p>wpkorg35</p>
-<p>zeros</p>
-<p>zitarev</p>
-<p>zrev</p>
-
-</div>
-</body>
-</html>
+<b><a href="/learn/ugens_mod">%</a></b><div><i>Performs modulus operation.</i></div><br>
+<b><a href="/learn/ugens_and">&amp;</a></b><div><i>Performs logical "and" operation.</i></div><br>
+<b><a href="/learn/ugens_mul">*</a></b><div><i>Performs multiplication.</i></div><br>
+<b><a href="/learn/ugens_add">+</a></b><div><i>Performs addition.</i></div><br>
+<b><a href="/learn/ugens_sub">-</a></b><div><i>Performs subtraction.</i></div><br>
+<b><a href="/learn/ugens_div">/</a></b><div><i>Performs division.</i></div><br>
+<b><a href="/learn/ugens_leftshift">&lt;&lt;</a></b><div><i>Binary left shift operation.</i></div><br>
+<b><a href="/learn/ugens_rightshift">&gt;&gt;</a></b><div><i>Binary right shift operation.</i></div><br>
+<b><a href="/learn/ugens_xor">^</a></b><div><i>Performs logical "xor" operation.</i></div><br>
+<b><a href="/learn/ugens_abs">abs</a></b><div><i>Performs absolute value.</i></div><br>
+<b><a href="/learn/ugens_add">add</a></b><div><i>Performs addition.</i></div><br>
+<b><a href="/learn/ugens_adsr">adsr</a></b><div><i>Analogue modelled ADSR generator</i></div><br>
+<b><a href="/learn/ugens_allpass">allpass</a></b><div><i>allpass filter</i></div><br>
+<b><a href="/learn/ugens_atone">atone</a></b><div><i>simple one-pole high pass filter</i></div><br>
+<b><a href="/learn/ugens_autowah">autowah</a></b><div><i>autowah</i></div><br>
+<b><a href="/learn/ugens_biscale">biscale</a></b><div><i>Scales from bipolar [-1, 1] to [min, max].</i></div><br>
+<b><a href="/learn/ugens_bitcrush">bitcrush</a></b><div><i>bitcrusher. bitdepth: 1 - 16</i></div><br>
+<b><a href="/learn/ugens_blsaw">blsaw</a></b><div><i>Band-limited sawtooth oscillator</i></div><br>
+<b><a href="/learn/ugens_blsquare">blsquare</a></b><div><i>Band-limited square oscillator with pulse-width</i></div><br>
+<b><a href="/learn/ugens_bltriangle">bltriangle</a></b><div><i>Band-limited triangle oscillator</i></div><br>
+<b><a href="/learn/ugens_bpm2dur">bpm2dur</a></b><div><i>convert bpm to duration (seconds)</i></div><br>
+<b><a href="/learn/ugens_bpm2rate">bpm2rate</a></b><div><i>convert bpm to rate (Hertz)</i></div><br>
+<b><a href="/learn/ugens_branch">branch</a></b><div><i>returns signal based on state of gate (0 = sig1, 1 = sig2)</i></div><br>
+<b>brown</b><div><i>Brownian noise generator</i></div><br>
+<b><a href="/learn/ugens_butbp">butbp</a></b><div><i>butterworth bandpass filter</i></div><br>
+<b><a href="/learn/ugens_butbr">butbr</a></b><div><i>butterworth band reject filter</i></div><br>
+<b><a href="/learn/ugens_buthp">buthp</a></b><div><i>Butterworth highpass filter</i></div><br>
+<b><a href="/learn/ugens_butlp">butlp</a></b><div><i>Butterworth lowpass filter</i></div><br>
+<b><a href="/learn/ugens_c">c</a></b><div><i>Constant generator, used for feedback loops.</i></div><br>
+<b><a href="/learn/ugens_changed">changed</a></b><div><i>Returns a trigger if the input changes</i></div><br>
+<b><a href="/learn/ugens_clip">clip</a></b><div><i>clip limiter / distortion</i></div><br>
+<b><a href="/learn/ugens_clock">clock</a></b><div><i>Clock with subdivisions and triggerable reset</i></div><br>
+<b><a href="/learn/ugens_comb">comb</a></b><div><i>comb filter</i></div><br>
+<b><a href="/learn/ugens_conv">conv</a></b><div><i>partitioned convolution</i></div><br>
+<b><a href="/learn/ugens_count">count</a></b><div><i>clock counter. mode: 0 = loop, 1 = one-shot</i></div><br>
+<b><a href="/learn/ugens_crossfade">crossfade</a></b><div><i>crossfade two signals</i></div><br>
+<b><a href="/learn/ugens_dcblk">dcblk</a></b><div><i>dc block filter.</i></div><br>
+<b><a href="/learn/ugens_delay">delay</a></b><div><i>feedback delay</i></div><br>
+<b><a href="/learn/ugens_diode">diode</a></b><div><i>Diode ladder filter</i></div><br>
+<b><a href="/learn/ugens_dist">dist</a></b><div><i>Distortion</i></div><br>
+<b><a href="/learn/ugens_div">div</a></b><div><i>Performs division.</i></div><br>
+<b><a href="/learn/ugens_dmetro">dmetro</a></b><div><i>Metronome using time instead of frequency</i></div><br>
+<b><a href="/learn/ugens_drip">drip</a></b><div><i>dripwater physical model</i></div><br>
+<b><a href="/learn/ugens_drop">drop</a></b><div><i>Removes the last item on the stack.</i></div><br>
+<b><a href="/learn/ugens_dtrig">dtrig</a></b><div><i>delta trig. loop = 1 will loop the sequence</i></div><br>
+<b><a href="/learn/ugens_dup">dup</a></b><div><i>Duplicates last item on the stack.</i></div><br>
+<b><a href="/learn/ugens_dup2">dup2</a></b><div><i>Duplicates the two last item on the stack.</i></div><br>
+<b>dur</b><div><i>returns duration of sporth patch (in seconds)</i></div><br>
+<b>dust</b><div><i>dust. bipolar = 1 unipolar = 0</i></div><br>
+<b>eq</b><div><i>conditional equals</i></div><br>
+<b>eqfil</b><div><i>eq filter</i></div><br>
+<b>expon</b><div><i>exponential line segment</i></div><br>
+<b>f</b><div><i>Call a user defined function</i></div><br>
+<b>floor</b><div><i>Performs flooring, returning the integer part.</i></div><br>
+<b>fm</b><div><i>A simple FM oscillator.</i></div><br>
+<b>fof</b><div><i>fof</i></div><br>
+<b>fofilt</b><div><i>Formant filter</i></div><br>
+<b>fog</b><div><i>fog</i></div><br>
+<b>fosc</b><div><i>FM oscillator</i></div><br>
+<b>frac</b><div><i>Returns the fractional part of item on the stack.</i></div><br>
+<b>gbuzz</b><div><i>Series of partials from the harmonic series</i></div><br>
+<b>gen_composite</b><div><i>Generate a composite waveform of sinusoids.</i></div><br>
+<b>gen_eval</b><div><i>Evaluates sporth string to table</i></div><br>
+<b>gen_line</b><div><i>Generates a line from ordered list of breakpoints.</i></div><br>
+<b>gen_padsynth</b><div><i>padsynth algorithm by Paul Nasca Octavian</i></div><br>
+<b>gen_rand</b><div><i>random distribution generator</i></div><br>
+<b>gen_sine</b><div><i>Generates a sine wave ftable.</i></div><br>
+<b>gen_sinesum</b><div><i>Summation of harmonically related sines. based on GEN10.</i></div><br>
+<b>gen_vals</b><div><i>Generates an ftable from a space delimited set of values.</i></div><br>
+<b>get</b><div><i>gets variable</i></div><br>
+<b>gt</b><div><i>conditional greater than</i></div><br>
+<b>hilbert</b><div><i>hilbert transform</i></div><br>
+<b>in</b><div><i>Read a float from STDIN.</i></div><br>
+<b>incr</b><div><i>Incrementer</i></div><br>
+<b>inv</b><div><i>inverse a signal 1/x</i></div><br>
+<b>jcrev</b><div><i>Chowning reverb</i></div><br>
+<b>jitter</b><div><i>Jitter control signal</i></div><br>
+<b>line</b><div><i>line segment</i></div><br>
+<b>log</b><div><i>Performs natural logarithm.</i></div><br>
+<b>log10</b><div><i>Performs base 10 logarithm.</i></div><br>
+<b>lpc</b><div><i>apply linear-predictive coding (LPC10) to signal</i></div><br>
+<b>lpcsynth</b><div><i>LPC synth. Manipulate parameters directly.</i></div><br>
+<b>lpf18</b><div><i>low pass filter with tanh distortion</i></div><br>
+<b>lsys</b><div><i>L-Systems microlanguage</i></div><br>
+<b>lt</b><div><i>conditional lt</i></div><br>
+<b>max</b><div><i>Returns the greater of two items on the stack.</i></div><br>
+<b>maygate</b><div><i>Random selection of gate or no gate. output mode: 0 = gate 1 = trigger</i></div><br>
+<b>maytrig</b><div><i>Random selection of trig or no trig.</i></div><br>
+<b>metro</b><div><i>Creates clock signal.</i></div><br>
+<b>min</b><div><i>Returns the lesser of two items on the stack.</i></div><br>
+<b>mincer</b><div><i>Phase-locked vocoder</i></div><br>
+<b>mix</b><div><i>Sums up remaining items on stack.</i></div><br>
+<b>mode</b><div><i>modal filter</i></div><br>
+<b>moogladder</b><div><i>Moog ladder lowpass filter</i></div><br>
+<b>mtof</b><div><i>Converts MIDI note number to Hz.</i></div><br>
+<b><a href="/learn/ugens_mul">mul</a></b><div><i>Performs multiplication.</i></div><br>
+<b>ne</b><div><i>conditional not-equal to</i></div><br>
+<b>noise</b><div><i>White noise generator.</i></div><br>
+<b><a href="/learn/ugens_osc">osc</a></b><div><i>Wavetable lookup oscillator</i></div><br>
+<b><a href="/learn/ugens_oscmorph2">oscmorph2</a></b><div><i>2-table morphing oscillator</i></div><br>
+<b><a href="/learn/ugens_oscmorph4">oscmorph4</a></b><div><i>4-table morphing oscillator</i></div><br>
+<b>p</b><div><i>p register get</i></div><br>
+<b>palias</b><div><i>create a variable alias for p-value</i></div><br>
+<b>pan</b><div><i>Equal power panning. -1 = hardL 1 = hardR</i></div><br>
+<b>pareq</b><div><i>parametric equalizer</i></div><br>
+<b>pdhalf</b><div><i>casio phasor distortion</i></div><br>
+<b>peaklim</b><div><i>peak limiter</i></div><br>
+<b>phaser</b><div><i>stereo phaser</i></div><br>
+<b>phasor</b><div><i>Normalized sawtooth wave.</i></div><br>
+<b>pinknoise</b><div><i>pink noise generator</i></div><br>
+<b>pluck</b><div><i>plucked instrument. ifreq sets the lowest frequency (buffer size).</i></div><br>
+<b>port</b><div><i>Applies portamento to a signal.</i></div><br>
+<b>pos</b><div><i>returns playing time, in seconds</i></div><br>
+<b><a href="/learn/ugens_posc3">posc3</a></b><div><i>high-precision oscillator with cubic interpolation</i></div><br>
+<b>prop</b><div><i>Parses prop code to produce a set of triggers</i></div><br>
+<b>pset</b><div><i>p register set</i></div><br>
+<b>pshift</b><div><i>pitch shifter</i></div><br>
+<b>ptrack</b><div><i>pitch tracking (outputs: amp, pitch)</i></div><br>
+<b>rand</b><div><i>picks random number at start time</i></div><br>
+<b>randh</b><div><i>Random hold</i></div><br>
+<b>randi</b><div><i>Randomized line segment with interpolation</i></div><br>
+<b>ref</b><div><i>save pointer reference of next pipe in table</i></div><br>
+<b>reson</b><div><i>resonator filter</i></div><br>
+<b>reverse</b><div><i>reverse delay</i></div><br>
+<b>revsc</b><div><i>Stereo reverb module from reverbsc Csound opcode.</i></div><br>
+<b>rot</b><div><i>Stack rotate. s: 1 2 3 -> 2 3 1</i></div><br>
+<b>round</b><div><i>Performs rounding to nearest integer.</i></div><br>
+<b>rpt</b><div><i>Stutterer / repeater (bufsize in seconds)</i></div><br>
+<b>rspline</b><div><i>random spline generator</i></div><br>
+<b>samphold</b><div><i>sample and hold</i></div><br>
+<b>saturator</b><div><i>saturator distortion unit</i></div><br>
+<b>scale</b><div><i>Scales from unipolar [0, 1] to [min, max].</i></div><br>
+<b>sdelay</b><div><i>delay (in samples)</i></div><br>
+<b>set</b><div><i>sets variable</i></div><br>
+<b>setdurs</b><div><i>set total duration (in samples)</i></div><br>
+<b>sget</b><div><i>picks a string from a string list</i></div><br>
+<b>sine</b><div><i>Simple sine oscillator.</i></div><br>
+<b>slice</b><div><i>in-memory slice based sampler</i></div><br>
+<b>slick</b><div><i>picks a string randomly from string list</i></div><br>
+<b>smoothdelay</b><div><i>smooth delay line</i></div><br>
+<b>srand</b><div><i>seed internal RNG</i></div><br>
+<b>streson</b><div><i>String resonator filter</i></div><br>
+<b><a href="/learn/ugens_sub">sub</a></b><div><i>Performs subtraction.</i></div><br>
+<b>swap</b><div><i>Swaps last two items on the stack.</i></div><br>
+<b>switch</b><div><i>toggle between two signals</i></div><br>
+<b><a href="/learn/ugens_tabread">tabread</a></b><div><i>read from table with interpolation</i></div><br>
+<b>talias</b><div><i>alias a table value to a variable</i></div><br>
+<b>talkbox</b><div><i>high-resolution vocoder</i></div><br>
+<b>tbldur</b><div><i>Get duration of table (in seconds)</i></div><br>
+<b><a href="/learn/ugens_tblrec">tblrec</a></b><div><i>records values to table.</i></div><br>
+<b>tblsize</b><div><i>Get size of table (in samples)</i></div><br>
+<b>tdiv</b><div><i>trigger divider</i></div><br>
+<b>tenv</b><div><i>Triggerable linear envelope generator. Values in seconds.</i></div><br>
+<b>tenv2</b><div><i>Two-step triggerable linear envelope generator. Values in seconds.</i></div><br>
+<b>tenvx</b><div><i>Exponential Envelope Generator. Values in seconds, hold > atk</i></div><br>
+<b>tgate</b><div><i>triggerable gate</i></div><br>
+<b><a href="/learn/ugens_tget">tget</a></b><div><i>Get value from table</i></div><br>
+<b>thresh</b><div><i>detect threshold crossings. mode: 0=from below, 1=above, 2=both</i></div><br>
+<b>tick</b><div><i>trigger at start of file. only use once</i></div><br>
+<b>timer</b><div><i>timer</i></div><br>
+<b>tog</b><div><i>toggle switch that can be triggered on/off</i></div><br>
+<b>tone</b><div><i>simple one-pole low pass filter</i></div><br>
+<b>tphasor</b><div><i>Triggerable normalized sawtooth wave.</i></div><br>
+<b>tport</b><div><i>Applies portamento to a signal with triggerable reset.</i></div><br>
+<b>tprop</b><div><i>prop with a triggerable reset</i></div><br>
+<b>trand</b><div><i>triggerable RNG</i></div><br>
+<b>tseg</b><div><i>trigger segment</i></div><br>
+<b>tseq</b><div><i>Triggered sequencer. modes: 0 = normal, 1 = shuffle.</i></div><br>
+<b>tset</b><div><i>Set value of table</i></div><br>
+<b>var</b><div><i>creates variable</i></div><br>
+<b>varset</b><div><i>creates and sets a variable</i></div><br>
+<b>vdelay</b><div><i>variable delay with feedback</i></div><br>
+<b>voc</b><div><i>Vocal Tract Physical Model</i></div><br>
+<b>vocoder</b><div><i>32-band channel vocoder</i></div><br>
+<b>waveset</b><div><i>waveset timestretching algorithm</i></div><br>
+<b>wpkorg35</b><div><i>wpkorg filter</i></div><br>
+<b>zeros</b><div><i>Generate table of zeros</i></div><br>
+<b>zitarev</b><div><i>zitareverb module</i></div><br>
+<b>zrev</b><div><i>zitareverb module (simplified)</i></div><br>
+<b><a href="/learn/ugens_or">|</a></b><div><i>Performs logical "or" operation.</i></div><br>
+</div></body>

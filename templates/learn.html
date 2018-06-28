@@ -74,9 +74,9 @@
 			width: 35px;
 			display: inline-block;
 		}
-		ol.n0 li::before { content: "0." counter(number); }
 		ol.n1 li::before { content: "1." counter(number); }
 		ol.n2 li::before { content: "2." counter(number); }
+		ol.n3 li::before { content: "3." counter(number); }
 		.invisicode { display: none; }
 		.show_code {
 			text-align: center;
@@ -92,14 +92,40 @@
 		.show_code > div:hover {
 			background-color: #f0f1fb;
 		}
-		
+		.ugen_list div {
+			display: inline-block;
+			margin-top: 10px;
+			padding-left: 10px;
+			border-bottom: 1px solid #ddd;
+		}
+		.ugen_list b {
+			display: inline-block;
+			min-width: 96px;
+			border-bottom: 1px solid #ddd;
+		}
 	</style>
 	<div class="learn left_pane" id=tutorial>
 		{{.Tutorial}}
 	</div>
 	<div class="learn right_pane">
 		<div id=editor_container class=learn>
-			<textarea id=editor_area autocomplete=off>{{index .Patch.Files "main.sp"}}</textarea>
+			<textarea id=editor_area autocomplete=off># store melody in a table
+_seq "0 5 0 3 0 3 5 0 3" gen_vals
+
+# create beat and half-beat triggers
+_half var _beat var
+4 metro _half set
+_half get 2 0 tdiv _beat set
+
+# play melody with a sine wave
+(_half get 0 _seq tseq 75 +) mtof 0.1 sine
+
+# apply envelopes on beats and half-beats
+_half get 0.001 0.1 0.2 tenvx *
+_beat get 0.001 0.1 0.2 tenvx *
+
+# add delay
+dup (0.5 (4 inv) delay) (0.4 *) +</textarea>
 		</div>
 		<div id=controls class=learn>
 			<div id=play_loading class=learn></div>
