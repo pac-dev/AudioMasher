@@ -186,7 +186,7 @@ dup (0.5 (4 inv) delay) (0.4 *) +</textarea>
 		function axajify(ele) {
 			var links = ele.querySelectorAll("a");
 			for (var i = 0; links[i]; i++) {
-				if (links[i].getAttribute('href').startsWith("http"))
+				if (!links[i].getAttribute('href').startsWith("/learn"))
 					continue;
 				links[i].addEventListener('click', onAjaxClick);
 			}
