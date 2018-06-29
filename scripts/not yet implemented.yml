@@ -1,6 +1,12 @@
 
 
 
+diskin:
+    Args:
+        - filename
+    Outputs: 1
+    Description: Plays an audio file
+
 gen_sporth:
     Args:
         - tblname

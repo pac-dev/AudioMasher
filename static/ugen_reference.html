@@ -12,8 +12,10 @@
 <b><a href="/learn/ugens_add">add</a></b><div>v1, v2<br><i>Performs addition.</i></div>
 <b><a href="/learn/ugens_adsr">adsr</a></b><div>gate, attack, decay, sustain, release<br><i>Analogue modelled ADSR generator</i></div>
 <b><a href="/learn/ugens_allpass">allpass</a></b><div>revtime, looptime<br><i>allpass filter</i></div>
+<b><a href="/learn/ugens_ampdb">ampdb</a></b><div>db<br><i>converts decibels to amplitude</i></div>
 <b><a href="/learn/ugens_atone">atone</a></b><div>cutoff<br><i>simple one-pole high pass filter</i></div>
 <b><a href="/learn/ugens_autowah">autowah</a></b><div>level, wah, mix<br><i>autowah</i></div>
+<b><a href="/learn/ugens_bal">bal</a></b><div>reference, in<br><i>match the input's amplitude the reference's amplitude</i></div>
 <b><a href="/learn/ugens_biscale">biscale</a></b><div>v1, min, max<br><i>Scales from bipolar [-1, 1] to [min, max].</i></div>
 <b><a href="/learn/ugens_bitcrush">bitcrush</a></b><div>bitdepth (8), samplerate (10000)<br><i>bitcrusher. bitdepth: 1 - 16</i></div>
 <b><a href="/learn/ugens_blsaw">blsaw</a></b><div>freq, amp<br><i>Band-limited sawtooth oscillator</i></div>
@@ -28,6 +30,7 @@
 <b><a href="/learn/ugens_buthp">buthp</a></b><div>in, cutoff<br><i>Butterworth highpass filter</i></div>
 <b><a href="/learn/ugens_butlp">butlp</a></b><div>in, cutoff<br><i>Butterworth lowpass filter</i></div>
 <b><a href="/learn/ugens_c">c</a></b><div>init value<br><i>Constant generator, used for feedback loops.</i></div>
+<b><a href="/learn/ugens_crossfade">cf</a></b><div>sig1, sig2, pos<br><i>crossfade two signals</i></div>
 <b><a href="/learn/ugens_changed">changed</a></b><div>sig<br><i>Returns a trigger if the input changes</i></div>
 <b><a href="/learn/ugens_clip">clip</a></b><div>in, limit (1)<br><i>clip limiter / distortion</i></div>
 <b><a href="/learn/ugens_clock">clock</a></b><div>trig, bpm, subdiv<br><i>Clock with subdivisions and triggerable reset</i></div>
@@ -112,7 +115,7 @@
 <b>pluck</b><div>trigger, freq, amp, ifreq (110)<br><i>plucked instrument. ifreq sets the lowest frequency (buffer size).</i></div>
 <b>port</b><div>htime (0.02)<br><i>Applies portamento to a signal.</i></div>
 <b>pos</b><div><i>returns playing time, in seconds</i></div>
-<b><a href="/learn/ugens_posc3">posc3</a></b><div>freq, amp<br><i>high-precision oscillator with cubic interpolation</i></div>
+<b><a href="/learn/ugens_posc3">posc3</a></b><div>freq, amp, ftable<br><i>high-precision oscillator with cubic interpolation</i></div>
 <b>prop</b><div>bpm, prop string<br><i>Parses prop code to produce a set of triggers</i></div>
 <b>pset</b><div>val, num<br><i>p register set</i></div>
 <b>pshift</b><div>in, shift (semitones), window size (samps), xfade (samps)<br><i>pitch shifter</i></div>
@@ -139,12 +142,15 @@
 <b>slice</b><div>trig, id, vals, buf<br><i>in-memory slice based sampler</i></div>
 <b>slick</b><div>ftname<br><i>picks a string randomly from string list</i></div>
 <b>smoothdelay</b><div>in(f) fdbk(f) del(f) maxdel(f) interp<br><i>smooth delay line</i></div>
+<b>sqrt</b><div>in<br><i>square root</i></div>
+<b>sr</b><div><i>Returns the sample rate</i></div>
 <b>srand</b><div>seed<br><i>seed internal RNG</i></div>
 <b>streson</b><div>in, frequency, gain<br><i>String resonator filter</i></div>
 <b><a href="/learn/ugens_sub">sub</a></b><div>v1, v2<br><i>Performs subtraction.</i></div>
 <b>swap</b><div>f, f<br><i>Swaps last two items on the stack.</i></div>
 <b>switch</b><div>trig, sig1, sig2<br><i>toggle between two signals</i></div>
 <b><a href="/learn/ugens_tabread">tabread</a></b><div>index, scaled (1: yes, 0: no), offset, wrap, ftname<br><i>read from table with interpolation</i></div>
+<b>tadsr</b><div>trig, attack, decay, sustain, release<br><i>Triggerable digital-style ADSR envelope. Use trigger as a toggle.</i></div>
 <b>talias</b><div>name, index, ftbl<br><i>alias a table value to a variable</i></div>
 <b>talkbox</b><div>source, excitation, quality<br><i>high-resolution vocoder</i></div>
 <b>tbldur</b><div>ftable<br><i>Get duration of table (in seconds)</i></div>

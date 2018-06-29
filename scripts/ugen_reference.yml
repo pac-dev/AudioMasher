@@ -68,6 +68,11 @@ allpass:
   Args: [revtime, looptime]
   Description: allpass filter
   Outputs: 1
+ampdb:
+  Link: ampdb
+  Args: [db]
+  Description: converts decibels to amplitude
+  Outputs: 1
 atone:
   Link: atone
   Args: [cutoff]
@@ -77,6 +82,11 @@ autowah:
   Link: autowah
   Args: [level, wah, mix]
   Description: autowah
+  Outputs: 1
+bal:
+  Link: bal
+  Args: [reference, in]
+  Description: match the input's amplitude the reference's amplitude
   Outputs: 1
 biscale:
   Link: biscale
@@ -143,6 +153,11 @@ c:
   Link: c
   Args: [init value]
   Description: Constant generator, used for feedback loops.
+  Outputs: 1
+cf:
+  Link: crossfade
+  Args: [sig1, sig2, pos]
+  Description: crossfade two signals
   Outputs: 1
 changed:
   Link: changed
@@ -497,7 +512,7 @@ port:
   Outputs: 1
 pos: {Description: 'returns playing time, in seconds', Outputs: 1}
 posc3:
-  Args: [freq, amp]
+  Args: [freq, amp, ftable]
   Description: high-precision oscillator with cubic interpolation
   Outputs: 1
   Link: posc3
@@ -605,6 +620,11 @@ smoothdelay:
   Args: [in(f) fdbk(f) del(f) maxdel(f) interp]
   Description: smooth delay line
   Outputs: 1
+sqrt:
+  Args: [in]
+  Description: square root
+  Outputs: 1
+sr: {Description: Returns the sample rate, Outputs: 1}
 srand:
   Args: [seed]
   Description: seed internal RNG
@@ -631,6 +651,10 @@ tabread:
   Description: read from table with interpolation
   Outputs: 1
   Link: tabread
+tadsr:
+  Args: [trig, attack, decay, sustain, release]
+  Description: Triggerable digital-style ADSR envelope. Use trigger as a toggle.
+  Outputs: 1
 talias:
   Args: [name, index, ftbl]
   Description: alias a table value to a variable
