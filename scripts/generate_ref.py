@@ -41,7 +41,7 @@ outFile = open('../templates/tutorial/ugens.html', 'w')
 outFile.write("""<head><title></title></head><body><div id="main" class="ugen_list">
 <!-- THIS FILE IS GENERATED - changes will be overwritten. -->
 <h1>A list of Unit Generators in Sporth</h1>
-<p>Below is a list of Sporth Unit generators that can be used in-browser. 
+<p>Below is a list of Sporth unit generators that can be used in-browser. 
 Some of these ugens have links with short simple examples. </p>
 """ + out + '</div></body>')
 outFile.close()
