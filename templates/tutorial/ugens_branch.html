@@ -12,10 +12,12 @@
 <div id="main">
 <h1>branch</h1>
 
-<p>Arguments: signal, sig1, sig0 branch</p>
+<p>Arguments: gate, sig1, sig0 branch</p>
 <p>Branch switches between two signals given a gate signal. A value of
 "1" will go to <em>sig1</em> (first signal), and a value of 0 will go to
-<strong>sig0</strong> (second signal). </p>
+<strong>sig0</strong> (second signal). A similar ugen is
+<a href="/learn/ugens_switch">switch</a>, which uses a trigger instead of a gate.
+</p>
 <p>The example below uses <strong>branch</strong> to switch between a random and steady
 signal to be used as frequency for a sine wave. The switching mechanism
 is generated via <strong>metro</strong> and <strong>tog</strong></p>

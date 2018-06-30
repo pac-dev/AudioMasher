@@ -77,8 +77,8 @@ a sine wave to control the frequency of another sine wave: </p>
  440 + 0.3 sine</code></pre>
 <p>The first sine wave is 6 Hz with an amplitude of 40, which means the signal 
 has a range (-40, 40).  This signal is then being
-added to the constant value of 440. This addition operation causes this value
-to go up 40 to 480 and down 40 to 400. This value feeds into the frequency 
+added to the constant value of 440. After the addition, this yields a signal 
+oscilliating between 400 and 480. This value feeds into the frequency 
 argument of <em>another</em> sine wave with an amplitude of 0.3. </p>
 <p>Sporth is largely whitespace insensitive. This patch could all be written
 on one line as follows:</p>

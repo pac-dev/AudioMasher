@@ -13,14 +13,10 @@
 <h1>F-Tables</h1>
 <p>F-tables, or "function tables" are terms borrowed from the Csound 
 language. Simply put, ftables are arrays of floating point values. They are
-often used by audio-rate signal generators in Sporth like samplers and table-lookup
-oscillators. </p>
-<p>F-tables in Sporth are coupled with gen routines (another term from the Csound/Music N 
-world). Gen routines are in charge of filling stuff into the F-tables. In 
-Soundpipe, ftable creation and gen routines are two separate operations. However,
-in Sporth, ftable creation and gen routine calls are a single operation.</p>
+often used by audio-rate signal generators like samplers and table-lookup
+oscillators. Gen routines are in charge of filling stuff into the F-tables.</p>
 <h2>A simple example</h2>
-<p>Our most basic gen routine is <a href="/learn/ugens_gen_sine">gen_sine</a>, which computes a single
+<p>Our most basic gen routine is gen_sine, which computes a single
 cyle of a sine wave. The code below shows how can build a 300 Hz sine wave 
 using a table lookup oscillator:</p>
 <pre><code> &quot;sine&quot; 4096 gen_sine
@@ -37,7 +33,7 @@ soundpipe and sporth for gen routines to start with "gen_".</li>
 <p>Most gen routines are adopted from Csound, where arguments exist inside a 
 string, separated by spaces. In Sporth/Soundpipe this convention is carried
 over. The following patch uses sawtooth wavetable oscillator, whose wavetable
-was generated using the <a href="/learn/ugens_gen_line">gen_line</a> gen routine. For variety, a random number
+was generated using the gen_line gen routine. For variety, a random number
 sample and hold generator is feeding into the frequency of the saw, and is
 also being fed into a <a href="/learn/ugens_butlp">butterworth lowpass filter</a>. </p>
 <pre><code> &quot;saw&quot; 4096 &quot;0 1 4096 -1&quot; gen_line
@@ -51,17 +47,16 @@ also being fed into a <a href="/learn/ugens_butlp">butterworth lowpass filter</a
 <li>SIZE is the size of the ftable (the number of floats in the ftable)</li>
 <li>ARGSTRING is the argument string parsed by the gen routine</li>
 </ul>
-<p>Because of the argument strings, gen routines are tricky things to use
-and learn about. The <a href="http://paulbatchelor.github.io/res/soundpipe/docs">Soundpipe reference guide</a>,
-is the most comprehensive starting point. For instance,
+<p>Currently, the most comprehensive description of existing gen routines is the <a href="http://paulbatchelor.github.io/res/soundpipe/docs">Soundpipe reference guide</a>,
+which describes the Sounpipe function underlying each Sporth gen routine. For instance,
 <a href="http://paulbatchelor.github.io/res/soundpipe/docs/gen_line.html">here is the entry on gen_line</a>, the gen 
 routine used in above example.</p>
 <h2>The underscore (_) shortcut</h2>
 <p>To save keystrokes and make ftables look prettier, the underscore key can be
 used in place of strings without spaces. For instance:</p>
-<pre><code> &quot;line&quot; 4096 &quot;0 1 4096 -1&quot; gen_line</code></pre>
+<pre class=dont_try><code> &quot;line&quot; 4096 &quot;0 1 4096 -1&quot; gen_line</code></pre>
 <p>Is identical to:</p>
-<pre><code> _line 4096 &quot;0 1 4096 -1&quot; gen_line</code></pre>
+<pre class=dont_try><code> _line 4096 &quot;0 1 4096 -1&quot; gen_line</code></pre>
 <p>This is the preferred convention for ftables and variables, which will be
 discussed in the next chapter.</p>
 <h2>Unit generators that use f-tables</h2>

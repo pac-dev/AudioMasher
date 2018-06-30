@@ -646,6 +646,7 @@ switch:
   Args: [trig, sig1, sig2]
   Description: toggle between two signals
   Outputs: 1
+  Link: switch
 tabread:
   Args: [index, 'scaled (1: yes, 0: no)', offset, wrap, ftname]
   Description: read from table with interpolation
@@ -684,6 +685,7 @@ tenv:
   Args: [trig, attack, sustain, release]
   Description: Triggerable linear envelope generator. Values in seconds.
   Outputs: 1
+  Link: tenv
 tenv2:
   Args: [trig, attack, release]
   Description: Two-step triggerable linear envelope generator. Values in seconds.
@@ -742,6 +744,7 @@ tseq:
   Args: [trig, mode, ft name]
   Description: 'Triggered sequencer. modes: 0 = normal, 1 = shuffle.'
   Outputs: 1
+  Link: tseq
 tset:
   Args: [index, value, table]
   Description: Set value of table

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>tenv</h1>
+
+<p><strong>tenv</strong> is a trigger-based linear Attack/Hold/Release envelope generator. 
+It takes the following arguments:
+<ul>
+	<li>trigger signal: a trigger-based signal to control the envelope</li>
+	<li>attack: attack time (in seconds)</li>
+	<li>hold: hold time (in seconds)</li>
+	<li>release: release time (in seconds)</li>
+</ul>
+</p>
+<p>The following patch uses tenv to shape the amplitude of a sine wave:</p>
+<pre><code> # trigger: a 2Hz metronome
+ 2 metro
+ # feed it into envelope generator
+ 0.001 0.01 0.1 tenv
+ # multiply with sine wave
+ 1000 0.5 sine *
+
+</code></pre>
+
+</div>
+</body>
+</html>

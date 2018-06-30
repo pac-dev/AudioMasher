@@ -12,17 +12,17 @@
 <div id="main">
 <h1>Lsys</h1>
 <p> 
-LSYS is a tiny little language designed to produce l-systems.</p>
+LSYS is a tiny little language designed to produce L-systems.</p>
 <h2>Some LSYS code</h2>
-<p>A grammar for a classic L-System could look like this:</p>
-<p> a|a:ab|b:a</p>
+<p>A grammar for a classic L-system could look like this:</p>
+<pre class=dont_try><code> a|a:ab|b:a</code></pre>
 <p>The code is split up into three slices, delimited by the '|'.
 The first slice dictates the initial axiom, 'a'.
 The second slice dictates the definition for 'a' to be 'ab'.
 The third slice dictates the definition for 'b' to be 'a'.</p>
 <p>Once the code has been parsed, it can be used to generate a
 list, whose length is determined by the order N:</p>
-<pre><code> N | output
+<pre class=dont_try><code> N | output
  ----------
  1 | a
  2 | ab 
@@ -36,28 +36,48 @@ list, whose length is determined by the order N:</p>
 <p>LSYS is implemented as a Sporth UGen, which takes in 
 3 arguments. From left to right, they are:</p>
 <ol>
-<li>trigger signal, which iterates through the L-System</li>
-<li>The order N of the L-System (init-time only)</li>
+<li>trigger signal, which iterates through the L-system</li>
+<li>The order N of the L-system (init-time only)</li>
 <li>The code itself.</li>
 </ol>
 <p>The signal output by the LSYS ugen a number in 
 the range of 0-35, which correspond to the base-36
 numbering system:</p>
-<pre><code> 0123456789abcdefghijklmnopqrstuvwxyz</code></pre>
+<pre class=dont_try><code> 0123456789abcdefghijklmnopqrstuvwxyz</code></pre>
 <p>In the example above, the signal would be alternating between
 10 and 11.</p>
-<p>To see the lys ugen in action, see examples/lsys.sp</p>
+<p>Here is an example of the lys ugen in action:</p>
+<pre><code># L-systems Test
+# Paul Batchleor
+# August 2016
+
+_tick var
+0.1 dmetro _tick set
+
+_tick get dup
+8 "a|a:ab|b:a" lsys 10 eq *
+0.01 0.01 0.01 tenvx 1000 0.4 sine *
+
+_tick get dup
+4 "a|a:ab|b:a" lsys 10 eq *
+0.01 0.01 0.01 tenvx 500 0.4 sine *
+
+_tick get dup
+3 "a|a:ab|b:a" lsys 10 eq *
+0.01 0.01 0.01 tenvx 1500 0.4 sine *
+
+mix</code></pre>
 <h2>LSYS as a standalone</h2>
 <p>Using the <a href="
 https://raw.github.com/PaulBatchelor/Sporth/master/ugens/lsys.c
 ">C code found in Sporth</a>
 , 
 LSYS can also be compiled as a standalone application:</p>
-<pre><code> gcc lsys.c -DLSYS_STANDALONE -o lsys</code></pre>
+<pre class=dont_try><code> gcc lsys.c -DLSYS_STANDALONE -o lsys</code></pre>
 <p>It can be fed in code and the order as command line arguments:</p>
-<pre><code> ./lsys 5 &quot;01|0:121|1:01|2:1</code></pre>
+<pre class=dont_try><code> ./lsys 5 &quot;01|0:121|1:01|2:1</code></pre>
 <p>Which will produce the following string:</p>
-<pre><code> 01101121011210101101121011210101121010110112101</code></pre>
+<pre class=dont_try><code> 01101121011210101101121011210101121010110112101</code></pre>
 <hr />
 <a href="/learn">Back</a>
 </div>

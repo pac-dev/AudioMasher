@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div id="main">
+<h1>tseq</h1>
+
+<p>A sequencer that steps through values in a table. </p>
+<p>tseq takes the following arguments:
+<ul>
+<li>trigger: the trigger signal. Each trigger will advance the sequencer though the table.</li>
+<li>mode: 0 = normal; 1 = shuffle</li>
+<li>table name: the table to read from</li>
+</ul>
+</p>
+<h2>Example</h2>
+<p>In the example below, <strong>tseq</strong> is used to step through a sequence of notes.</p>
+<pre><code># store melody in a table
+_seq "0 5 0 3 0 3 5 0 3" gen_vals
+
+# create beat and half-beat triggers
+_beat var
+4 metro _beat set
+
+# play melody with a sine wave
+(_beat get 0 _seq tseq 75 +) mtof 0.1 sine
+
+# apply envelope
+_beat get 0.001 0.05 0.1 tenvx *
+
+</code></pre>
+
+</div>
+</body>
+</html>
