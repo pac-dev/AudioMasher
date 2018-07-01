@@ -402,8 +402,8 @@ max:
   Description: Returns the greater of two items on the stack.
   Outputs: 1
 maygate:
-  Args: [trig, probability (0.5), mode]
-  Description: 'Random selection of gate or no gate. output mode: 0 = gate 1 = trigger'
+  Args: [trig, probability (0.5)]
+  Description: Random selection of gate or no gate.
   Outputs: 1
 maytrig:
   Args: [trig, probability (0.5)]

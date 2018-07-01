@@ -82,7 +82,7 @@ ugen_ref = {
 'lsys': { 'Args': [ 'trig', 'ord', 'code' ], 'Outputs': 1 , 'Description': 'L-Systems microlanguage'},
 'lt': { 'Args': [ 'v1', 'v2' ], 'Outputs': 1 , 'Description': 'conditional lt'},
 'max': { 'Args': [ 'f', 'f' ], 'Outputs': 1 , 'Description': 'Returns the greater of two items on the stack.'},
-'maygate': { 'Args': [ 'trig', 'probability (0.5)', 'mode' ], 'Outputs': 1 , 'Description': 'Random selection of gate or no gate. output mode: 0 = gate 1 = trigger'},
+'maygate': { 'Args': [ 'trig', 'probability (0.5)' ], 'Outputs': 1 , 'Description': 'Random selection of gate or no gate.'},
 'maytrig': { 'Args': [ 'trig', 'probability (0.5)' ], 'Outputs': 1 , 'Description': 'Random selection of trig or no trig.'},
 'metro': { 'Args': [ 'frequency' ], 'Outputs': 1 , 'Description': 'Creates clock signal.'},
 'min': { 'Args': [ 'f', 'f' ], 'Outputs': 1 , 'Description': 'Returns the lesser of two items on the stack.'},
