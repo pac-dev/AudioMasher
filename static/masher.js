@@ -182,11 +182,12 @@ if (editor) {
 		slider.addEventListener('input', function(event) {
 			sporthal_setp(param.index, slider.value);
 		});
+		sporthal_setp(param.index, param.min);
 	}
 	function parseParams() {
 		if (!paramsDiv) return;
 		paramsDiv.innerHTML = '';
-		var re = /_([\w]*) (\d) palias ?# ?(\d+(?:\.\d+)?) ?- ?(\d+(?:\.\d+)?)/g;
+		var re = /_([\w]*) (\d+) palias ?# ?(\d+(?:\.\d+)?) ?- ?(\d+(?:\.\d+)?)/g;
 		var script = editor.getValue();
 		var match;
 		do {
