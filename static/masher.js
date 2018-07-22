@@ -170,19 +170,24 @@ if (editor) {
 	});
 	var paramsDiv = document.getElementById("params");
 	var paramsLabel = document.getElementById("params_label");
+	var sliderValues = {};
 	function createParamSlider(param) {
 		var slider = document.createElement("input");
 		slider.type = "range";
 		slider.id = "param_" + param.index;
 		slider.min = param.min;
 		slider.max = param.max;
-		slider.value = param.value;
 		slider.step = (param.max - param.min) / 1000;
 		paramsDiv.appendChild(slider);
 		slider.addEventListener('input', function(event) {
+			sliderValues[param.name] = slider.value;
 			sporthal_setp(param.index, slider.value);
 		});
-		sporthal_setp(param.index, param.min);
+		if (param.value == undefined)
+			slider.value = param.min;
+		else
+			slider.value = param.value;
+		sporthal_setp(param.index, slider.value);
 	}
 	function parseParams() {
 		if (!paramsDiv) return;
@@ -197,7 +202,7 @@ if (editor) {
 				index: match[2], 
 				min: match[3], 
 				max: match[4],
-				value: sporthal_getp(match[2])
+				value: sliderValues[match[1]]
 			});
 		} while (match);
 		if (paramsDiv.innerHTML === "")
