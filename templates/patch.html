@@ -50,7 +50,9 @@
 			<em>Created:</em> {{HumanDate .Patch.DateCreated }}
 			<br><br>
 			<em>Modified:</em> {{HumanDate .Patch.DateModified }}
-			<br><br>
+			<em id=params_label class=nodisplay><br><br>Params:</em><br>
+			<div id=params></div>
+			<br>
 			<i><a href="/about#patchlicense">License</a></i>
 			<br><br>
 			<span id=PId style="display:none">{{.Patch.Id}}</span>

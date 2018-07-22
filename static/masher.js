@@ -37,6 +37,7 @@ var play = function () {
 	gotError = false;
 	playButton.classList.add("playing");
 	sporthal_compile(editor.getValue().replace(/\t/g , " "));
+	parseParams();
 	if (!playing && !gotError) {
 		sporthal_start();
 		playing = true;
@@ -62,6 +63,8 @@ var Module = {
 		sporthal_compile = cwrap('sporthal_compile', 'number', ['string']);
 		sporthal_start = cwrap('sporthal_start', 'number');
 		sporthal_stop = cwrap('sporthal_stop', 'number');
+		sporthal_getp = cwrap('sporthal_getp', 'number', ['number']);
+		sporthal_setp = cwrap('sporthal_setp', 'number', ['number', 'number']);
 		Module.print("ready.")
 		var playLoading = document.getElementById("play_loading");
 		if (playLoading) {
@@ -165,6 +168,43 @@ if (editor) {
 	stopButton.addEventListener('click', function() {
 		stop();
 	});
+	var paramsDiv = document.getElementById("params");
+	var paramsLabel = document.getElementById("params_label");
+	function createParamSlider(param) {
+		var slider = document.createElement("input");
+		slider.type = "range";
+		slider.id = "param_" + param.index;
+		slider.min = param.min;
+		slider.max = param.max;
+		slider.value = param.value;
+		slider.step = (param.max - param.min) / 1000;
+		paramsDiv.appendChild(slider);
+		slider.addEventListener('input', function(event) {
+			sporthal_setp(param.index, slider.value);
+		});
+	}
+	function parseParams() {
+		if (!paramsDiv) return;
+		paramsDiv.innerHTML = '';
+		var re = /_([\w]*) (\d) palias ?# ?(\d+(?:\.\d+)?) ?- ?(\d+(?:\.\d+)?)/g;
+		var script = editor.getValue();
+		var match;
+		do {
+			match = re.exec(script);
+			if (match) createParamSlider({
+				name: match[1], 
+				index: match[2], 
+				min: match[3], 
+				max: match[4],
+				value: sporthal_getp(match[2])
+			});
+		} while (match);
+		if (paramsDiv.innerHTML === "")
+			paramsLabel.className = "nodisplay";
+		else
+			paramsLabel.className = "";
+	}
+	parseParams();
 }
 
 

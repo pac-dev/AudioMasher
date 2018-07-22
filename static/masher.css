@@ -93,6 +93,13 @@ a.tab_thumb {
 .tab_content li {
 	margin-bottom: 12px;
 }
+#params_label.nodisplay {
+	display: none;
+}
+#params input {
+	display: block;
+	width: 100%;
+}
 
 #controls {
 	position: absolute;
