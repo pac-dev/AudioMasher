@@ -206,9 +206,9 @@ if (editor) {
 			});
 		} while (match);
 		if (paramsDiv.innerHTML === "")
-			paramsLabel.className = "nodisplay";
-		else
 			paramsLabel.className = "";
+		else
+			paramsLabel.className = "nodisplay";
 	}
 	parseParams();
 }

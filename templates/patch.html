@@ -35,6 +35,9 @@
 		<a class=tab_thumb href="#help">
 			help
 		</a>
+		<a class=tab_thumb href="#params_tab">
+			params
+		</a>
 		{{if eq .Patch.Title ""}}
 		<div class="tab_content active_content" id=quick_ref>
 			loading...
@@ -50,9 +53,7 @@
 			<em>Created:</em> {{HumanDate .Patch.DateCreated }}
 			<br><br>
 			<em>Modified:</em> {{HumanDate .Patch.DateModified }}
-			<em id=params_label class=nodisplay><br><br>Params:</em><br>
-			<div id=params></div>
-			<br>
+			<br><br>
 			<i><a href="/about#patchlicense">License</a></i>
 			<br><br>
 			<span id=PId style="display:none">{{.Patch.Id}}</span>
@@ -91,6 +92,12 @@
 			</li><li>
 				<a href="https://github.com/pac-dev/AudioMasher">Source on Github</a>
 			</li></ul>
+			<br><br>
+		</div>
+		<div class=tab_content id=params_tab>
+			<br>
+			<em id=params_label>No parameters.</em><br>
+			<div id=params></div>
 			<br><br>
 		</div>
 	</div>
