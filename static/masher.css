@@ -32,7 +32,7 @@ a, a:link, a:visited, a:active {
 	left: 0;
 	right: 0;
 }
-.right_pane {
+.help_pane, .params_pane, .learn_pane {
 	display: none;
 	position: absolute;
 	top: 29px;
@@ -41,8 +41,9 @@ a, a:link, a:visited, a:active {
 	right: 0;
 	overflow: hidden;
 }
-.split .left_pane { right: 42%; }
-.split .right_pane { display: block; }
+.helpon .left_pane, .paramson .left_pane  { right: 42%; }
+.helpon .help_pane { display: block; }
+.paramson .params_pane { display: block; }
 .middle_pane {
 	position: relative;
 	top: 29px;
@@ -171,6 +172,7 @@ a.tab_thumb {
 #c_stop::after {background-position: 55.55% 0;}
 #c_post::after {background-position: 77.77% 0;}
 #c_help::after {background-position: 11.11% 50%;}
+#c_params::after {background-position: 11.11% 0;}
 #c_output::after {background-position: 55.55% 50%;}
 #c_play.playing::after {background-position: 33.33% 50%;}
 
@@ -326,7 +328,7 @@ body.drk, .drk textarea {
 .drk .top_bar>a:hover {
 	background-color: #f0f1fb;
 }
-.drk .right_pane {
+.drk .help_pane, .drk .params_pane, .drk .learn_pane {
 	border-left: 1px solid #949ac7;
 }
 .drk .middle_pane {
@@ -341,11 +343,17 @@ body.drk, .drk textarea {
 .drk #controls>a:hover {
 	background-color: #f0f1fb;
 }
-.drk.split #c_help, .drk.split #c_help:hover {
+.drk.helpon #c_help, .drk.helpon #c_help:hover {
 	background-color: #949ac7;
 }
-.drk.split #c_help::after {
+.drk.helpon #c_help::after {
 	background-position: 55.55% 50%;
+}
+.drk.paramson #c_params, .drk.paramson #c_params:hover {
+	background-color: #949ac7;
+}
+.drk.paramson #c_params::after {
+	background-position: 77.77% 50%;
 }
 .drk .middle_pane>table tr:nth-child(odd) {
 	background-color: #dcdcdc;

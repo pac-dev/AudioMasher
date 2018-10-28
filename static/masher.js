@@ -6,6 +6,7 @@ var output = document.getElementById('output');
 var playButton = document.getElementById('c_play');
 var stopButton = document.getElementById('c_stop');
 var helpButton = document.getElementById('c_help');
+var paramsButton = document.getElementById('c_params');
 
 // ========== TAB SWITCHING ==========
 var allTabContents = document.querySelectorAll(".tab_content");
@@ -159,7 +160,14 @@ if (editorArea != null) {
 if (editor) {
 	if (helpButton)
 		helpButton.addEventListener('click', function() {
-			document.body.classList.toggle("split");
+			document.body.classList.remove("paramson");
+			document.body.classList.toggle("helpon");
+			editor.refresh();
+		});
+	if (paramsButton)
+		paramsButton.addEventListener('click', function() {
+			document.body.classList.remove("helpon");
+			document.body.classList.toggle("paramson");
 			editor.refresh();
 		});
 	playButton.addEventListener('click', function() {

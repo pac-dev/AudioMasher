@@ -15,11 +15,23 @@
 			{{else}}
 			<a href="#signup_modal" id=c_post title="Post Patch..."></a>
 			{{end}}
+			<a id=c_params title="Show/hide parameter sliders"></a>
 		</div>
 		<div id=tooltip></div>
 		<div id=errors></div>
 	</div>
-	<div class=right_pane>
+	<div class=params_pane>
+		<br>
+		<em id=no_params>No parameters.</em><br>
+		<div>
+			<div id=slider_labels>
+			</div>
+			<div id=sliders>
+			</div>
+		</div>
+		<br><br>
+	</div>
+	<div class=help_pane>
 		{{if eq .Patch.Title ""}}
 		<a class="tab_thumb active_thumb" href="#quick_ref">
 			quick ref
@@ -34,9 +46,6 @@
 		{{end}}
 		<a class=tab_thumb href="#help">
 			help
-		</a>
-		<a class=tab_thumb href="#params_tab">
-			params
 		</a>
 		{{if eq .Patch.Title ""}}
 		<div class="tab_content active_content" id=quick_ref>
@@ -92,17 +101,6 @@
 			</li><li>
 				<a href="https://github.com/pac-dev/AudioMasher">Source on Github</a>
 			</li></ul>
-			<br><br>
-		</div>
-		<div class=tab_content id=params_tab>
-			<br>
-			<em id=no_params>No parameters.</em><br>
-			<div>
-				<div id=slider_labels>
-				</div>
-				<div id=sliders>
-				</div>
-			</div>
 			<br><br>
 		</div>
 	</div>
