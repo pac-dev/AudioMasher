@@ -168,17 +168,21 @@ if (editor) {
 	stopButton.addEventListener('click', function() {
 		stop();
 	});
-	var paramsDiv = document.getElementById("params");
-	var paramsLabel = document.getElementById("params_label");
+	var slidersDiv = document.getElementById("sliders");
+	var labelsDiv = document.getElementById("slider_labels");
+	var noParamsDiv = document.getElementById("no_params");
 	var sliderValues = {};
 	function createParamSlider(param) {
+		var label = document.createElement("div");
+		label.innerHTML = param.name;
+		labelsDiv.appendChild(label);
 		var slider = document.createElement("input");
 		slider.type = "range";
 		slider.id = "param_" + param.index;
 		slider.min = param.min;
 		slider.max = param.max;
 		slider.step = (param.max - param.min) / 1000;
-		paramsDiv.appendChild(slider);
+		slidersDiv.appendChild(slider);
 		slider.addEventListener('input', function(event) {
 			sliderValues[param.name] = slider.value;
 			sporthal_setp(param.index, slider.value);
@@ -190,8 +194,9 @@ if (editor) {
 		sporthal_setp(param.index, slider.value);
 	}
 	function parseParams() {
-		if (!paramsDiv) return;
-		paramsDiv.innerHTML = '';
+		if (!slidersDiv) return;
+		slidersDiv.innerHTML = '';
+		labelsDiv.innerHTML = '';
 		var re = /_([\w]*) (\d+) palias ?# ?(\d+(?:\.\d+)?) ?- ?(\d+(?:\.\d+)?)/g;
 		var script = editor.getValue();
 		var match;
@@ -205,10 +210,10 @@ if (editor) {
 				value: sliderValues[match[1]]
 			});
 		} while (match);
-		if (paramsDiv.innerHTML === "")
-			paramsLabel.className = "";
+		if (slidersDiv.innerHTML === "")
+			noParamsDiv.className = "";
 		else
-			paramsLabel.className = "nodisplay";
+			noParamsDiv.className = "nodisplay";
 	}
 	parseParams();
 }

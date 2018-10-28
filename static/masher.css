@@ -93,12 +93,31 @@ a.tab_thumb {
 .tab_content li {
 	margin-bottom: 12px;
 }
-#params_label.nodisplay {
+#no_params.nodisplay {
 	display: none;
 }
-#params input {
+#sliders input {
 	display: block;
 	width: 100%;
+}
+#slider_labels {
+	height: 200px;
+	float:left;
+	padding: 10px;
+}
+#sliders {
+	width: auto;
+	height:200px;
+	overflow:hidden;
+	padding: 10px;
+}
+#slider_labels div {
+	height: 10px;
+	padding: 4px 0 16px;
+}
+#sliders input {
+	height: 30px;
+	margin: 0;
 }
 
 #controls {
