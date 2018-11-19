@@ -66,7 +66,7 @@ var Module = {
 		sporthal_stop = cwrap('sporthal_stop', 'number');
 		sporthal_getp = cwrap('sporthal_getp', 'number', ['number']);
 		sporthal_setp = cwrap('sporthal_setp', 'number', ['number', 'number']);
-		Module.print("ready.")
+		if (editor) parseParams();
 		var playLoading = document.getElementById("play_loading");
 		if (playLoading) {
 			playLoading.classList.add("nodisplay");
@@ -154,6 +154,10 @@ if (editorArea != null) {
 	editor.setSize("100%", "100%");
 	window.onresize = function() {editor.refresh();};
 }
+var url = new URL(window.location.href);
+var urlScript = url.searchParams.get("script");
+if (url.pathname == "/new" && urlScript != null)
+	editor.setValue(urlScript);
 
 
 // ========== CONTROLS ==========
@@ -177,53 +181,24 @@ if (editor) {
 		stop();
 	});
 	var slidersDiv = document.getElementById("sliders");
-	var labelsDiv = document.getElementById("slider_labels");
 	var noParamsDiv = document.getElementById("no_params");
-	var sliderValues = {};
-	function createParamSlider(param) {
-		var label = document.createElement("div");
-		label.innerHTML = param.name;
-		labelsDiv.appendChild(label);
-		var slider = document.createElement("input");
-		slider.type = "range";
-		slider.id = "param_" + param.index;
-		slider.min = param.min;
-		slider.max = param.max;
-		slider.step = (param.max - param.min) / 1000;
-		slidersDiv.appendChild(slider);
-		slider.addEventListener('input', function(event) {
-			sliderValues[param.name] = slider.value;
-			sporthal_setp(param.index, slider.value);
-		});
-		if (param.value == undefined)
-			slider.value = param.min;
-		else
-			slider.value = param.value;
-		sporthal_setp(param.index, slider.value);
-	}
+	var firstParse = true;
+	sliderValues = {};
 	function parseParams() {
 		if (!slidersDiv) return;
-		slidersDiv.innerHTML = '';
-		labelsDiv.innerHTML = '';
-		var re = /_([\w]*) (\d+) palias ?# ?(\d+(?:\.\d+)?) ?- ?(\d+(?:\.\d+)?)/g;
-		var script = editor.getValue();
-		var match;
-		do {
-			match = re.exec(script);
-			if (match) createParamSlider({
-				name: match[1], 
-				index: match[2], 
-				min: match[3], 
-				max: match[4],
-				value: sliderValues[match[1]]
-			});
-		} while (match);
+		sliderValues = sporthParam_createSliders(slidersDiv, editor.getValue(), sliderValues);
+		sporthParam_setPvalues(editor.getValue(), sliderValues);
 		if (slidersDiv.innerHTML === "")
 			noParamsDiv.className = "";
 		else
 			noParamsDiv.className = "nodisplay";
+		if (firstParse) {
+			firstParse = false;
+			if (Object.keys(sliderValues).length == 0) return;
+			document.body.classList.toggle("paramson");
+			editor.refresh();
+		}
 	}
-	parseParams();
 }
 
 

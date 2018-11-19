@@ -97,29 +97,25 @@ a.tab_thumb {
 #no_params.nodisplay {
 	display: none;
 }
-#sliders input {
-	display: block;
-	width: 100%;
-}
-#slider_labels {
-	height: 200px;
-	float:left;
-	padding: 10px;
-}
+
 #sliders {
-	width: auto;
-	height:200px;
-	overflow:hidden;
-	padding: 10px;
+	position: relative;
 }
-#slider_labels div {
-	height: 10px;
-	padding: 4px 0 16px;
+
+.sliderOut {
+    display: flex;
+	align-items: center;
+	height: 45px;
 }
-#sliders input {
-	height: 30px;
-	margin: 0;
+
+.sliderOut > * {
+	flex-grow: 1;
+	padding: 9px;
 }
+
+.sliderLabel { width: 23.2%; text-align: right; }
+.sliderRange { width: 53.2%; }
+.sliderDispl { width: 23.2%; text-align: left; }
 
 #controls {
 	position: absolute;
