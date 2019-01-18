@@ -31,6 +31,12 @@ if (refElement) {
 		refElement.innerHTML = data;
 	});
 }
+var descElement = document.getElementById("PDesc");
+if (descElement) {
+	var urlEx = /(\b(https?|ftp|file):\S+\.\S+[^\.\s])/gm;
+	descElement.innerHTML = descElement.innerHTML.replace(urlEx, "<a href='$1'>$1</a>");
+}
+
 // ========== EMSCRIPTEN ==========
 var playing = false;
 var gotError;
