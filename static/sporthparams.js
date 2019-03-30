@@ -3,7 +3,7 @@ var num = String.raw`(-?\d+(?:\.\d+)?)`;
 var re = new RegExp(String.raw`_([\w]+) (\d+) palias ?# ?${num} - ${num},? ?${num}? ?\(?([\w]+)?\)?`, 'g');
 var setP = function(i, p)
 {
-	if (typeof sporthal_setp !== 'undefined') sporthal_setp(i, p);
+	if (typeof sporthem_setp !== 'undefined') sporthem_setp(i, p);
 }
 
 var createSlider = function(container, param, values)

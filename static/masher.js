@@ -40,19 +40,51 @@ if (descElement) {
 // ========== EMSCRIPTEN ==========
 var playing = false;
 var gotError;
+var audioCtx = false;
+var scriptNode;
+
+var cleanupStopAudio = function() {
+	if (audioCtx) {
+		audioCtx.suspend();
+		audioCtx.close();
+	}
+	audioCtx = false;
+}
+
+var initStartAudio = function () {
+	audioCtx = new AudioContext();
+	// buf size, input channels, outpout channels
+	scriptNode = audioCtx.createScriptProcessor(4096, 0, 1);
+	console.log(scriptNode.bufferSize);
+	scriptNode.onaudioprocess = function(evt) {
+		var num_frames = evt.outputBuffer.length;
+		var ptr = sporthem_process(num_frames);
+		if (!ptr) return;
+		var num_channels = evt.outputBuffer.numberOfChannels;
+		for (var chidx = 0; chidx < num_channels; chidx++) {
+			var ch = evt.outputBuffer.getChannelData(chidx);
+			for (var i = 0; i < num_frames; i++) {
+				ch[i] = HEAPF32[(ptr>>2) + ((num_channels*i)+chidx)]
+			}
+		}
+	}
+	scriptNode.connect(audioCtx.destination);
+}
+
+
+
 var play = function () {
+	cleanupStopAudio();
 	gotError = false;
 	playButton.classList.add("playing");
-	sporthal_compile(editor.getValue().replace(/\t/g , " "));
+	sporthem_compile(editor.getValue().replace(/\t/g , " "));
 	parseParams();
-	if (!playing && !gotError) {
-		sporthal_start();
-		playing = true;
-	}
+	initStartAudio();
+	playing = true;
 };
 var stop = function() {
 	if (playing) {
-		sporthal_stop();
+		cleanupStopAudio();
 		playing = false;
 		playButton.classList.remove("playing");
 	}
@@ -66,12 +98,11 @@ var Module = {
 		playButton.classList.remove("playing");
 	},
 	onRuntimeInitialized: function () {
-		cwrap('sporthal_init', 'number')();
-		sporthal_compile = cwrap('sporthal_compile', 'number', ['string']);
-		sporthal_start = cwrap('sporthal_start', 'number');
-		sporthal_stop = cwrap('sporthal_stop', 'number');
-		sporthal_getp = cwrap('sporthal_getp', 'number', ['number']);
-		sporthal_setp = cwrap('sporthal_setp', 'number', ['number', 'number']);
+		cwrap('sporthem_init', 'number')();
+		sporthem_compile = cwrap('sporthem_compile', 'number', ['string']);
+		sporthem_getp = cwrap('sporthem_getp', 'number', ['number']);
+		sporthem_setp = cwrap('sporthem_setp', 'number', ['number', 'number']);
+		sporthem_process = cwrap('sporthem_process', 'number', ['number']);
 		if (editor) parseParams();
 		var playLoading = document.getElementById("play_loading");
 		if (playLoading) {
