@@ -1,10 +1,6 @@
 {
     "cookie_secret": "32 or 64 random hex characters (0-f)",
-	"dynamo_endpoint": "http://localhost:8001",
-	"dynamo_region": "us-west-2",
-	"dynamo_id": "AKID",
-	"dynamo_secret": "SECRET_KEY",
-	"dynamo_token": "",
+	"db_path": "masher.db",
 	"static_root": "http://localhost:8002/static/",
 	"port": 8000,
 	"featured_patch": "OZOIGB"

@@ -3,6 +3,7 @@ module AudioMasher
 go 1.12
 
 require (
+	github.com/asdine/storm/v3 v3.0.0
 	github.com/aws/aws-sdk-go v1.19.5
 	github.com/gorilla/mux v1.7.0
 	github.com/gorilla/sessions v1.1.3

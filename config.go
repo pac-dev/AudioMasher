@@ -8,15 +8,11 @@ import (
 )
 
 type ConfigData struct {
-	CookieSecret   string `json:"cookie_secret"`
-	DynamoEndpoint string `json:"dynamo_endpoint"`
-	DynamoRegion   string `json:"dynamo_region"`
-	DynamoId       string `json:"dynamo_id"`
-	DynamoSecret   string `json:"dynamo_secret"`
-	DynamoToken    string `json:"dynamo_token"`
-	StaticRoot     string `json:"static_root"`
-	Port           int    `json:"port"`
-	FeaturedPatch  string `json:"featured_patch"`
+	CookieSecret  string `json:"cookie_secret"`
+	DBPath        string `json:"db_path"`
+	StaticRoot    string `json:"static_root"`
+	Port          int    `json:"port"`
+	FeaturedPatch string `json:"featured_patch"`
 }
 
 var MasherConfig ConfigData
