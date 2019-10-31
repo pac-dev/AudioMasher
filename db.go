@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
 	"math/rand"
 	"time"
@@ -13,19 +13,19 @@ var dbPatches dynamo.Table
 var dbUsers dynamo.Table
 
 type MasherPatch struct {
-	Id string `json:"id,omitempty"`
-	DateCreated int64 `json:"datecreated,omitempty"`
-	DateModified int64 `json:"datecreated,omitempty"`
-	Title string `json:"title,omitempty"`
-	Author string `json:"author,omitempty"`
-	Files map[string]string `json:"files,omitempty"`
+	Id           string            `json:"id,omitempty"`
+	DateCreated  int64             `json:"datecreated,omitempty"`
+	DateModified int64             `json:"datecreated,omitempty"`
+	Title        string            `json:"title,omitempty"`
+	Author       string            `json:"author,omitempty"`
+	Files        map[string]string `json:"files,omitempty"`
 }
 
 type MasherUser struct {
-	Name string `json:"name,omitempty"`
-	Password string `json:"password,omitempty"`
-	Email string `json:"email,omitempty"`
-	DateCreated int64 `json:"created,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Password    string `json:"password,omitempty"`
+	Email       string `json:"email,omitempty"`
+	DateCreated int64  `json:"created,omitempty"`
 }
 
 type SearchFilter struct {
@@ -34,11 +34,11 @@ type SearchFilter struct {
 
 func InitDB() {
 	db := dynamo.New(session.New(), &aws.Config{
-		Endpoint: aws.String(MasherConfig.DynamoEndpoint), 
-		Region: aws.String(MasherConfig.DynamoRegion),
+		Endpoint: aws.String(MasherConfig.DynamoEndpoint),
+		Region:   aws.String(MasherConfig.DynamoRegion),
 		Credentials: credentials.NewStaticCredentials(
-			MasherConfig.DynamoId, 
-			MasherConfig.DynamoSecret, 
+			MasherConfig.DynamoId,
+			MasherConfig.DynamoSecret,
 			MasherConfig.DynamoToken)})
 	dbPatches = db.Table("MasherPatches")
 	dbUsers = db.Table("MasherUsers")
@@ -63,10 +63,10 @@ func RetrievePatches(filter SearchFilter) ([]MasherPatch, error) {
 	if err != nil {
 		return allPatches, err
 	}
-	if (filter.Author != "") {
+	if filter.Author != "" {
 		filteredPatches := allPatches[:0]
 		for _, patch := range allPatches {
-			if (patch.Author == filter.Author) {
+			if patch.Author == filter.Author {
 				filteredPatches = append(filteredPatches, patch)
 			}
 		}
@@ -76,7 +76,7 @@ func RetrievePatches(filter SearchFilter) ([]MasherPatch, error) {
 }
 
 func PutPatch(patch MasherPatch) error {
-	err := dbPatches.Put(patch).Run() 
+	err := dbPatches.Put(patch).Run()
 	return err
 }
 
@@ -101,6 +101,6 @@ func RetrieveUsers() ([]MasherUser, error) {
 }
 
 func AddUser(user MasherUser) error {
-	err := dbUsers.Put(user).Run() 
+	err := dbUsers.Put(user).Run()
 	return err
 }

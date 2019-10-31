@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"github.com/gorilla/mux"
 	"strconv"
 )
 
@@ -13,7 +13,7 @@ func main() {
 	InitDB()
 	InitTemplates()
 	router := mux.NewRouter()
-	
+
 	// pages
 	router.HandleFunc("/", ViewHomepage)
 	router.HandleFunc("/new", ViewNew)
@@ -30,10 +30,10 @@ func main() {
 	router.HandleFunc("/api/login", Login).Methods("POST")
 	router.HandleFunc("/api/post", PostPatch).Methods("POST")
 	router.HandleFunc("/api/update", UpdatePatch).Methods("POST")
-	
+
 	// redirects
 	router.HandleFunc("/logout", Logout)
-	
+
 	router.NotFoundHandler = http.HandlerFunc(ViewNotFound)
-	log.Fatal(http.ListenAndServe(":" + strconv.Itoa(MasherConfig.Port), router))
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(MasherConfig.Port), router))
 }
