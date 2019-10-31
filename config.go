@@ -2,27 +2,24 @@ package main
 
 import (
 	"encoding/hex"
-	"encoding/json"
+
+	"github.com/JeremyLoy/config"
 	"github.com/gorilla/sessions"
-	"io/ioutil"
 )
 
 type ConfigData struct {
-	CookieSecret  string `json:"cookie_secret"`
-	DBPath        string `json:"db_path"`
-	StaticRoot    string `json:"static_root"`
-	Port          int    `json:"port"`
-	FeaturedPatch string `json:"featured_patch"`
+	CookieSecret  string `config:"MASHER_COOKIE_SECRET"`
+	DBPath        string `config:"MASHER_DB_PATH"`
+	StaticRoot    string `config:"MASHER_STATIC_ROOT"`
+	Port          int    `config:"MASHER_PORT"`
+	FeaturedPatch string `config:"MASHER_FEATURED_PATCH"`
 }
 
 var MasherConfig ConfigData
 
 func LoadConfig(file string) {
-	data, err := ioutil.ReadFile(file)
+	err := config.From("config/masher.config").FromEnv().To(&MasherConfig)
 	if err != nil {
-		panic(err)
-	}
-	if err = json.Unmarshal(data, &MasherConfig); err != nil {
 		panic(err)
 	}
 }

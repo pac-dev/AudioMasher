@@ -3,6 +3,7 @@ module github.com/pac-dev/AudioMasher
 go 1.13
 
 require (
+	github.com/JeremyLoy/config v1.2.1
 	github.com/asdine/storm/v3 v3.0.0
 	github.com/aws/aws-sdk-go v1.19.5
 	github.com/gorilla/context v1.1.1 // indirect

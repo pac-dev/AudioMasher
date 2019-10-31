@@ -16,5 +16,5 @@ Sporth is already compiled to JS and included in the project, but if you want to
 
 ## Running
 - Serve the `static` folder from a static host.
-- Create your own `config/masher_config.json` based on the included example json.
-- Deploy the AudioMasher binary to a server alongside the `templates` and `config` directories.
+- Create your own `config/masher.config` based on the included example config file.
+- Run the AudioMasher binary alongside the `templates` and `config` directories.
