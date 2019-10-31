@@ -6,10 +6,10 @@ Generative Audio Playground - https://www.audiomasher.org
 - Add your scripts to the collection
 
 ## Building
-The server is a simple Go project:
+To get the latest source and build the server using [Git](https://git-scm.com/downloads) and [Go](https://golang.org/dl/):
 
-	go get github.com/pac-dev/AudioMasher
-	cd $GOPATH/src/github.com/pac-dev/AudioMasher
+	git clone https://github.com/pac-dev/AudioMasher
+	cd AudioMasher/
 	go build
 
 Sporth is already compiled to JS and included in the project, but if you want to compile it yourself, the code glue is here: https://github.com/pac-dev/SporthAL
