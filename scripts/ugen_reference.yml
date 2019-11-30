@@ -669,8 +669,8 @@ tbldur:
   Description: Get duration of table (in seconds)
   Outputs: 1
 tblrec:
-  Args: [in, trig, tbl name]
-  Description: records values to table.
+  Args: [in, tbl name]
+  Description: records values to table (value stays on the stack).
   Outputs: 1
   Link: tblrec
 tblsize:
