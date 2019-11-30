@@ -2,12 +2,13 @@ package main
 
 import (
 	"bytes"
-	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/gorilla/mux"
 )
 
 type TemplateData struct {
@@ -132,23 +133,6 @@ func ViewNew(w http.ResponseWriter, r *http.Request) {
 	data.Headline = "new patch"
 	data.Patch.Files = map[string]string{"main.sp": "# You have just one Sporth. Make something.\n\n"}
 	err := masherTemplates.ExecuteTemplate(w, "layout.html", data)
-	if err != nil {
-		panic(err)
-	}
-}
-
-func ViewHomepage(w http.ResponseWriter, r *http.Request) {
-	var err error
-	data := BaseTemplateData(w, r)
-	data.Patch, err = RetrievePatch(MasherConfig.FeaturedPatch)
-	if err != nil {
-		ViewAbout(w, r)
-		return
-	}
-	data.CurrentView = "Patch"
-	data.HeadlinePrefix = "Featured: "
-	data.Headline = data.Patch.Title + " by " + data.Patch.Author
-	err = masherTemplates.ExecuteTemplate(w, "layout.html", data)
 	if err != nil {
 		panic(err)
 	}

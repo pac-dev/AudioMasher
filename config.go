@@ -8,11 +8,10 @@ import (
 )
 
 type ConfigData struct {
-	CookieSecret  string `config:"MASHER_COOKIE_SECRET"`
-	DBPath        string `config:"MASHER_DB_PATH"`
-	StaticRoot    string `config:"MASHER_STATIC_ROOT"`
-	Port          int    `config:"MASHER_PORT"`
-	FeaturedPatch string `config:"MASHER_FEATURED_PATCH"`
+	CookieSecret string `config:"MASHER_COOKIE_SECRET"`
+	DBPath       string `config:"MASHER_DB_PATH"`
+	StaticRoot   string `config:"MASHER_STATIC_ROOT"`
+	Port         int    `config:"MASHER_PORT"`
 }
 
 var MasherConfig ConfigData
