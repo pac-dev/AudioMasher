@@ -71,15 +71,38 @@ var initStartAudio = function () {
 	scriptNode.connect(audioCtx.destination);
 }
 
+var initStartAudioStereo = function () {
+	audioCtx = new AudioContext();
+	// buf size, input channels, outpout channels
+	scriptNode = audioCtx.createScriptProcessor(4096, 0, 2);
+	console.log(scriptNode.bufferSize);
+	scriptNode.onaudioprocess = function(evt) {
+		var num_frames = evt.outputBuffer.length;
+		var ptr = sporthem_process_stereo(num_frames);
+		if (!ptr) return;
+		var num_channels = evt.outputBuffer.numberOfChannels;
+		for (var chidx = 0; chidx < num_channels; chidx++) {
+			var ch = evt.outputBuffer.getChannelData(chidx);
+			for (var i = 0; i < num_frames; i++) {
+				ch[i] = HEAPF32[(ptr>>2) + ((num_channels*i)+chidx)]
+			}
+		}
+	}
+	scriptNode.connect(audioCtx.destination);
+}
 
 
+window.masher_stereo = false;
 var play = function () {
 	cleanupStopAudio();
 	gotError = false;
 	playButton.classList.add("playing");
 	sporthem_compile(editor.getValue().replace(/\t/g , " "));
 	parseParams();
-	initStartAudio();
+	if (editor.getValue().startsWith('# stereo'))
+		initStartAudioStereo();
+	else
+		initStartAudio();
 	playing = true;
 };
 var stop = function() {
@@ -103,6 +126,7 @@ var Module = {
 		sporthem_getp = cwrap('sporthem_getp', 'number', ['number']);
 		sporthem_setp = cwrap('sporthem_setp', 'number', ['number', 'number']);
 		sporthem_process = cwrap('sporthem_process', 'number', ['number']);
+		sporthem_process_stereo = cwrap('sporthem_process_stereo', 'number', ['number']);
 		if (editor) parseParams();
 		var playLoading = document.getElementById("play_loading");
 		if (playLoading) {
