@@ -52,7 +52,7 @@ var cleanupStopAudio = function() {
 }
 
 var initStartAudio = function () {
-	audioCtx = new AudioContext();
+	audioCtx = new AudioContext({sampleRate: 44100});
 	// buf size, input channels, outpout channels
 	scriptNode = audioCtx.createScriptProcessor(4096, 0, 1);
 	console.log(scriptNode.bufferSize);
