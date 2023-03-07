@@ -1,7 +1,7 @@
 # AudioMasher
 Generative Audio Playground - https://www.audiomasher.org
 
-- Edit and play [Sporth](https://paulbatchelor.github.io/proj/sporth.html) audio scripts in the browser
+- Edit and play [Sporth](https://audiomasher.org/learn) audio scripts in the browser
 - Browse and listen to existing scripts
 - Add your scripts to the collection
 
@@ -27,4 +27,3 @@ Sporth is already compiled to JS and included in the project, but if you want to
 ## Tools used
 - Sporth is compiled to WASM using [Emscripten](https://github.com/kripken/emscripten)
 - Scripts and users are stored using [Storm](https://github.com/asdine/storm)
-- This project is tested with [BrowserStack](https://www.browserstack.com/).
