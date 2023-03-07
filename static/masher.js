@@ -72,7 +72,7 @@ var initStartAudio = function () {
 }
 
 var initStartAudioStereo = function () {
-	audioCtx = new AudioContext();
+	audioCtx = new AudioContext({sampleRate: 44100});
 	// buf size, input channels, outpout channels
 	scriptNode = audioCtx.createScriptProcessor(4096, 0, 2);
 	console.log(scriptNode.bufferSize);
