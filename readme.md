@@ -27,3 +27,4 @@ Sporth is already compiled to JS and included in the project, but if you want to
 ## Tools used
 - Sporth is compiled to WASM using [Emscripten](https://github.com/kripken/emscripten)
 - Scripts and users are stored using [Storm](https://github.com/asdine/storm)
+- This project is tested with [BrowserStack](https://www.browserstack.com/).
