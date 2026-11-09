@@ -454,6 +454,28 @@ modals = [
 		onSuccess: function(modal) { location = "/patch/" + modal.result.patchId; },
 		alwaysConfirm: true,
 	},
+	{
+		triggerLinks: "a[href='#delete_modal']",
+		content: 
+			'<h2>Delete Patch</h2>'+
+			'<a id=close_modal>[close]</a>'+
+			'<form><br>'+
+			'Are you sure you want to delete "<span id=STitle></span>"? This is not reversible.'+
+			'<input type=hidden name=delete_id id=formid>'+
+			'<br><br><hr><center>'+
+			'<input type=submit value="Yes, delete this patch">'+
+			'&nbsp;&nbsp;<button id=formno>No</button><br>'+
+			'</form>'+
+			'<div id=modal_progress>&nbsp;</div><br></center>',
+		postURL: "/api/delete",
+		onReady: function(modal) {
+			document.getElementById("STitle").innerText = document.getElementById("PTitle").textContent;
+			document.getElementById("formid").value = document.getElementById("PId").textContent;
+			document.getElementById("formno").onclick = modal.hide;
+		},
+		onSuccess: function(modal) { location = "/browse"; },
+		alwaysConfirm: true,
+	},
 ];
 
 

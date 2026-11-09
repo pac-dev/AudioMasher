@@ -60,6 +60,11 @@ func PutPatch(patch MasherPatch) error {
 	return err
 }
 
+func DeletePatchStruct(patch MasherPatch) error {
+	err := db.DeleteStruct(&patch)
+	return err
+}
+
 func RetrieveUser(name string) (MasherUser, error) {
 	var result MasherUser
 	err := db.One("Name", name, &result)

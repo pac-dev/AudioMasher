@@ -30,6 +30,7 @@ func main() {
 	router.HandleFunc("/api/login", Login).Methods("POST")
 	router.HandleFunc("/api/post", PostPatch).Methods("POST")
 	router.HandleFunc("/api/update", UpdatePatch).Methods("POST")
+	router.HandleFunc("/api/delete", DeletePatch).Methods("POST")
 
 	// redirects
 	router.HandleFunc("/logout", Logout)

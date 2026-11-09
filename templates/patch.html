@@ -11,6 +11,7 @@
 			<a id=c_help title="Show/hide help and quick reference"></a>
 			{{if .CanUpdatePatch}}
 			<a href="#update_modal" id=c_post title="Update Patch..."></a>
+			<a href="#delete_modal" id=c_delete title="Delete Patch..."></a>
 			{{else if .LoggedIn}}
 			<a href="#post_modal" id=c_post title="Post Patch..."></a>
 			{{else}}

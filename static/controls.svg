@@ -1,6 +1,6 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg viewBox="0 100 1000 500" width="1000px" height="500px" 
+<svg viewBox="0 100 1100 500" width="1100px" height="500px" 
 	xmlns="http://www.w3.org/2000/svg" 
 	 xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 	<defs>
@@ -24,6 +24,9 @@
 		<g id="publish" transform="translate(4,5),scale(4)"  stroke-width="0.8" >
 			<polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/><polyline points="16 16 12 12 8 16"/>
 		</g>
+		<g id="delete" transform="translate(4,5),scale(4)"  stroke-width="0.8" >
+			<polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line>
+		</g>
 		<rect id="um" x="-15" y="-15" width="130" height="130" stroke="red" fill="none" />
 	</defs>
 	<!--rect x="0" y="0" width="900" height="300" stroke="red" fill="none" /-->
@@ -31,17 +34,20 @@
 	<use xlink:href="#um" transform="translate(300,100)" />
 	<use xlink:href="#um" transform="translate(500,100)" />
 	<use xlink:href="#um" transform="translate(700,100)" />
+	<use xlink:href="#um" transform="translate(900,100)" />
 	
 	<use xlink:href="#um" transform="translate(100,300)" />
 	<use xlink:href="#um" transform="translate(300,300)" />
 	<use xlink:href="#um" transform="translate(500,300)" />
 	<use xlink:href="#um" transform="translate(700,300)" />
+	<use xlink:href="#um" transform="translate(900,300)" />
 	<g fill="none" stroke="#555" stroke-width="5">
 		<use xlink:href="#params" transform="translate(100,100)" />
 		<use xlink:href="#play" transform="translate(300,100)" />
 		<use xlink:href="#stop" transform="translate(500,100)" />
 		<use xlink:href="#publish" transform="translate(700,100)" />
 		<use xlink:href="#help" transform="translate(100,300)" />
+		<use xlink:href="#delete" transform="translate(900,100)" />
 		<use xlink:href="#play" transform="translate(300,300)" stroke="#f30000" />
 		<use xlink:href="#help" transform="translate(500,300)" stroke="#fff" />
 		<use xlink:href="#params" transform="translate(700,300)" stroke="#fff" />

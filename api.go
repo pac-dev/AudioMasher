@@ -4,10 +4,11 @@ import (
 	"encoding/base32"
 	"encoding/json"
 	"errors"
-	"golang.org/x/crypto/bcrypt"
 	"math/rand"
 	"net/http"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type ApiResult struct {
@@ -151,6 +152,46 @@ func UpdatePatch(w http.ResponseWriter, r *http.Request) {
 	result = ApiResult{
 		Success: true,
 		Message: "Patch updated: " + patch.Title + " by " + patch.Author,
+		PatchId: patch.Id,
+	}
+	json.NewEncoder(w).Encode(&result)
+}
+
+func DeletePatch(w http.ResponseWriter, r *http.Request) {
+	result := ApiResult{Success: false, Message: "Error deleting patch. \n"}
+	deleteId := r.FormValue("delete_id")
+	session, err := SessionStore.Get(r, "sess")
+	if err != nil {
+		panic(err)
+	}
+
+	patch, err2 := RetrievePatch(deleteId)
+	if err2 != nil {
+		result.Message += "Could not find existing patch in database."
+		json.NewEncoder(w).Encode(&result)
+		return
+	}
+
+	if currentUser, _ := session.Values["name"].(string); currentUser != patch.Author {
+		result.Message += "You are not the author of this patch."
+		json.NewEncoder(w).Encode(&result)
+		return
+	}
+
+	if err = CheckPatchValid(patch); err != nil {
+		result.Message += err.Error()
+		json.NewEncoder(w).Encode(&result)
+		return
+	}
+	err = DeletePatchStruct(patch)
+	if err != nil {
+		result.Message += err.Error()
+		json.NewEncoder(w).Encode(&result)
+		return
+	}
+	result = ApiResult{
+		Success: true,
+		Message: "Patch deleted: " + patch.Title + " by " + patch.Author,
 		PatchId: patch.Id,
 	}
 	json.NewEncoder(w).Encode(&result)

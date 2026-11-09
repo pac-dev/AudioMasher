@@ -144,7 +144,7 @@ a.tab_thumb {
 	margin: 0 auto;
 	width: 100%;
 	height: 100%;
-	background-size: 1000%;
+	background-size: 1100%;
 	background-repeat: no-repeat;
 }
 #controls.learn>a {
@@ -164,13 +164,14 @@ a.tab_thumb {
 	height: 34px;
 }
 
-#c_play::after {background-position: 33.33% 0;}
-#c_stop::after {background-position: 55.55% 0;}
-#c_post::after {background-position: 77.77% 0;}
-#c_help::after {background-position: 11.11% 50%;}
-#c_params::after {background-position: 11.11% 0;}
-#c_output::after {background-position: 55.55% 50%;}
-#c_play.playing::after {background-position: 33.33% 50%;}
+#c_play::after {background-position: 30% 0;}
+#c_stop::after {background-position: 50% 0;}
+#c_post::after {background-position: 70% 0;}
+#c_help::after {background-position: 10% 50%;}
+#c_params::after {background-position: 10% 0;}
+#c_output::after {background-position: 50% 50%;}
+#c_delete::after {background-position: 90% 0;}
+#c_play.playing::after {background-position: 30% 50%;}
 
 #play_loading {
 	display: block;
@@ -343,13 +344,13 @@ body.drk, .drk textarea {
 	background-color: #949ac7;
 }
 .drk.helpon #c_help::after {
-	background-position: 55.55% 50%;
+	background-position: 50% 50%;
 }
 .drk.paramson #c_params, .drk.paramson #c_params:hover {
 	background-color: #949ac7;
 }
 .drk.paramson #c_params::after {
-	background-position: 77.77% 50%;
+	background-position: 70% 50%;
 }
 .drk .middle_pane>table tr:nth-child(odd) {
 	background-color: #dcdcdc;
@@ -427,10 +428,6 @@ body.drk, .drk textarea {
 .cm-s-masher-light .cm-atom {color: #219;}
 .cm-s-masher-light .cm-number {color: #164;}
 .cm-s-masher-light .cm-def {color: #00f;}
-.cm-s-masher-light .cm-variable,
-.cm-s-masher-light .cm-punctuation,
-.cm-s-masher-light .cm-property,
-.cm-s-masher-light .cm-operator {}
 .cm-s-masher-light .cm-variable-2 {color: #05a;}
 .cm-s-masher-light .cm-variable-3, .cm-s-default .cm-type {color: #085;}
 .cm-s-masher-light .cm-comment {color: #a50;}
