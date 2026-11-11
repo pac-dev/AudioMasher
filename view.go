@@ -30,7 +30,7 @@ type TemplateData struct {
 var masherTemplates *template.Template
 var tutorialTemplates *template.Template
 
-func InitTemplates() {
+func InitPageTemplates() {
 	var err error
 	funcs := template.FuncMap{
 		"HumanDate": func(d int64) string {

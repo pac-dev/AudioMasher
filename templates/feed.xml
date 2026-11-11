@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-gb">
+	<link href="https://audiomasher.org/feed" rel="self"/>
+	<link href="https://audiomasher.org/" rel="alternate"/>
+
+	<title>AudioMasher Patches</title>
+	<updated>{{formatRFC3339 .Updated}}</updated>
+	<id>https://audiomasher.org/</id>
+	{{range .Patches}}
+	<entry>
+		<title>{{.Author | html}} - {{.Title | html}}</title>
+		<id>https://audiomasher.org/patch/{{.Id}}</id>
+		<link href="https://audiomasher.org/patch/{{.Id}}"/>
+		<updated>{{formatRFC3339 .DateModified}}</updated>
+		<author><name>{{.Author | html}}</name></author>
+		<summary>{{.Author | html}} - {{.Title | html}}</summary>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<em>Title:</em> {{.Title | html}}<br/>
+				<em>Author:</em> 
+				<a href="https://audiomasher.org/user/{{.Author | html}}">
+					{{.Author | html}}
+				</a><br/>
+				<em>Description:</em>
+				<p style="white-space: pre-line;">{{index .Files "readme.txt" | html}}</p><br/>
+				<em>Created:</em> {{HumanDate .DateCreated }}<br/>
+				<em>Modified:</em> {{HumanDate .DateModified }}<br/>
+				<em>Sporth code:</em>
+				<pre>{{index .Files "main.sp" | html}}</pre>
+			</div>
+		</content>
+	</entry>
+	{{end}}
+</feed>

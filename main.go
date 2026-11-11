@@ -12,7 +12,8 @@ func main() {
 	LoadConfig("config/masher_config.json")
 	InitSession()
 	InitDB()
-	InitTemplates()
+	InitPageTemplates()
+	InitFeedTemplate()
 	router := mux.NewRouter()
 
 	// pages
@@ -24,6 +25,7 @@ func main() {
 	router.HandleFunc("/browse", ViewBrowse)
 	router.HandleFunc("/learn", ViewLearn)
 	router.HandleFunc("/learn/{page}", ViewLearn)
+	router.HandleFunc("/feed", ViewFeed)
 
 	// api endpoints
 	router.HandleFunc("/api/signup", Signup).Methods("POST")
